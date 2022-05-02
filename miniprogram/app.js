@@ -13,18 +13,12 @@ App({
       })
     }
 
-    // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    this.autoUpdate();    
+    this.getOpenid();
+    this.getLoginStatus();
   },
+
+
   autoUpdate: function() {
     var self = this
     // 获取小程序更新机制兼容
@@ -86,12 +80,14 @@ App({
       })
     })
   },
+
     // 获取用户openid
     getOpenid: function () {
       var app = this;
       var openidStor = wx.getStorageSync('openid');
       if (openidStor) {
         app.globalData.openid = openidStor;
+        wx.setStorageSync('openid', openidStor);
         app._getMyUserInfo();
       } else {
         wx.cloud.callFunction({
@@ -145,5 +141,10 @@ App({
           }
         }
       })
+    },
+    getLoginStatus() {
+      var userInfo = wx.getStorageSync('user');
+      var status = userInfo.length != 0;
+      wx.setStorageSync('loginStatus', status);
     },
 })

@@ -1,0 +1,31 @@
+<view class="header" style="background-image: url({{serviceData.picture}});" bindtap="enlarge" data-url="{{serviceData.picture}}">
+</view>
+<view class="body">
+    <view class="titles">
+        <view class="mainTitles">
+            <view class="h1">{{serviceData.serviceName}}</view>
+            <view class="h2">{{serviceData.serviceSubtitle}}</view>
+        </view>
+        <view class="price">
+            <text>$</text>{{serviceData.USDPrice}}/<text>¥</text>{{serviceData.CNYPrice}}</view>
+    </view>
+    <view class="wrapper">
+        <view class="merchant">
+            <view class="left">
+                <image src="{{merchantData.leaderData.profilePic}}"></image>
+            </view>
+            <view class="right">
+                <view class="wrapper">
+                    <view class="h2">组织者</view>
+                    <view class="h1">{{merchantData.leaderData.username}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="billboard">
+            <view class="title">服务细节:</view>
+            <text class="content">{{serviceData.serviceDescription}}</text>
+        </view>
+    </view>
+    <button class="contact" bindtap="contactMerchant">联系商家</button>
+    <button class="payment" bindtap="payment" data-serviceid = "{{serviceData._id}}" data-merchantid = "{{merchantData.leaderData._id}}">+ 付款预约</button>
+</view>

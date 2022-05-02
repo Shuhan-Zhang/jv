@@ -1,2 +1,111 @@
-<!--pages/user/index.wxml-->
-<text>pages/user/index.wxml</text>
+<view class= "preLogin" wx:if = "{{!loginStatus}}">
+    <view class = "wrapper">
+        <image src = "cloud://jv-9gy6hgn177b0c873.6a76-jv-9gy6hgn177b0c873-1308590774/preLogin.png"></image>
+        <view class="text">未登陆</view>
+        <button bindtap="login">登陆/注册</button>
+    </view>
+</view>
+
+<view class="postLogin" wx:if = "{{loginStatus}}">
+    <view class = "header" style="background-image: url({{userInfo.profilePic}});">
+        <view class = "wrapper">
+            <image src = "{{userInfo.profilePic}}"></image>
+            <view class="text">{{userInfo.username}}</view>
+            <view class="buttons">
+                <button bindtap = "viewHistory">历史记录</button>
+                <button bindtap = "viewTransactions">转账记录</button>
+            </view>
+        </view> 
+    </view>
+    <view class="body">
+        <view class="orders"  wx:if = "{{orders.length > 0}}">
+            <view class="header">
+                <view class="title">您的订单</view>
+                <view class="checkAll" bindtap = "viewOrders">查看全部</view>
+            </view>
+            <van-skeleton title row="3" loading="{{loading}}">
+                <view class="orderRow" wx:for = "{{orders}}" wx:if="{{item.status != 'complete' && item.status != 'rejected'}}" bindtap="orderNavigator" data-orderid = "{{item._id}}">
+                    <view class="left">
+                        <image src="{{item.participantData.profilePic}}"></image>
+                    </view>
+                    <view class="middle">
+                        <view class="participantName">{{item.participantData.username}}</view>
+                        <view class="serviceName">{{item.serviceData.serviceName}}</view>
+                        <view class="line"></view>
+                        <view class="serviceDescription">
+                            <text class="iconfont icon-shijian"></text>
+                            {{item.createTime}}
+                        </view>
+                    </view>
+                    <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>待审核</text></view>
+                    </view>
+                    <view class="right paid"  wx:if="{{item.status == 'paid'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已收款</text></view>
+                    </view>
+                </view>
+            </van-skeleton>
+        </view>
+        <view class="participations">
+            <view class="header">
+                <view class="title">正在参与</view>
+                <view class="checkAll" bindtap = "viewParticipation">查看全部</view>
+            </view>
+            <van-skeleton title row="3" loading="{{loading}}">
+                <van-empty image="search" description="暂无参与活动，快去主页看看吧" wx:if = "{{!participations || participations.length == 0}}"/>
+                <!-- <view class="nothing" wx:if = "{{!participations || participations.length == 0}}">暂无参与活动，快去主页看看吧</view> -->
+                <view class="orderRow participationRow" wx:for = "{{participations}}" wx:if="{{item.status != 'complete'}}" bindtap = "orderNavigator" data-orderid = "{{item._id}}">
+                    <view class="left">
+                        <image src="{{item.merchantData.coverPic}}"></image>
+                    </view>
+                    <view class="middle">
+                            <view class="participantName">
+                                <text class="iconfont icon-map-thumbtack"></text>
+                                {{item.merchantData.eventLocation}}
+                            </view>
+                            <view class="serviceName">{{item.serviceData.serviceName}}</view>
+                            <view class="line"></view>
+                            <view class="serviceDescription">
+                                {{item.serviceData.serviceDescription}}
+                            </view>
+                    </view>
+                    <view class="right">
+                        <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                            <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                            <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                            <view class="status"><text>待审核</text></view>
+                        </view>
+                        <view class="right paid"  wx:if="{{item.status == 'paid'}}">
+                            <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                            <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                            <view class="status"><text>已付款</text></view>
+                        </view>
+                    </view>
+                </view>
+            </van-skeleton>
+        </view>
+        <view class="setting">
+            <view class="header"><view class="title">设置</view></view>
+            <van-cell-group custom-class="cellGroup">
+                <van-cell custom-class="cell" title="错误反馈" clickable bind:click = "error">
+                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                </van-cell>
+                <van-cell custom-class="cell" title="功能建议" clickable bind:click = "suggestion">
+                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                </van-cell>
+                <van-cell custom-class="cell" title="开发者信息" clickable bind:click = "developer">
+                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                </van-cell>
+                <button open-type="contact">
+                    <van-cell custom-class="cell" open-type = "contact" title="联系客服" clickable bind:click = "customerSupport">
+                        <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                    </van-cell>
+                </button>
+            </van-cell-group>
+        </view>
+    </view>
+</view>

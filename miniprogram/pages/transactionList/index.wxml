@@ -1,0 +1,8 @@
+<van-cell-group inset title="付款" custom-class="cellGroup">
+    <van-cell wx:for = "{{allSent}}" bindtap = "transactionNavigator" data-transactionid = "{{item._id}}" wx:if="{{item.category == 'screenshotUSD'}}" value = "${{item.amount}}" label="{{item.createTime}}" title="{{item.receiverData.username}}" custom-class = "infoCell" is-link center clickable></van-cell>
+    <van-cell wx:for = "{{allSent}}" bindtap = "transactionNavigator" data-transactionid = "{{item._id}}" wx:if="{{item.category == 'wechatCNY'}}" value = "¥{{item.amount}}" label="{{item.createTime}}" title="{{item.receiverData .username}}" custom-class = "infoCell" is-link center clickable></van-cell>
+</van-cell-group> 
+<van-cell-group inset title="收款" custom-class="cellGroup">
+    <van-cell wx:for = "{{allReceived}}" bindtap = "transactionNavigator" data-transactionid = "{{item._id}}" wx:if="{{item.category == 'screenshotUSD'}}" value = "${{item.amount}}" label="{{item.createTime}}" title="{{item.senderData.username}}" custom-class = "infoCell" is-link center clickable></van-cell>
+    <van-cell wx:for = "{{allReceived}}" bindtap = "transactionNavigator" data-transactionid = "{{item._id}}" wx:if="{{item.category == 'wechatCNY'}}" value = "¥{{item.amount}}" label="{{item.createTime}}" title="{{item.senderData.username}}" custom-class = "infoCell" is-link center clickable></van-cell>
+</van-cell-group>

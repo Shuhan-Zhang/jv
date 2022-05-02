@@ -1,0 +1,126 @@
+page {
+  background-color: #F7F8FA;
+}
+view.all {
+  width: 95%;
+  margin: 0px auto;
+}
+view.all view.serviceRow {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+view.all view.serviceRow view.left {
+  flex: 50%;
+}
+view.all view.serviceRow view.left image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 8px;
+}
+view.all view.serviceRow view.right {
+  flex: 70%;
+  text-align: right;
+}
+view.all view.serviceRow view.right .wrapper {
+  position: relative;
+  top: 10%;
+}
+view.all view.serviceRow view.right .wrapper .serviceName {
+  font-family: PingFangSC-Semibold;
+  font-size: 20px;
+  color: #000000;
+}
+view.all view.serviceRow view.right .wrapper .line {
+  margin-top: 13px;
+  margin-bottom: 13px;
+  width: 100%;
+  height: 1rpx;
+  background-color: #C7C7C7;
+}
+view.all view.serviceRow view.right .wrapper view.detail {
+  display: flex;
+  width: 100%;
+}
+view.all view.serviceRow view.right .wrapper view.detail .serviceLocation {
+  flex: 50%;
+  font-family: PingFangSC-Regular;
+  font-size: 10px;
+  color: #969799;
+}
+view.all view.serviceRow view.right .wrapper view.detail .serviceLocation text {
+  color: #369472;
+}
+view.all view.serviceRow view.right .wrapper view.detail .serviceTime {
+  flex: 50%;
+  font-family: PingFangSC-Regular;
+  font-size: 10px;
+  color: #969799;
+}
+view.all view.serviceRow view.right .wrapper view.detail .serviceTime text {
+  color: #369472;
+}
+view.all view.paymentRow {
+  margin-top: 20px;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 20px 15px 20px 20px;
+  border-radius: 8px;
+  display: flex;
+}
+view.all view.paymentRow view.left {
+  flex: 70%;
+}
+view.all view.paymentRow view.left text {
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #000000;
+  border-bottom: #369472 1px solid;
+  padding: 5px;
+}
+view.all view.paymentRow view.right {
+  flex: 30%;
+}
+view.all view.paymentRow view.right .dropdownGroup {
+  height: 25px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+view.all view.paymentRow view.right .dropdownItem {
+  text-align: center;
+}
+view.all view.paymentRow view.right .dropdownText {
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+}
+view.bottom {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  background-color: white;
+  box-shadow: 0px -1px 12px #ebedf0;
+  padding: 15px 15px 15px 20px;
+}
+view.bottom view.priceTag {
+  flex: 60%;
+  font-family: PingFangSC-Semibold;
+  font-size: 25px;
+  color: #D01D1F;
+}
+view.bottom view.priceTag text {
+  font-family: PingFangSC-Semibold;
+  font-size: 15px;
+}
+view.bottom view.confirmButton {
+  flex: 40%;
+}
+view.bottom view.confirmButton .payButton {
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 80%;
+  background: #369472;
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 14px;
+  color: #FFFFFF;
+}

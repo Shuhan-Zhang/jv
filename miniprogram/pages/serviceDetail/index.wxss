@@ -1,0 +1,130 @@
+view.header {
+  height: 450rpx;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.body {
+  position: relative;
+  background-color: #F7F8FA;
+  border-radius: 23px;
+  z-index: 1500;
+  margin-top: -23px;
+}
+.body .titles {
+  padding-top: 20px;
+  display: flex;
+  width: 91%;
+  margin: 0px auto;
+  align-items: center;
+}
+.body .titles .mainTitles {
+  flex: 60%;
+}
+.body .titles .mainTitles .h1 {
+  font-family: PingFangSC-Semibold;
+  font-size: 23px;
+  color: #000000;
+}
+.body .titles .mainTitles .h2 {
+  margin-top: 8px;
+  font-family: PingFangSC-Regular;
+  font-size: 11px;
+  color: #707070;
+}
+.body .titles .price {
+  text-align: right;
+  flex: 40%;
+  font-family: PingFangSC-Semibold;
+  font-size: 50rpx;
+  color: #369472;
+}
+.body .titles .price text {
+  font-size: 36rpx;
+}
+.body view.wrapper {
+  width: 95%;
+  margin: 0px auto;
+}
+.body view.merchant {
+  background-color: white;
+  display: flex;
+  margin-top: 20px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  border-radius: 8px;
+  padding: 10px 15px 10px 15px;
+  align-items: center;
+}
+.body view.merchant view.left {
+  flex: 30%;
+}
+.body view.merchant view.left image {
+  width: 135rpx;
+  height: 135rpx;
+  border-radius: 50%;
+}
+.body view.merchant view.right {
+  flex: 70%;
+  text-align: right;
+}
+.body view.merchant view.right .wrapper .h2 {
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #707070;
+}
+.body view.merchant view.right .wrapper .h1 {
+  padding-top: 9px;
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #000000;
+}
+.body view.billboard {
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  border-radius: 8px;
+  padding: 15px 15px 15px 15px;
+}
+.body view.billboard view.title {
+  padding-bottom: 7px;
+  margin-bottom: 5px;
+  font-family: PingFangSC-Semibold;
+  font-size: 19px;
+  border-bottom: 1px solid #369472;
+  width: 25%;
+}
+.body view.billboard text.content {
+  margin-top: 5px;
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #000000;
+  line-height: 2em;
+}
+.body button.contact {
+  text-align: center;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FFFFFF;
+  height: 5%;
+  width: 38%;
+  left: 7%;
+  position: fixed;
+  bottom: 10px;
+  border-radius: 8px;
+}
+.body button.payment {
+  box-shadow: 0px 5px 12px #ebedf0;
+  text-align: center;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FFFFFF;
+  height: 5%;
+  width: 38%;
+  left: 55%;
+  position: fixed;
+  bottom: 10px;
+  border-radius: 8px;
+}

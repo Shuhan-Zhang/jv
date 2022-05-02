@@ -1,0 +1,86 @@
+{
+  "setting": {},
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "用户主页",
+          "pathName": "pages/user/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "错误反馈",
+          "pathName": "pages/error/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "商家详情",
+          "pathName": "pages/merchantDetail/index",
+          "query": "id=807102f6623e571c01e8c65a5c34702d",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订单列表",
+          "pathName": "pages/orderList/index",
+          "query": "openid=odaOX4iSzdteKW6FtxMRgf-wD-qY&storeid=807102f6623e571c01e8c65a5c34702d&cordid=efbc6d71623e4d3e01f21f7b65bc0590",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "服务详情",
+          "pathName": "pages/serviceDetail/index",
+          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "付款确认页",
+          "pathName": "pages/paymentConfirmation/index",
+          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b&merchantid=efbc6d71623e4d3e01f21f7b65bc0590",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "转账确认页",
+          "pathName": "pages/transferConfirmation/index",
+          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b&amount=50",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订单详情页",
+          "pathName": "pages/orderDetail/index",
+          "query": "orderid=68426679626715e80022cbd3469d4b2b",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "转账详情页",
+          "pathName": "pages/transactionDetail/index",
+          "query": "transactionid=6d85a2b9626c4fe400f3877124a65763",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "历史列表",
+          "pathName": "pages/orderList/index",
+          "query": "cordid=efbc6d71623e4d3e01f21f7b65bc0590&storeid=807102f6623e571c01e8c65a5c34702d&order=true&participation=true&pending=true",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "转账列表",
+          "pathName": "pages/transactionList/index",
+          "query": "openid=efbc6d71623e4d3e01f21f7b65bc0590&storeid=807102f6623e571c01e8c65a5c34702d&cordid=efbc6d71623e4d3e01f21f7b65bc0590",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+}

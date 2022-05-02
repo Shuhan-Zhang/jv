@@ -1,0 +1,204 @@
+page {
+  background-color: #F7F8FA;
+}
+view.header {
+  height: 450rpx;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+view.header .wrapper {
+  z-index: 0;
+  position: relative;
+  top: -30%;
+  backdrop-filter: blur(2px);
+  height: 60%;
+  background: rgba(9, 9, 9, 0.7);
+  box-shadow: 0px -5px 10px 5px rgba(0, 0, 0, 0.5);
+}
+view.header .info {
+  z-index: 1000;
+  position: relative;
+  top: 15%;
+}
+view.header image {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+}
+view.header .leaderName {
+  padding-top: 6px;
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+  color: #FFFFFF;
+}
+view.header .merchantName {
+  margin-top: 6px;
+  font-family: PingFangSC-Semibold;
+  font-size: 23px;
+  color: #FFFFFF;
+}
+.body {
+  position: relative;
+  background-color: #F7F8FA;
+  border-radius: 23px;
+  z-index: 1500;
+  margin-top: -23px;
+}
+.body view.mainBody {
+  width: 95%;
+  margin: 0px auto;
+  padding-bottom: 40px;
+}
+.body view.info {
+  display: flex;
+  width: 100%;
+  padding-top: 20px;
+  line-height: 0.8em;
+}
+.body view.info view.info_row {
+  flex: 33%;
+  max-width: 33%;
+  margin-right: 4px;
+  text-align: center;
+}
+.body view.info view.info_row image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.body view.info view.info_row view.desc {
+  margin-top: 7px;
+  font-family: PingFangSC-Semibold;
+  font-size: 10px;
+  color: #000000;
+}
+.body view.info view.info_row view.vertical_line {
+  border-right: 1px solid #D9D9D9;
+  height: 20px;
+  margin-top: -40px;
+}
+.body view.info view.info_row view.time {
+  margin-top: -52.5px;
+}
+.body view.info view.info_row view.location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.body view.pics {
+  margin-top: 23px;
+}
+.body view.pics swiper {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  text-align: center;
+  height: 200px;
+}
+.body view.pics swiper swiper-item image {
+  height: 200px;
+  border-radius: 8px;
+}
+.body view.billboard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  border-radius: 8px;
+  padding: 15px 15px 15px 15px;
+}
+.body view.billboard view.title {
+  padding-bottom: 7px;
+  margin-bottom: 5px;
+  font-family: PingFangSC-Semibold;
+  font-size: 19px;
+  border-bottom: 1px solid #369472;
+  width: 25%;
+}
+.body view.billboard text {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #000000;
+  line-height: 2em;
+}
+.body view.serviceRow {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  display: flex;
+  align-items: center;
+  padding: 15px 0px 15px 0px;
+}
+.body view.serviceRow view.left {
+  flex: 27%;
+  max-width: 27%;
+  text-align: center;
+}
+.body view.serviceRow view.left image {
+  width: 155rpx;
+  height: 155rpx;
+  border-radius: 15px;
+}
+.body view.serviceRow view.middle {
+  color: #000000;
+  text-align: left;
+  flex: 55%;
+  max-width: 55%;
+}
+.body view.serviceRow view.middle view.serviceTitle {
+  padding-top: 5px;
+  font-family: PingFangSC-Medium;
+  font-size: 17px;
+}
+.body view.serviceRow view.middle view.line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  height: 1rpx;
+  background-color: #C7C7C7;
+}
+.body view.serviceRow view.middle view.serviceDescription {
+  color: #969799;
+  font-family: PingFangSC-Regular;
+  font-size: 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.body view.serviceRow view.middle view.serviceDescription text {
+  color: #369472;
+  font-size: 13px;
+}
+.body view.serviceRow view.right {
+  flex: 15%;
+  max-width: 15%;
+}
+.body view.serviceRow view.right view.price {
+  text-align: center;
+  width: 100%;
+  background: #369472;
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 13px;
+  color: #FFFFFF;
+  padding: 5px 0px 5px 0px;
+}
+.body button.contact {
+  text-align: center;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FFFFFF;
+  height: 5%;
+  width: 90%;
+  left: 5%;
+  position: fixed;
+  bottom: 10px;
+  border-radius: 8px;
+}

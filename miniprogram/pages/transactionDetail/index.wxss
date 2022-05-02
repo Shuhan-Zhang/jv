@@ -1,0 +1,119 @@
+.header {
+  background-color: #369472;
+}
+.header .wrapper {
+  z-index: 0;
+  padding: 30rpx 25rpx 80rpx 25rpx;
+  display: flex;
+  align-items: center;
+}
+.header .left {
+  flex: 50%;
+}
+.header .left .userRow {
+  display: flex;
+  align-items: center;
+}
+.header .left .userRow .profile {
+  flex: 35%;
+  text-align: center;
+}
+.header .left .userRow .profile image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.header .left .userRow .userInfo {
+  flex: 65%;
+  text-align: left;
+}
+.header .left .userRow .userInfo .h2 {
+  font-family: PingFangSC-Regular;
+  font-size: 12px;
+  color: #CDCDCD;
+}
+.header .left .userRow .userInfo .h1 {
+  margin-top: 10rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 17px;
+  color: #FFFFFF;
+}
+.header .left .line {
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  width: 95%;
+  height: 1rpx;
+  background-color: #C7C7C7;
+}
+.header .right {
+  flex: 50%;
+  text-align: right;
+  padding-right: 15rpx;
+}
+.header .right text {
+  font-family: PingFangSC-Semibold;
+  font-size: 30px;
+  color: #FFFFFF;
+}
+.main {
+  position: relative;
+  background-color: #F7F8FA;
+  border-radius: 23px;
+  z-index: 1500;
+  margin-top: -23px;
+}
+.main .infoCell {
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+.main .imageCell {
+  display: block;
+}
+.main .imageCell image {
+  margin-top: 20rpx;
+  border-radius: 8px;
+  width: 100%;
+  height: auto;
+}
+.main .cellGroup {
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+.main van-popup {
+  text-align: center;
+}
+.main van-popup image {
+  margin-top: 20px;
+  height: 80%;
+  width: auto;
+}
+.main van-popup .buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.main van-popup .buttons button {
+  font-family: PingFangSC-Medium;
+  color: #FFFFFF;
+  font-size: 14px;
+  width: 40%;
+}
+.main van-popup .buttons .cancel {
+  background: #D01D1F;
+}
+.main van-popup .buttons .confirm {
+  background: #369472;
+}
+.bottom {
+  margin-top: 20px;
+  padding-bottom: 50rpx;
+}
+.bottom button {
+  box-shadow: 0px 5px 12px #ebedf0;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FFFFFF;
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 8px;
+}

@@ -1,0 +1,62 @@
+<view class="header" style="background-image: url({{merchantData.coverPic}});">
+    <view class="info">
+        <image src="{{merchantData.leaderData.profilePic}}"></image>
+        <view class="leaderName">{{merchantData.leaderData.username}}</view>
+        <view class="merchantName">{{merchantData.title}}</view>
+    </view>
+    <view class="wrapper"></view>
+</view>
+<view class="body">
+    <view class="info">
+        <view class="info_row">
+            <image src="cloud://jv-9gy6hgn177b0c873.6a76-jv-9gy6hgn177b0c873-1308590774/人数 (2).png"></image>
+            <view class="desc">
+                <text>{{participantNumber}}人已参加</text>
+            </view>
+            <view class="vertical_line"></view>
+        </view>
+        <view class="info_row">
+            <image src="cloud://jv-9gy6hgn177b0c873.6a76-jv-9gy6hgn177b0c873-1308590774/地址 (2).png"></image>
+            <view class="location desc">
+                <text>{{merchantData.eventLocation}}</text>
+            </view>
+            <view class="vertical_line"></view>
+        </view>
+        <view class="info_row">
+            <image src="cloud://jv-9gy6hgn177b0c873.6a76-jv-9gy6hgn177b0c873-1308590774/时间 (4).png"></image>
+            <view class="desc">
+                <text>{{merchantData.availableTimes}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="mainBody">
+        <van-skeleton title row="3" loading="{{loading}}"></van-skeleton>
+        <view class="pics">
+            <swiper autoplay circular indicator-dots indicator-active-color="#369472">
+                <swiper-item wx:for="{{merchantData.subPic}}" wx:key="_id">
+                    <image mode="aspectFill" src="{{item}}" bindtap="enlarge" data-url = "{{item}}"></image>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="billboard">
+            <view class="title">公告板:</view>
+            <text class="content">{{merchantData.billboard}}</text>
+        </view>
+        <view class="serviceRow" wx:for = "{{serviceData}}" bindtap="serviceDetailNavigator" data-serviceid="{{item._id}}">
+            <view class="left">
+                <image src="{{item.picture}}"></image>
+            </view>
+            <view class="middle">
+                <view class="serviceTitle">{{item.serviceName}}</view>
+                <view class="line"></view>
+                <view class="serviceDescription">
+                    {{item.serviceSubtitle}}
+                </view>
+            </view>
+            <view class="right">
+                <view class="price">${{item.USDPrice}}</view>
+            </view>
+        </view>
+    </view>
+    <button class="contact" bindtap="contactMerchant">联系商家</button>
+</view>

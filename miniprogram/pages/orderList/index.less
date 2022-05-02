@@ -1,0 +1,186 @@
+page {
+    background-color: #F7F8FA;
+}
+
+.dropdown {
+    margin-bottom: 20rpx;
+
+    .dropdownItem {
+        font-family: PingFangSC-Regular;
+        font-size: 14px;
+    }
+}
+
+view.all {
+    margin: 0px auto;
+    width: 94%;
+
+    view.header {
+        color: #969799;
+        font-size: 14px;
+        margin-bottom: 20rpx;
+    }
+
+    view.orderRow {
+        background-color: #FFFFFF;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 8px 12px #ebedf0;
+        display: flex;
+        padding: 15px 0px 15px 0px;
+        align-items: center;
+
+        view.left {
+            flex: 21%;
+            text-align: center;
+
+            image {
+                margin-top: 22rpx;
+                width: 115rpx;
+                height: 115rpx;
+                border-radius: 50%;
+            }
+        }
+
+        view.middle {
+            color: #000000;
+            text-align: left;
+            flex: 57%;
+
+            view.participantName {
+                align-items: baseline;
+
+                text.iconfont {
+                    color: #369472;
+                    font-size: 11px;
+                }
+
+                font-family: PingFangSC-Light;
+                color: #969799;
+                font-size: 11px;
+            }
+
+            view.serviceName {
+                padding-top: 6px;
+                font-family: PingFangSC-Medium;
+                font-size: 16px;
+            }
+
+            view.line {
+                margin-top: 17rpx;
+                margin-bottom: 17rpx;
+                width: 90%;
+                height: 1rpx;
+                background-color: #C7C7C7;
+            }
+
+            view.serviceDescription {
+                text.iconfont {
+                    color: #369472;
+                    font-size: 13px;
+                }
+
+                color: #969799;
+                font-family: PingFangSC-Regular;
+                font-size: 10px;
+                display: -webkit-box;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-wrap: break-word;
+                white-space: normal !important;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+        }
+
+        view.right {
+            flex: 16%;
+            text-align: center;
+            padding-right: 5px;
+
+            view.price {
+                border-radius: 8px;
+                font-family: PingFangSC-Semibold;
+                font-size: 23px;
+            }
+
+            view.status {
+                margin-top: 7px;
+
+                text {
+                    font-family: PingFangSC-Regular;
+                    font-size: 12px;
+                    color: #FFFFFF;
+                    padding: 5px 7px 5px 7px;
+                    border-radius: 8px;
+                }
+            }
+        }
+
+        view.pending {
+            view.price {
+                color: #E26629;
+            }
+
+            view.status {
+                text {
+                    background-color: #E26629;
+                }
+            }
+        }
+
+        view.paid {
+            view.price {
+                color: #369472;
+            }
+
+            view.status {
+                text {
+                    background-color: #369472;
+                }
+            }
+        }
+
+        view.complete {
+            view.price {
+                color: #969799;
+            }
+
+            view.status {
+                text {
+                    background-color: #969799;
+                }
+            }
+        }
+
+        view.rejected {
+            view.price {
+                color: #D01D1F;
+            }
+
+            view.status {
+                text {
+                    background-color: #D01D1F;
+                }
+            }
+        }
+    }
+
+    view.orders {}
+
+    view.participations {
+        margin-top: 20rpx;
+
+        .participationRow {
+            align-items: center;
+
+            view.left {
+                image {}
+            }
+
+            view.middle {}
+
+            view.right {}
+        }
+    }
+}

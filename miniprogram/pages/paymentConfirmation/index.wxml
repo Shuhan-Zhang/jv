@@ -1,0 +1,56 @@
+<view class="all">
+    <view class="serviceRow">
+        <view class="left">
+            <image src="{{serviceData.picture}}"></image>
+        </view>
+        <view class="right">
+            <view class="wrapper">
+                <view class="serviceName">{{serviceData.serviceName}}</view>
+                <view class="line"></view>
+                <view class="detail">
+                    <view class="serviceLocation">
+                        <text class="iconfont icon-map-thumbtack"></text>
+                        {{merchantData.eventLocation}}
+                    </view>
+                    <view class="serviceTime">
+                        <text class="iconfont icon-shijian"></text>
+                        {{merchantData.availableTimes}}
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="paymentRow paymentType">
+        <view class="left">
+            <view class="wrapper">
+                <text>付款方式</text>
+            </view>
+        </view>
+        <view class="right">
+            <van-dropdown-menu active-color="#369472" custom-class="dropdownGroup">
+                <van-dropdown-item custom-class = "dropdownItem" title-class ="dropdownText" value="{{ value }}" options="{{ option }}" bind:change = "changeDropdown"/>
+            </van-dropdown-menu>
+        </view>
+    </view>
+    <view class="paymentRow number">
+        <view class="left">
+            <text>数量</text>
+        </view>
+        <view class="right">
+            <van-stepper value="{{ num }}" bind:change="onNumberChange" />
+        </view>
+    </view>
+</view>
+<view class="bottom">
+    <view class = "priceTag" wx:if="{{value == 0}}">
+        <text>总计:</text>
+        ¥{{price}}
+    </view>
+    <view class = "priceTag" wx:if="{{value == 1}}">
+        <text>总计:</text>
+        ${{price}}
+    </view>
+    <view class="confirmButton">
+        <van-button round type="info" custom-class = "payButton" bind:click = "payment">确认支付</van-button>
+    </view>
+</view>

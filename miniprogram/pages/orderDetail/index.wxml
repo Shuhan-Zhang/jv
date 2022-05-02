@@ -1,0 +1,69 @@
+<view class="header" style="background-image: url({{serviceData.picture}});">
+    <view class="wrapper">
+        <view class="left">
+            <view class="participant userRow">
+                <view class="profile">
+                    <image src="{{participantData.profilePic}}"></image>
+                </view>
+                <view class="userInfo">
+                    <view class="h2">参与者</view>
+                    <view class="h1">{{participantData.username}}</view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="merchant userRow">
+                <view class="profile">
+                    <image src="{{merchantData.leaderData.profilePic}}"></image>
+                </view>
+                <view class="userInfo">
+                    <view class="h2">商家</view>
+                    <view class="h1">{{merchantData.leaderData.username}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="right">
+            <text>{{serviceData.serviceName}}</text>
+        </view>
+    </view>
+</view>
+<view class="main">
+    <van-cell-group inset title="店铺信息" custom-class = "cellGroup">
+        <van-cell title="店铺名称:" value="{{merchantData.title}}" custom-class = "infoCell"/>
+        <van-cell title="服务详情" is-link bind:click="serviceNavigator" data-serviceid = "{{orderData.service}}" custom-class = "infoCell"/>
+    </van-cell-group>
+    <van-cell-group inset border="{{false}}" title="订单信息" custom-class = "cellGroup">
+        <van-cell title="订单ID:" label="{{orderData._id}}" custom-class = "infoCell"/>
+        <van-cell title="订单状态:" custom-class = "infoCell" wx:if="{{statusLoading}}">
+            <van-loading slot="right-icon" type="spinner" size="16px"></van-loading>
+        </van-cell>
+        <van-cell title="订单状态:" value="待审核" wx:if="{{orderData.status == 'pending' && !statusLoading}}" custom-class = "infoCell"/>
+        <van-cell title="订单状态:" value="已确定" wx:if="{{orderData.status == 'paid' && !statusLoading}}" custom-class = "infoCell"/>
+        <van-cell title="订单状态:" value="已完成" wx:if="{{orderData.status == 'complete' && !statusLoading}}" custom-class = "infoCell"/>
+        <van-cell title="订单状态:" value="已拒绝" wx:if="{{orderData.status == 'rejected' && !statusLoading}}" custom-class = "infoCell"/>
+        <van-cell title="订单金额:" value="${{transactionData.amount}}" wx:if="{{transactionData.category == 'screenshotUSD'}}" custom-class = "infoCell"/>
+        <van-cell title="订单金额:" value="¥{{transactionData.amount}}" wx:if="{{transactionData.category == 'wechatCNY'}}" custom-class = "infoCell"/>
+        <van-cell title="订单时间:" value="{{orderData.createTime}}" custom-class = "infoCell"/>
+        <van-cell title="改变订单状态" custom-class = "infoCell" bind:click="changeStatus" wx:if="{{ifMerchant}}" is-link arrow-direction="down" >
+        </van-cell>
+    </van-cell-group>
+   <van-cell-group inset border="{{false}}" title="付款信息" custom-class = "cellGroup">
+        <van-cell title="转账ID" label="{{transactionData._id}}" custom-class = "infoCell" is-link bind:click="transactionNavigator" data-transactionid="{{transactionData._id}}"/>
+        <van-cell title="付款方式" value="美元转账" custom-class = "infoCell" wx:if="{{transactionData.category == 'screenshotUSD'}}"/>
+        <van-cell title="付款方式" value="微信付款" custom-class = "infoCell" wx:if="{{transactionData.category == 'wechatCNY'}}"/>
+        <van-cell title="付款截图:" custom-class = "imageCell">
+            <image src="{{transactionData.screenshot}}" mode="widthFix" bindtap="enlarge" data-url = "{{transactionData.screenshot}}"></image>
+        </van-cell>
+    </van-cell-group> 
+    <van-action-sheet
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:close="onClose"
+    bind:select="onSelect"
+    bind:cancel = "onClose"
+    cancel-text="取消"
+    />
+</view>
+<!-- <view class="bottom merchant" wx:if="{{ifMerchant && orderData.status == 'pending'}}">
+    <button class="pendingButton reject" bindtap = "rejectOrder">拒绝订单</button>
+    <button class="pendingButton approve" bindtap = "approveOrder">确认订单</button>
+</view> -->

@@ -1,0 +1,310 @@
+page {
+  background-color: #F7F8FA;
+}
+
+view.preLogin {
+  background: #369472;
+  box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.50);
+  border-radius: 10px;
+
+  view.wrapper {
+    text-align: center;
+    background: rgba(9, 9, 9, 0.65);
+    backdrop-filter: blur(20px);
+
+    image {
+      margin-top: 30px;
+      width: 200rpx;
+      height: 200rpx;
+    }
+
+    view.text {
+      margin-top: 10px;
+      font-family: PingFangSC-Medium;
+      font-size: 20px;
+      color: #FFFFFF;
+    }
+
+    button {
+      padding: 0px 15px 0px 15px;
+      display: inline-block;
+      background: #FFFFFF;
+      border-radius: 8px;
+      font-family: PingFangSC-Medium;
+      font-size: 15px;
+      color: #000000;
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+view.postLogin {
+  view.header {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    view.wrapper {
+      z-index: -1000;
+      backdrop-filter: blur(10px);
+      height: 50%;
+      background: rgba(9, 9, 9, 0.50);
+
+      image {
+        margin-top: 15px;
+        width: 200rpx;
+        height: 200rpx;
+        border-radius: 50%;
+      }
+
+      view.text {
+        margin-top: 10px;
+        font-size: 18px;
+        font-family: PingFangSC-Medium;
+        color: #FFFFFF;
+      }
+
+      view.buttons {
+        margin: 0px auto;
+        width: 65%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 0px 15px 0px 15px;
+        display: inline-block;
+        background: #FFFFFF;
+        border-radius: 8px;
+        font-family: PingFangSC-Medium;
+        font-size: 11px;
+        color: #000000;
+        margin-top: 15px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+
+  view.body {
+    position: relative;
+    z-index: 1000;
+    background-color: #F7F8FA;
+    border-radius: 23px;
+    margin-top: -20px;
+
+
+    view.header {
+      width: 95%;
+      margin: 0px auto;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      view.title {
+        padding-top: 15px;
+        padding-bottom: 10px;
+        font-family: PingFangSC-Medium;
+        font-size: 15px;
+        color: #969799;
+      }
+
+      view.checkAll {
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #969799;
+        text-align: right;
+      }
+    }
+
+    view.nothing {
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      text-align: center;
+      padding: 13px 0px 13px 0px;
+      border-radius: 8px;
+      box-shadow: 0px 5px 12px #ebedf0;
+      margin-bottom: 10px;
+      background-color: white;
+    }
+
+    view.orderRow {
+      background-color: white;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 5px 12px #ebedf0;
+      display: flex;
+      padding: 15px 0px 15px 0px;
+      align-items: center;
+
+      view.left {
+        flex: 21%;
+        text-align: center;
+
+        image {
+          margin-top: 22rpx;
+          width: 115rpx;
+          height: 115rpx;
+          border-radius: 50%;
+        }
+      }
+
+      view.middle {
+        color: #000000;
+        text-align: left;
+        flex: 57%;
+
+        view.participantName {
+          align-items: baseline;
+
+          text.iconfont {
+            color: #369472;
+            font-size: 11px;
+          }
+
+          font-family: PingFangSC-Light;
+          color: #969799;
+          font-size: 11px;
+        }
+
+        view.serviceName {
+          padding-top: 6px;
+          font-family: PingFangSC-Medium;
+          font-size: 16px;
+        }
+
+        view.line {
+          margin-top: 17rpx;
+          margin-bottom: 17rpx;
+          width: 90%;
+          height: 1rpx;
+          background-color: #C7C7C7;
+        }
+
+        view.serviceDescription {
+          text.iconfont {
+            color: #369472;
+            font-size: 13px;
+          }
+
+          color: #969799;
+          font-family: PingFangSC-Regular;
+          font-size: 10px;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          word-wrap: break-word;
+          white-space: normal !important;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+        }
+      }
+
+      view.right {
+        flex: 16%;
+        text-align: center;
+        padding-right: 5px;
+
+        view.price {
+          border-radius: 8px;
+          font-family: PingFangSC-Semibold;
+          font-size: 23px;
+        }
+
+        view.status {
+          margin-top: 7px;
+
+          text {
+            font-family: PingFangSC-Regular;
+            font-size: 12px;
+            color: #FFFFFF;
+            padding: 5px 7px 5px 7px;
+            border-radius: 8px;
+          }
+        }
+      }
+
+      view.pending {
+        view.price {
+          color: #E26629;
+        }
+
+        view.status {
+          text {
+            background-color: #E26629;
+          }
+        }
+      }
+
+      view.paid {
+        view.price {
+          color: #369472;
+        }
+
+        view.status {
+          text {
+            background-color: #369472;
+          }
+        }
+      }
+    }
+
+    view.orders {
+      width: 93%;
+      margin: 0px auto;
+    }
+
+    view.participations {
+      width: 93%;
+      margin: 0px auto;
+
+      .participationRow {
+        align-items: center;
+
+        view.left {
+          image {}
+        }
+
+        view.middle {}
+
+        view.right {}
+      }
+    }
+
+    view.setting {
+      width: 93%;
+      margin: 0px auto;
+
+      .title {
+        margin-top: -10px;
+        margin-bottom: 5px;
+      }
+
+      .cellGroup {
+        background: white;
+        margin-bottom: 20px;
+        box-shadow: 0px 4px 12px #ebedf0;
+        padding: 5px 15px 5px 15px;
+        border-radius: 8px;
+      }
+
+      button {
+        background-color: #FFF;
+        padding: 0;
+        margin: 0;
+        font-size: inherit;
+        text-align: left;
+      }
+
+      button::after {
+        border: #FFF solid;
+      }
+
+      .cell {
+        background-color: white;
+        padding: 10px 0px 10px 0px;
+      }
+    }
+  }
+}

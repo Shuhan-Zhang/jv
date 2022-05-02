@@ -1,0 +1,8 @@
+page {
+  background-color: #F7F8FA;
+}
+.cellGroup {
+  border-radius: 8px;
+  margin-top: 15px;
+  box-shadow: 0px 5px 12px #ebedf0;
+}

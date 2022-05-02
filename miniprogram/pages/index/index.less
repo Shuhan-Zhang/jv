@@ -1,0 +1,118 @@
+page {
+    background-color: #F7F8FA;
+}
+
+view.index {
+
+    .searchBar {
+        background-color: #f0f0f0;
+        border-radius: 8px;
+        padding: 0px 10px 0px 10px;
+    }
+
+    .searchInput {
+        font-size: 12px;
+    }
+
+    .searchCell {
+        font-size: 13px;
+    }
+
+    .searchCellGroup {
+        margin-top: -5px;
+    }
+
+    view.body {
+        view.row {
+            width: 93%;
+            height: 180px;
+            margin: 0px auto;
+            margin-top: 15px;
+            border-radius: 8px;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            view.price {
+                width: 100%;
+                height: 47%;
+                position: relative;
+
+                .circle {
+                    position: relative;
+                    top: 20rpx;
+                    left: 560rpx;
+                    height: 110rpx;
+                    width: 110rpx;
+                    text-align: center;
+
+                    image {
+                        margin-top: 7px;
+                        width: 45rpx;
+                        height: 45rpx;
+                    }
+
+                    view.priceTag {
+                        margin-top: -1px;
+                        font-family: PingFangSC-Regular;
+                        font-size: 11px;
+                        color: #FFFFFF;
+                    }
+
+                    background: #369472;
+                    opacity: 0.8;
+                    border-radius: 50%;
+                }
+            }
+
+            view.information {
+                height: 53%;
+                background: rgba(9, 9, 9, 0.70);
+                box-shadow: 0 -5px 4px 0 rgba(0, 0, 0, 0.70);
+                backdrop-filter: blur(1px);
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                padding: 0px 0px 0px 5px;
+
+                view.left {
+                    flex: 22%;
+
+                    image {
+                        margin-left: 5px;
+                        width: 120rpx;
+                        height: 120rpx;
+                        border-radius: 50%;
+                    }
+                }
+
+                view.right {
+                    flex: 78%;
+                    color: #FFFFFF;
+                    text-align: left;
+
+                    view.leaderName {
+                        font-family: PingFangSC-Thin;
+                        font-size: 13px;
+                    }
+
+                    view.storeName {
+                        margin-top: 5px;
+                        font-family: PingFangSC-Semibold;
+                        font-size: 40rpx;
+                    }
+
+                    view.description {
+                        margin-top: 5px;
+                        font-family: PingFangSC-Thin;
+                        font-size: 10px;
+                        color: #CDCDCD;
+                    }
+                }
+            }
+        }
+
+        button::after {
+            border: none;
+        }
+    }
+}

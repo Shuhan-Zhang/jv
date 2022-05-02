@@ -1,0 +1,16 @@
+<view class="all">
+  <view class="info">
+    <view class="profilePic">
+      <image src="" mode="aspectFill"></image>
+    </view>
+    <view class="name">
+      <text>张书晗+曾植</text>
+    </view>
+    <view class="description">
+      <text>Created by Shuhan(Steven) Zhang and Zeng(Zeeman) Zhi on 03/28/2022.</text>
+    </view>
+    <view class="copyRightInfo">
+      <text>Copyright © 2021 Shuhan Zhang. All rights reserved.</text>
+    </view>
+  </view>
+</view>
