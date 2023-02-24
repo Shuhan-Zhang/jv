@@ -12,11 +12,12 @@ view.all {
         align-items: center;
 
         view.left {
-            flex: 50%;
+            padding-left: 10rpx;
+            flex: 45%;
 
             image {
-                width: 200rpx;
-                height: 200rpx;
+                width: 230rpx;
+                height: 230rpx;
                 border-radius: 8px;
             }
         }
@@ -24,50 +25,48 @@ view.all {
         view.right {
             flex: 70%;
             text-align: right;
+            align-items: center;
 
-            .wrapper {
-                position: relative;
-                top: 10%;
+            .serviceName {
+                font-family: PingFangSC-Semibold;
+                font-size: 42rpx;
+                color: #363938;
+            }
 
-                .serviceName {
-                    font-family: PingFangSC-Semibold;
-                    font-size: 20px;
-                    color: #000000;
-                }
+            .line {
+                margin-top: 33rpx;
+                margin-bottom: 33rpx;
+                width: 100%;
+                height: 1rpx;
+                background-color: #E4E5E5;
+            }
 
-                .line {
-                    margin-top: 13px;
-                    margin-bottom: 13px;
-                    width: 100%;
-                    height: 1rpx;
-                    background-color: #C7C7C7;
-                }
+            view.detail {
+                display: flex;
+                width: 100%;
+                text-align: right;
 
-                view.detail {
-                    display: flex;
-                    width: 100%;
+                .serviceLocation {
+                    flex: 30%;
+                    font-family: PingFangSC-Regular;
+                    font-size: 21rpx;
+                    color: #9F9F9F;
 
-                    .serviceLocation {
-                        flex: 50%;
-                        font-family: PingFangSC-Regular;
-                        font-size: 10px;
-                        color: #969799;
-
-                        text {
-                            color: #369472;
-                        }
-
+                    text {
+                        color: #369472;
                     }
 
-                    .serviceTime {
-                        flex: 50%;
-                        font-family: PingFangSC-Regular;
-                        font-size: 10px;
-                        color: #969799;
+                }
 
-                        text {
-                            color: #369472;
-                        }
+                .serviceTime {
+                    flex: 50%;
+                    font-family: PingFangSC-Regular;
+                    font-size: 21rpx;
+                    color: #969799;
+
+                    .iconfont {
+                        text-align: left;
+                        color: #369472;
                     }
                 }
             }
@@ -75,10 +74,10 @@ view.all {
     }
 
     view.paymentRow {
-        margin-top: 20px;
+        margin-top: 55rpx;
         background: #FFFFFF;
         box-shadow: 0px 5px 12px #ebedf0;
-        padding: 20px 15px 20px 20px;
+        padding: 25px 15px 25px 20px;
         border-radius: 8px;
 
         display: flex;
@@ -86,14 +85,14 @@ view.all {
         view.left {
             flex: 70%;
 
-
             text {
-                font-family: PingFangSC-Medium;
-                font-size: 14px;
-                color: #000000;
+                font-family: PingFangSC-Semibold;
+                font-size: 31rpx;
+                color: #363938;
                 border-bottom: #369472 1px solid;
                 padding: 5px;
             }
+
         }
 
         view.right {
@@ -101,21 +100,35 @@ view.all {
 
             .dropdownGroup {
                 height: 25px;
-                border-radius: 8px;
                 box-shadow: none;
-            }
 
-            .dropdownItem {
-                text-align: center;
             }
 
             .dropdownText {
                 font-family: PingFangSC-Regular;
                 font-size: 13px;
+                color: #969799;
+            }
+
+            .dateTimeConfirm {
+                padding: 15px 0px 10px 0px;
+                width: 40%;
+                margin: 0px auto;
+
+            }
+
+            .dateTimeConfirmButton {
+                border-radius: 10px;
+                background: #369472;
+                font-family: PingFangSC-Semibold;
+                font-size: 14px;
+                color: #FFFFFF;
             }
         }
+
     }
 }
+
 
 view.bottom {
     width: 100%;
@@ -124,31 +137,45 @@ view.bottom {
     display: flex;
     background-color: white;
     box-shadow: 0px -1px 12px #ebedf0;
-    padding: 15px 15px 15px 20px;
+    padding: 15px 20px 15px 20px;
 
     view.priceTag {
-        flex: 60%;
-        font-family: PingFangSC-Semibold;
+        flex: 40%;
+        font-family: PingFangSC-Medium;
         font-size: 25px;
-        color: #D01D1F;
+        color: #363938;
 
         text {
-            font-family: PingFangSC-Semibold;
+            font-family: PingFangSC-Medium;
             font-size: 15px;
         }
     }
 
     view.confirmButton {
         flex: 40%;
+        text-align: center;
+        padding-right: 10rpx;
 
         .payButton {
             box-shadow: 0px 5px 12px #ebedf0;
-            width: 80%;
+            width: 70%;
             background: #369472;
-            border-radius: 8px;
+            border-radius: 15rpx;
             font-family: PingFangSC-Semibold;
             font-size: 14px;
-            color: #FFFFFF;
+            color: #fafcfc;
         }
+    }
+
+    .timePickerToolBar {
+        color: #369472;
+    }
+}
+
+.calendar {
+    z-index: -10;
+
+    button {
+        font-family: PingFangSC-Regular;
     }
 }

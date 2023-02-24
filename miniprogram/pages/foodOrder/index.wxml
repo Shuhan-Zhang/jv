@@ -1,0 +1,66 @@
+<view class="all">
+    <view class="serviceRow">
+        <view class="left">
+            <image src="{{merchantData.coverPic}}"></image>
+        </view>
+        <view class="right">
+            <view class="wrapper">
+                <view class="serviceName">{{merchantData.title}}</view>
+                <view class="line"></view>
+                <view class="detail">
+                    <view class="serviceLocation">
+                        <text class="iconfont icon-map-thumbtack"></text>
+                        {{merchantData.locationName}}
+                    </view>
+                    <view class="serviceTime">
+                        <text class="iconfont icon-shijian"></text>
+                        <text class="location"> {{merchantData.availableTimes}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="order">
+      <view class="title">
+        <text>订单详情:</text>
+      </view>
+      <van-card custom-class = "card" thumb-class="thumb"
+      title-class="cardTitle" price-class="cardPrice"
+      desc-class="cardDescription"
+      thumb-mode="aspectFill"
+      wx:for="{{order}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}" price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}" />
+    </view>
+    <view class="location">
+      <view class="title">配送信息</view>
+      <van-field
+      value="{{ userLocation }}"
+      placeholder="请输入送餐地址"
+      label="地址"
+      required
+      bind:change="onChangeLocation"/>
+    </view>
+    <view class="transferInfo">
+        <view class="title"><text>付款信息:</text></view>
+        <view class="info"><text>{{merchantData.paymentInfo}}</text></view>
+    </view>
+    <view class="previewImage" wx:if="{{file.length > 0}}">
+        <view class="title">
+            <text>付款截图预览:</text>
+        </view>
+        <view class="preview">
+            <image src="{{file}}" mode="widthFix" bindtap="enlarge" data-url = "{{file}}"></image>
+        </view>
+        <button class="reupload" bindtap="upload" wx:if="{{file.length > 0}}">重新上传</button>
+    </view>
+</view>
+
+<view class="bottom">
+    <view class = "priceTag">
+        <text>总计:</text>
+        ${{total}}
+    </view>
+    <view class="confirmButton">
+        <van-button round type="info" custom-class = "payButton" bind:click = "upload" wx:if="{{file.length == 0}}">上传转账截图</van-button>
+        <van-button round type="info" custom-class = "payButton" bind:click = "submitOrder" wx:if="{{file.length != 0}}">确认订单</van-button>
+    </view>
+  </view>

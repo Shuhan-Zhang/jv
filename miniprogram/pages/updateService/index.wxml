@@ -1,0 +1,18 @@
+<view class="body">
+    <van-cell-group inset title="基本信息" custom-class="cellGroup">
+        <van-field value="{{ name }}" placeholder="请输入服务名" border="{{ true }}" label="服务名" bind:change="onChange" data-field="name" required />
+
+        <van-field value="{{ subTitle }}" placeholder="副标题" type="textarea" border="{{ true }}" label="副标题" bind:change="onChange" autosize data-field="subTitle" required />
+    </van-cell-group>
+    <van-cell-group inset title="" custom-class="cellGroup">
+        <van-field value="{{ detailInfo }}" placeholder="请输入服务细节描述" border="{{ true }}" label="服务细节（可多行）" bind:change="onChange" data-field="detailInfo" required/>
+    </van-cell-group>
+    <van-cell-group inset title="价格信息" custom-class="cellGroup">
+        <van-field value="{{ USDPrice }}" placeholder="请写出服务的美元价格" type="number" border="{{ true }}" label="美元价格" bind:change="onChange" autosize data-field="USDPrice" required />
+        <van-field value="{{ CNYPrice }}" placeholder="请写出服务的人民币价格" type="number" border="{{ true }}" label="人民币价格" bind:change="onChange" autosize data-field="CNYPrice" required />
+    </van-cell-group>
+    <van-cell-group inset title="服务图片(一张)" custom-class="cellGroup">
+        <van-uploader upload-text="服务展示图" file-list="{{ detailFilelist }}" bind:after-read="afterReadDetail" bind:delete="afterDeleteDetail" deletable="{{ true }}" max-count="1"/>
+    </van-cell-group>
+    <button bindtap="uploadCoverToCloud">更新</button>
+</view>

@@ -1,0 +1,100 @@
+view.body {
+  padding-bottom: 30rpx;
+}
+view.body view.title {
+  font-size: 35rpx;
+}
+view.body view.row {
+  width: 93%;
+  margin: 0px auto;
+  margin-top: 40rpx;
+  border-radius: 15rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  background-color: white;
+}
+view.body view.row view.background {
+  border-radius: 15rpx 15rpx 0rpx 0rpx;
+  height: 250rpx;
+}
+view.body view.row view.background image {
+  border-radius: 15rpx;
+  height: 440rpx;
+  width: 100%;
+}
+view.body view.row view.information {
+  box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 0.6);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, #FAFCFC 82%);
+  backdrop-filter: blur(5px);
+  height: 150rpx;
+  margin: 0px auto;
+  border-radius: 15rpx;
+  display: flex;
+  align-items: center;
+  padding: 10px 7px 12px 0px;
+}
+view.body view.row view.information view.left {
+  flex: 100%;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+  text-align: left;
+  display: flex;
+}
+view.body view.row view.information view.left view.leaderName {
+  font-family: PingFangSC;
+  font-size: 26rpx;
+  color: #656565;
+}
+view.body view.row view.information view.left view.storeName {
+  margin-top: 6rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  color: #363938;
+}
+view.body view.row view.information view.left view.description {
+  margin-top: 8rpx;
+  font-family: PingFangSC-Thin;
+  font-size: 23rpx;
+  color: #656565;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+view.body view.row view.information view.left image {
+  margin-top: 8rpx;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+view.body view.row view.information view.right {
+  flex: 20%;
+  padding-left: 5rpx;
+}
+view.body view.row view.information view.right .circle {
+  margin-left: 10rpx;
+  height: 95rpx;
+  width: 95rpx;
+  text-align: center;
+  background: #369472;
+  opacity: 0.8;
+  border-radius: 30%;
+}
+view.body view.row view.information view.right .circle image {
+  margin-top: 9px;
+  width: 35rpx;
+  height: 35rpx;
+}
+view.body view.row view.information view.right .circle view.priceTag {
+  margin-top: -3px;
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #FAFCFC;
+}
+view.body button::after {
+  border: none;
+}

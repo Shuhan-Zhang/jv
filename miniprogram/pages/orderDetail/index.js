@@ -4,6 +4,8 @@ Page({
     cordID: wx.getStorageSync("CordID"),
     show: false,
     statusLoading: false,
+    dateStatusLoading: false,
+    selectorShow: false,
     actions: [
       {
         name: "已拒绝",
@@ -26,9 +28,31 @@ Page({
         className: "actionOption",
       },
     ],
+    selectedDate: "",
+    selectedDateObject: "",
+    calendarShow: false,
+    timeShow: false,
+    minHour: 10,
+    maxHour: 20,
+    minDate: new Date().getTime(),
+    maxDate: new Date(2024, 10, 1).getTime(),
+    selectedTime: "12:00",
+    shownTime: "",
+    ifTime: false,
+    selectedDateTime: "选择时间",
+    filter(type, options) {
+      if (type === "minute") {
+        return options.filter((option) => option % 30 === 0);
+      }
+
+      return options;
+    },
   },
 
   onLoad: function (options) {
+    Date.prototype.addMinutes = function (h) {
+      return new Date(this.getTime() + h * 60 * 1000);
+    };
     wx.showLoading({
       title: "加载中",
     });
@@ -36,8 +60,13 @@ Page({
     this.setData({
       orderID: options.orderid,
     });
+    wx.stopPullDownRefresh();
   },
   onReady: function (options) {
+    wx.hideLoading();
+  },
+  onPullDownRefresh: function () {
+    this.onLoad(this.data.options); //重新加载onLoad()
     wx.hideLoading();
   },
   async getOrderData(orderID) {
@@ -50,11 +79,15 @@ Page({
     orderData.data.createTime = this.formatTimeWithHours(
       new Date(orderData.data.createTime)
     );
+    orderData.data.reservationTime = this.formatTimeWithHours(
+      new Date(orderData.data.date)
+    );
     this.setData({
       orderData: orderData.data,
     });
     await this.getServiceData(orderData.data.service);
     await this.getMerchantData(orderData.data.merchant);
+    await this.getPreviousAppointmentTime(orderData.data.merchant);
     await this.getParticipantData(orderData.data.participant);
     await this.getTransactionData(orderData.data.transaction);
   },
@@ -134,6 +167,185 @@ Page({
           reject(err);
         });
     });
+  },
+
+  //Time code
+  formatDate(date) {
+    date = new Date(date);
+    return `${date.getMonth() + 1}/${date.getDate()}`;
+  },
+
+  onOpenSelector(e) {
+    this.setData({
+      selectorShow: true,
+    });
+  },
+  onSelectorClose() {
+    this.setData({
+      selectorShow: false,
+    });
+  },
+
+  async getPreviousAppointmentTime(merchantID) {
+    let db = wx.cloud.database();
+    const _ = db.command;
+    const res = await wx.cloud
+      .database()
+      .collection("orders")
+      .where({
+        merchant: merchantID,
+        date: _.gt(new Date()),
+      })
+      .get();
+
+    var previousAppointmentList = [];
+    res.data.forEach((v) => {
+      let date = new Date(v.date);
+      previousAppointmentList.push(date);
+      previousAppointmentList.push(date.addMinutes(30));
+    });
+
+    this.setData({
+      previousAppointmentList: previousAppointmentList,
+    });
+  },
+
+  //Calendar Code
+  onOpenCalendar() {
+    this.setData({ calendarShow: true });
+  },
+  onCloseCalendar() {
+    this.setData({ calendarShow: false });
+  },
+  onConfirmDate(e) {
+    let merchantAvailableTimes = this.data.merchantData.availableTimesJson;
+    let selectedDateObject = new Date(e.detail);
+    let selectedWeekday = selectedDateObject.getDay();
+    var startTime = 0;
+    var endTime = 0;
+    var ifTime = false;
+    merchantAvailableTimes.forEach((v) => {
+      if (v.day == selectedWeekday) {
+        (startTime = v.startTime), (endTime = v.endTime);
+      }
+    });
+
+    if (startTime != 0 && endTime != 0) {
+      ifTime = true;
+    }
+
+    this.setData({
+      calendarShow: false,
+      selectedDate: this.formatDate(e.detail),
+      minHour: startTime,
+      maxHour: endTime,
+      selectedDateObject: new Date(e.detail),
+      ifTime: ifTime,
+    });
+  },
+
+  //Time Picker Code
+
+  onOpenTimePicker(e) {
+    if (this.data.selectedDate == "") {
+      wx.showToast({
+        title: "请先选择日期",
+        icon: "none",
+      });
+    } else if (this.data.ifTime == false) {
+      wx.showToast({
+        title: "该日无档期，请重选日期",
+        icon: "none",
+      });
+    } else {
+      this.setData({
+        timeShow: true,
+      });
+    }
+  },
+
+  onConfirmTime(e) {
+    this.setData({
+      selectedTime: e.detail,
+    });
+  },
+
+  onTimeClose(e) {
+    this.setData({
+      timeShow: false,
+      shownTime: e.detail,
+    });
+  },
+
+  async onConfirmDateTime(e) {
+    let that = this
+    let selectedDate = this.data.selectedDate;
+    let selectedTime = this.data.selectedTime;
+    let selectedDataTime = new Date(
+      new Date().getFullYear() + "/" + selectedDate + " " + selectedTime
+    );
+    var ifFull = false;
+
+    this.data.previousAppointmentList.forEach((v) => {
+      if (selectedDataTime.getTime() == v.getTime()) {
+        ifFull = true;
+      }
+    });
+
+    if (!ifFull) {
+      this.setData({
+        selectorShow : false,
+        dateStatusLoading: true
+      })
+      wx.showModal({
+        title: "确定更改时间?",
+        placeholderText: new Date().getFullYear() + "/" + selectedDate + " " + selectedTime,
+        cancelColor: 'cancelColor',
+      }).then(res=>{
+        if(this.updateReservationTime(selectedDataTime, this.data.orderID)){
+          wx.showToast({
+            title: '时间更新成功',
+            icon: 'success'
+          })
+          setTimeout(function () {
+            that.getOrderData(that.data.orderID);
+            that.setData({
+              dateStatusLoading: false,
+            });
+          }, 1500)
+
+        }else{
+          wx.showToast({
+            title: '时间更新失败',
+            icon: 'error'
+          })
+        }
+      }).catch(err=>{
+        wx.showToast({
+          title: '已取消',
+          icon: "none"
+        })
+      })
+    } else {
+      wx.showToast({
+        title: "该时间已满，请重选",
+        icon: "none",
+      });
+    }
+  },
+  async updateReservationTime(date, orderid){
+    await wx.cloud
+    .callFunction({
+      name: "updateReservationTime",
+      data: {
+        orderid: orderid,
+        date: date
+      },
+    }).then(res=>{
+      return true;
+    }).catch(err=>{
+      return false;
+    })
   },
 
   formatTimeWithHours(date) {
@@ -225,11 +437,13 @@ Page({
   changeStatus(e) {
     this.setData({ show: true });
   },
+
   onClose() {
     this.setData({ show: false });
   },
 
   async onSelect(event) {
+    let that = this;
     this.setData({
       statusLoading: true,
     });
@@ -247,10 +461,12 @@ Page({
         await this.completeOrder();
         break;
     }
-    await this.getOrderData(this.data.orderID);
     this.onClose();
-    this.setData({
-      statusLoading: false,
-    });
+    setTimeout(function () {
+      that.getOrderData(that.data.orderID);
+      that.setData({
+        statusLoading: false,
+      });
+    }, 1500)
   },
 });

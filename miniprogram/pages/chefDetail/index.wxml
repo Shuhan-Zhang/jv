@@ -1,0 +1,79 @@
+<view class="header" style="background-image: url({{merchantData.coverPic}});">
+    <view class="info">
+        <image src="{{merchantData.leaderData.profilePic}}"></image>
+        <view class="leaderName">{{merchantData.leaderData.username}}</view>
+        <view class="merchantName">{{merchantData.title}}</view>
+    </view>
+    <view class="wrapper"></view>
+</view>
+<view class="body">
+    <view class="info">
+        <view class="info_row">
+            <view class="title">评分</view>
+            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/住院人数.png"></image>
+            <view class="desc">
+                <text>{{rating}}</text>
+            </view>
+            <view class="vertical_line"></view>
+        </view>
+        <view class="info_row" bindtap="openLocation">
+            <view class="title">地址</view>
+            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/location.png"></image>
+            <view class="location desc">
+                <text>{{merchantData.locationName}}</text>
+            </view>
+            <view class="vertical_line"></view>
+        </view>
+        <view class="info_row">
+            <view class="title">档期</view>
+            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/time.png"></image>
+            <view class="desc">
+                <text>{{merchantData.availableTimes}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="mainBody">
+        <van-skeleton title row="3" loading="{{loading}}"></van-skeleton>
+        <view class="pics">
+            <swiper interval="6000" autoplay circular indicator-dots indicator-active-color="#369472">
+                <swiper-item wx:for="{{merchantData.subPic}}" wx:key="_id">
+                    <image mode="aspectFit" src="{{item}}" bindtap="enlarge" data-url="{{item}}"></image>
+                </swiper-item>
+            </swiper>
+        </view>
+        <view class="billboard">
+            <view class="title">店铺详情:</view>
+            <text class="content">{{merchantData.billboard}}</text>
+        </view>
+        <view class="serviceRow" wx:for="{{serviceData}}" data-serviceid="{{item._id}}">
+            <view class="left">
+                <image src="{{item.picture}}" mode="aspectFill"></image>
+            </view>
+            <view class="middle">
+                <view class="serviceTitle">{{item.itemName}}</view>
+                <view class="line"></view>
+                <view class="serviceDescription">
+                    {{item.itemDescription}}
+                </view>
+                
+            </view>
+            <view class="right" wx:if="{{!ifOrder}}">
+                <view class="price">${{item.price}}</view>
+            </view>
+            <view class="rightWithOrder" wx:if="{{ifOrder}}">
+                <view class="price">${{item.price}}</view>
+                <van-stepper custom-class="stepper" value="{{ 0 }}" min="0" bind:change="onStepperChange" data-id="{{item._id}}" input-width="25px" button-size="25px" />
+            </view>
+        </view>
+    </view>
+    <button class="bottomButton" bindtap="createOrder" wx:if="{{!ifOrder}}">开始点餐</button>
+    <van-goods-action wx:if="{{ifOrder}}">
+        <van-goods-action-icon icon="chat-o" text="私信商家" bind:click="contactMerchant" text-class="iconText"/>
+        <van-goods-action-icon icon="cart-o" text="购物车" bind:click="showCart" info="{{totalOrder}}" text-class="iconText"/>
+        <van-goods-action-button color = "#369472" class="submit" text="提交订单" bind:click="submitOrder"/>
+    </van-goods-action>
+    <van-action-sheet show="{{ show }}" bind:close="closeCart">
+        <van-empty image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无菜品" wx:if="{{totalOrder == 0}}" />
+        <van-card wx:for="{{serviceData}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}" price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}" />
+    </van-action-sheet>
+</view>

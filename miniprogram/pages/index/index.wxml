@@ -1,32 +1,82 @@
 <view class="index">
+    <view class="swiper">
+        <swiper autoplay circular indicator-dots indicator-active-color="#369472">
+            <swiper-item wx:for="{{sliders}}" wx:key="_id">
+                <image mode="aspectFill" src="{{item.pic}}" bindtap="swiperNavigator" data-url="{{item.link}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
     <view class="search">
-      <van-search background="#F7F8FA" field-class="searchBar" value="{{ value }}" bind:change="search" placeholder-style = "color:#565656; font-family: PingFang SC;font-style: normal;font-weight: 300;font-size: 10px;line-height: 14px;letter-spacing: -0.3px;" placeholder="搜索任何商家" shape = "round" input-class = "searchInput" bind:cancel = "onClear"/>
-      <van-cell-group inset wx:if = "{{search == 2}}" custom-class="searchCellGroup">
-          <van-cell bind:click="selectResult" wx:for = "{{searchList}}" title="{{item.title}}" value="{{item.subTitle}}" data-id="{{item._id}}" custom-class="searchCell"/>
+        <van-search background="#F7F8FA"
+        custom-class="searchBackground"
+        field-class="searchBar"
+        input-class="searchText"
+        value="{{ value }}" 
+        bind:change="search"
+        placeholder-style="color:#565656;"
+        placeholder="搜索任何商家" shape="round" bind:cancel="onClear"
+        left-icon="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/IMG_2581.png?sign=1e939d2adfefa669e70a434190339dd0&t=1675399037"
+        />
+        <van-cell-group inset wx:if="{{search == 2}}" custom-class="searchCellGroup">
+            <van-cell bind:click="merchantNavigator" wx:for="{{searchList}}" title="{{item.title}}" value="{{item.subTitle}}" data-merchant="{{item._id}}" custom-class="searchCell" data-category="{{item.category}}"/>
         </van-cell-group>
-        <van-cell-group inset wx:if = "{{search == 1}}" custom-class="searchCellGroup">
-          <van-cell title="暂无相关内容" value = "" custom-class="searchCell"/>
-      </van-cell-group>
+        <van-cell-group inset wx:if="{{search == 1}}" custom-class="searchCellGroup">
+            <van-cell title="暂无相关内容" value="" custom-class="searchCell" />
+        </van-cell-group>
+    </view>
+    <view class="categorySelector">
+        <view class="study column">
+            <view class="icon" bindtap="categoryNavigator" data-category="study">
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/Group.png"></image>
+            </view>
+            <view class="text">
+                <view class="title">学习</view>
+                <view class="subTitle">学习吉他英语</view>
+            </view>
+        </view>
+        <view class="service column">
+            <view class="icon" bindtap="categoryNavigator" data-category="service">
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/shop.png"></image>
+            </view>
+            <view class="text">
+                <view class="title">服务</view>
+                <view class="subTitle">找人约拍美甲</view>
+            </view>
+        </view>
+        <view class="entertainment column">
+            <view class="icon" bindtap="categoryNavigator" data-category="entertainment">
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/entertainment.png"></image>
+            </view>
+            <view class="text">
+                <view class="title">娱乐</view>
+                <view class="subTitle">一起剧本电竞</view>
+            </view>
+        </view>
     </view>
     <view class="body">
-      <van-skeleton title row="3" loading="{{loading}}"></van-skeleton>
-      <view class="row" wx:for = "{{allMerchants}}" style="background-image: url({{item.coverPic}});" bindtap="merchantNavigator" data-merchant = "{{item._id}}">
-        <view class="price">
-          <view class="circle">
-            <image src="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/%E4%BB%B7%E6%A0%BC%20(5).png?sign=0070e2a959a7a399d3b690a3a29223f0&t=1648497493"></image>
-            <view class="priceTag">${{item.price}}+</view>
-          </view>
+        <van-skeleton title row="3" loading="{{loading}}"></van-skeleton>
+        <view class="row" wx:for="{{allMerchants}}" bindtap="merchantNavigator" data-merchant="{{item._id}}" wx:if="{{item.approved}}" data-category="{{item.category}}">
+            <view class="background">
+                <image src="{{item.coverPic}}" mode="aspectFill"></image>
+            </view>
+
+ 
+            <view class="information">
+                <view class="left">
+                    <image src="{{item.merchantData.profilePic}}"></image>
+                    <view>
+                        <view class="leaderName">{{item.merchantData.username}}</view>
+                        <view class="storeName">{{item.title}}</view>
+                        <view class="description">{{item.subTitle}}</view>
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="circle">
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/priceTag.png"></image>
+                        <view class="priceTag">${{item.lowestPrice}}+</view>
+                    </view>
+                </view>
+            </view>
         </view>
-        <view class="information">
-          <view class="left">
-            <image src="{{item.merchantData.profilePic}}"></image>
-          </view>
-          <view class="right">
-              <view class="leaderName">{{item.merchantData.username}}</view>
-              <view class="storeName">{{item.title}}</view>
-              <view class="description">{{item.subTitle}}</view>
-          </view>
-        </view>
-      </view>
     </view>
 </view>

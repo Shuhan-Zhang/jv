@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/user/index",
+    "pages/register/index",
     "pages/error/index",
     "pages/suggestion/index",
     "pages/developer/index",
@@ -9,19 +10,34 @@
     "pages/orderList/index",
     "pages/transactionList/index",
     "pages/serviceDetail/index",
+    "pages/friendList/index",
     "pages/paymentConfirmation/index",
     "pages/transferConfirmation/index",
     "pages/transactionDetail/index",
-    "pages/orderDetail/index"
+    "pages/orderDetail/index",
+    "pages/index2/index",
+    "pages/example/chatroom_example/room/room",
+    "pages/example/chatroom_example/im",
+    "pages/login/login",
+    "pages/categoryList/index",
+    "pages/example/chatroom_example/haoyoupage/haoyoupage",
+    "pages/merchantForm/index",
+    "pages/serviceForm/index",
+    "pages/updateService/index",
+    "pages/updateMerchant/index",
+    "pages/chefDetail/index",
+    "pages/foodOrder/index",
+    "pages/foodOrderDetail/index"
   ],
   "window": {
-    "backgroundColor": "#FFFFFF",
-    "backgroundTextStyle": "light",
+    "backgroundColor": "#F7F8FA",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#369472",
     "navigationBarTitleText": "聚CORD",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh" : true
-  },"tabBar": {
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
     "color": "FFFFFF",
     "selectedColor": "#369472",
     "backgroundColor": "FFFFFF",
@@ -46,7 +62,7 @@
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
-    "van-cell" : "@vant/weapp/cell/index",
+    "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-calendar": "@vant/weapp/calendar/index",
     "van-picker": "@vant/weapp/picker/index",
@@ -60,11 +76,16 @@
     "van-uploader": "@vant/weapp/uploader/index",
     "van-skeleton": "@vant/weapp/skeleton/index",
     "van-empty": "@vant/weapp/empty/index",
-    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
-    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-loading": "@vant/weapp/loading/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-datetime-picker": "@vant/weapp/datetime-picker/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-goods-action": "@vant/weapp/goods-action/index",
+    "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
+    "van-goods-action-button": "@vant/weapp/goods-action-button/index","van-card": "@vant/weapp/card/index",
+    "van-rate": "@vant/weapp/rate/index"
   }
 }

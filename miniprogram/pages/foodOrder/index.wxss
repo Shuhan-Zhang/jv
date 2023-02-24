@@ -1,0 +1,184 @@
+page {
+  background-color: #F7F8FA;
+}
+view.all {
+  width: 95%;
+  margin: 0px auto;
+  padding-bottom: 170rpx;
+}
+view.all view.serviceRow {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+}
+view.all view.serviceRow view.left {
+  padding-left: 10rpx;
+  flex: 45%;
+}
+view.all view.serviceRow view.left image {
+  width: 230rpx;
+  height: 230rpx;
+  border-radius: 8px;
+}
+view.all view.serviceRow view.right {
+  flex: 70%;
+  text-align: right;
+  align-items: center;
+}
+view.all view.serviceRow view.right .serviceName {
+  font-family: PingFangSC-Semibold;
+  font-size: 42rpx;
+  color: #363938;
+}
+view.all view.serviceRow view.right .line {
+  margin-top: 33rpx;
+  margin-bottom: 33rpx;
+  width: 100%;
+  height: 1rpx;
+  background-color: #E4E5E5;
+}
+view.all view.serviceRow view.right view.detail {
+  display: flex;
+  width: 100%;
+  text-align: right;
+}
+view.all view.serviceRow view.right view.detail .serviceLocation {
+  flex: 50%;
+  font-family: PingFangSC-Regular;
+  font-size: 21rpx;
+  color: #9F9F9F;
+}
+view.all view.serviceRow view.right view.detail .serviceLocation text {
+  color: #369472;
+}
+view.all view.serviceRow view.right view.detail .serviceTime {
+  flex: 50%;
+  font-family: PingFangSC-Regular;
+  font-size: 21rpx;
+  color: #969799;
+}
+view.all view.serviceRow view.right view.detail .serviceTime .iconfont {
+  text-align: left;
+  color: #369472;
+}
+view.all view.order {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  border-radius: 15rpx;
+  padding: 15px;
+}
+view.all view.order .title text {
+  font-family: PingFangSC-Semibold;
+  font-size: 31rpx;
+  color: #363938;
+  border-bottom: #369472 1px solid;
+  padding: 5px;
+}
+view.all view.order .card {
+  background-color: white;
+  margin-left: -40rpx;
+  margin-top: 30rpx;
+}
+view.all view.order .cardTitle {
+  font-family: PingFangSC;
+  font-size: 30rpx;
+}
+view.all view.order .cardDescription {
+  margin-top: 10rpx;
+  font-size: 21rpx;
+  color: #9F9F9F;
+}
+view.all view.order .cardPrice {
+  color: #363938;
+}
+view.all .transferInfo {
+  background-color: white;
+  margin-top: 40rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 20px 15px 20px 20px;
+  border-radius: 8px;
+}
+view.all .transferInfo .title text {
+  font-family: PingFangSC-Semibold;
+  font-size: 31rpx;
+  color: #363938;
+  border-bottom: #369472 1px solid;
+  padding: 5px;
+}
+view.all .transferInfo .info {
+  margin-top: 30rpx;
+}
+view.all .transferInfo .info text {
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #363938;
+  line-height: 2em;
+}
+view.all .previewImage {
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 15px;
+  border-radius: 8px;
+}
+view.all .previewImage .title text {
+  font-family: PingFangSC-Semibold;
+  font-size: 31rpx;
+  color: #363938;
+  border-bottom: #369472 1px solid;
+  padding: 5px;
+}
+view.all .previewImage .preview {
+  margin-top: 40rpx;
+  text-align: center;
+}
+view.all .previewImage .preview image {
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 100%;
+}
+view.all .previewImage button.reupload {
+  width: 40%;
+  margin: 0px auto;
+  margin-top: 20rpx;
+  background: rgba(54, 148, 114, 0.8);
+  border-radius: 20rpx;
+  font-family: PingFangSC;
+  font-size: 25rpx;
+  color: #fafcfc;
+  padding: 5rpx 0rpx 5rpx 0rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+view.bottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  background-color: white;
+  padding: 15px 20px 15px 20px;
+}
+view.bottom view.priceTag {
+  flex: 40%;
+  font-family: PingFangSC-Medium;
+  font-size: 25px;
+  color: #363938;
+}
+view.bottom view.priceTag text {
+  font-family: PingFangSC-Medium;
+  font-size: 15px;
+}
+view.bottom view.confirmButton {
+  flex: 40%;
+  text-align: center;
+  padding-right: 10rpx;
+}
+view.bottom view.confirmButton .payButton {
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 70%;
+  background: #369472;
+  border-radius: 15rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 14px;
+  color: #fafcfc;
+}

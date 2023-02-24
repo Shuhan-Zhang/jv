@@ -49,12 +49,18 @@ Page({
       value2: filter2,
       cordID: options.cordid,
       storeid: options.storeid,
+      options: options,
     });
+    wx.stopPullDownRefresh();
   },
   onReady: function () {
     this.setData({
       loading: false,
     });
+  },
+  onPullDownRefresh: function () {
+    this.onLoad(this.data.options); //重新加载onLoad()
+    wx.hideLoading();
   },
 
   categoryChanged(value) {
@@ -106,7 +112,6 @@ Page({
     if (filter2.includes("d")) {
       ifRejected = true;
     }
-    console.log(ifRejected);
     var finalOrders = [];
     var finalParticipations = [];
     if (ifOrder) {
@@ -170,7 +175,14 @@ Page({
         });
       }
     }
-
+    
+    finalOrders.sort(function(a,b) {
+      return a.date.getTime() - b.date.getTime()
+   });
+   finalParticipations.sort(function(a,b) {
+      return a.date.getTime() - b.date.getTime()
+   });
+   console.log(finalOrders)
     this.setData({
       selectedOrders: finalOrders,
       selectedParticipations: finalParticipations,
@@ -235,7 +247,7 @@ Page({
       .where({
         merchant: storeID,
       })
-      .orderBy("createTime", "desc")
+      .orderBy("date", "asc")
       .get();
 
     var allOrderData = [];
@@ -246,13 +258,19 @@ Page({
       const merchantData = await this.getMerchantData(v.merchant);
       const transactionData = await this.getTransactionData(v.transaction);
       const createTime = this.formatTimeWithHours(new Date(v.createTime));
+      const reservationTime = new Date(v.date);
       v.serviceData = serviceData;
+      v.reservationTime = this.formatTimeWithHours(reservationTime);
       v.createTime = createTime;
       v.transactionData = transactionData;
       v.participantData = participantData;
       v.merchantData = merchantData;
 
       if (ifOrder) {
+        if (reservationTime < new Date()) {
+          v.status = "complete";
+        }
+
         if (ifPending) {
           if (v.status == "pending") {
             selectedOrders.push(v);
@@ -276,6 +294,12 @@ Page({
       }
 
       allOrderData.push(v);
+      allOrderData.sort(function(a,b) {
+        return a.date.getTime() - b.date.getTime()
+     });
+     selectedOrders.sort(function(a,b) {
+      return a.date.getTime() - b.date.getTime()
+     });
       this.setData({
         selectedOrders: selectedOrders,
         orders: allOrderData,
@@ -297,7 +321,7 @@ Page({
       .where({
         participant: cordid,
       })
-      .orderBy("createTime", "desc")
+      .orderBy("date", "asc")
       .get();
 
     var allParticipations = [];
@@ -307,13 +331,18 @@ Page({
       const participantData = await this.getUserData(v.participant);
       const merchantData = await this.getMerchantData(v.merchant);
       const transactionData = await this.getTransactionData(v.transaction);
+      const reservationTime = new Date(v.date);
       v.serviceData = serviceData;
+      v.reservationTime = this.formatTimeWithHours(reservationTime);
       v.participantData = participantData;
       v.merchantData = merchantData;
       v.transactionData = transactionData;
-      allParticipations.push(v);
 
       if (ifParticipation) {
+        if (reservationTime < new Date()) {
+          v.status = "complete";
+        }
+
         if (ifPending) {
           if (v.status == "pending") {
             selectedParticipations.push(v);
@@ -337,6 +366,12 @@ Page({
       }
 
       allParticipations.push(v);
+      allParticipations.sort(function(a,b) {
+        return new Date(a.reservationDate).getTime() - new Date(b.reservationDate).getTime()
+     });
+     selectedParticipations.sort(function(a,b) {
+      return new Date(a.reservationDate).getTime() - new Date(b.reservationDate).getTime()
+     });
       this.setData({
         selectedParticipations: selectedParticipations,
         participations: allParticipations,

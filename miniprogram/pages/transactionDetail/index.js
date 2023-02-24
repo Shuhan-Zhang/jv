@@ -8,10 +8,15 @@ Page({
   onLoad: function (options) {
     this.setData({
       transactionID: options.transactionid,
+      options: options
     });
     this.getTransactionData(options.transactionid);
+    wx.stopPullDownRefresh();
   },
-
+  onPullDownRefresh: function () {
+    this.onLoad(this.data.options); //重新加载onLoad()
+    wx.hideLoading();
+  },
   async getTransactionData(transactionID) {
     var res = await wx.cloud
       .database()
@@ -24,7 +29,6 @@ Page({
     );
     res.data.amount = parseFloat(res.data.amount).toFixed(2);
 
-    this.getServiceData(res.data.service);
     this.getOrderData(transactionID);
     const senderData = await this.getUserData(res.data.sender);
     const receiverData = await this.getUserData(res.data.receiver);
@@ -33,18 +37,6 @@ Page({
       transactionData: res.data,
       senderData: senderData,
       receiverData: receiverData,
-    });
-  },
-
-  async getServiceData(serviceID) {
-    const res = await wx.cloud
-      .database()
-      .collection("service")
-      .doc(serviceID)
-      .get();
-
-    this.setData({
-      serviceData: res.data,
     });
   },
 

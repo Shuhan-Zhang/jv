@@ -1,14 +1,15 @@
-// app.js
+//app.js
 App({
   globalData: {
-    userInfo: null
+    userInfo: null,
+    friends: []
   },
-  onLaunch() {
+  onLaunch: function () {
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
       wx.cloud.init({
-        env: 'jv-9gy6hgn177b0c873',
+        env: 'cord-4gtkoygbac76dbeb',
         traceUser: true,
       })
     }
@@ -95,6 +96,7 @@ App({
           success(res) {
             var openid = res.result.openid;
             wx.setStorageSync('openid', openid)
+            app.getUserInfo(openid);
             app.globalData.openid = openid;
             app._getMyUserInfo();
           },
@@ -104,6 +106,27 @@ App({
         })
       }
     },
+    getUserInfo(id) {
+      wx.cloud
+          .database()
+          .collection("user")
+          .where({
+              openid: id,
+          })
+          .get()
+          .then((res) => {
+              var userInfo = res.data[0];
+              //更新用户登陆状态
+              var status = userInfo != undefined;
+              wx.setStorageSync("loginStatus", status);
+              wx.setStorageSync("userInfo", res.data[0]);
+              //更新CORD ID
+              wx.setStorageSync("CordID", res.data[0]._id);
+          })
+          .catch((err) => {
+              console.log("error loading user", err);
+          });
+  },
     //获取自己后台的user信息
     _getMyUserInfo() {
       let app = this
@@ -143,7 +166,7 @@ App({
       })
     },
     getLoginStatus() {
-      var userInfo = wx.getStorageSync('user');
+      var userInfo = wx.getStorageSync('userInfo');
       var status = userInfo.length != 0;
       wx.setStorageSync('loginStatus', status);
     },

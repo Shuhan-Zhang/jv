@@ -1,77 +1,50 @@
-<view class= "preLogin" wx:if = "{{!loginStatus}}">
-    <view class = "wrapper">
-        <image src = "cloud://jv-9gy6hgn177b0c873.6a76-jv-9gy6hgn177b0c873-1308590774/preLogin.png"></image>
-        <view class="text">未登陆</view>
-        <button bindtap="login">登陆/注册</button>
+<view class="preLogin" wx:if="{{!loginStatus}}">
+    <view class="wrapper">
+        <view class="info">
+            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/preLogin.png"></image>
+            <view class="text">未登陆</view>
+            <button bindtap="login">登陆/注册</button>
+        </view>
     </view>
 </view>
 
-<view class="postLogin" wx:if = "{{loginStatus}}">
-    <view class = "header" style="background-image: url({{userInfo.profilePic}});">
-        <view class = "wrapper">
-            <image src = "{{userInfo.profilePic}}"></image>
+<view class="postLogin" wx:if="{{loginStatus && !inStore}}">
+    <view class="header" style="background-image: url({{userInfo.profilePic}});">
+        <view class="wrapper">
+            <view class="switchButton" wx:if="{{userInfo.store}}" bindtap="enterStore">
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/switchShop.png"></image>
+            </view>
+            <image src="{{userInfo.profilePic}}"></image>
             <view class="text">{{userInfo.username}}</view>
             <view class="buttons">
-                <button bindtap = "viewHistory">历史记录</button>
-                <button bindtap = "viewTransactions">转账记录</button>
+                <button bindtap="viewHistory">订单列表</button>
+                <button bindtap="viewTransactions">付款记录</button>
+                <button bindtap="friendList">私信列表</button>
             </view>
-        </view> 
-    </view>
-    <view class="body">
-        <view class="orders"  wx:if = "{{orders.length > 0}}">
-            <view class="header">
-                <view class="title">您的订单</view>
-                <view class="checkAll" bindtap = "viewOrders">查看全部</view>
-            </view>
-            <van-skeleton title row="3" loading="{{loading}}">
-                <view class="orderRow" wx:for = "{{orders}}" wx:if="{{item.status != 'complete' && item.status != 'rejected'}}" bindtap="orderNavigator" data-orderid = "{{item._id}}">
-                    <view class="left">
-                        <image src="{{item.participantData.profilePic}}"></image>
-                    </view>
-                    <view class="middle">
-                        <view class="participantName">{{item.participantData.username}}</view>
-                        <view class="serviceName">{{item.serviceData.serviceName}}</view>
-                        <view class="line"></view>
-                        <view class="serviceDescription">
-                            <text class="iconfont icon-shijian"></text>
-                            {{item.createTime}}
-                        </view>
-                    </view>
-                    <view class="right pending" wx:if="{{item.status == 'pending'}}">
-                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                        <view class="status"><text>待审核</text></view>
-                    </view>
-                    <view class="right paid"  wx:if="{{item.status == 'paid'}}">
-                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                        <view class="status"><text>已收款</text></view>
-                    </view>
-                </view>
-            </van-skeleton>
         </view>
+    </view>
+    <view class="body" wx:if="{{loginStatus && !inStore}}">
         <view class="participations">
             <view class="header">
                 <view class="title">正在参与</view>
-                <view class="checkAll" bindtap = "viewParticipation">查看全部</view>
+                <view class="checkAll" bindtap="viewParticipation" wx-if="{{participations || participations.length != 0}}">查看全部</view>
             </view>
             <van-skeleton title row="3" loading="{{loading}}">
-                <van-empty image="search" description="暂无参与活动，快去主页看看吧" wx:if = "{{!participations || participations.length == 0}}"/>
+                <van-empty image="search" description="暂无参与活动，快去主页看看吧" wx:if="{{!participations || participations.length == 0}}" />
                 <!-- <view class="nothing" wx:if = "{{!participations || participations.length == 0}}">暂无参与活动，快去主页看看吧</view> -->
-                <view class="orderRow participationRow" wx:for = "{{participations}}" wx:if="{{item.status != 'complete'}}" bindtap = "orderNavigator" data-orderid = "{{item._id}}">
+                <view class="orderRow participationRow" wx:for="{{participations}}" wx:if="{{item.status != 'complete'}}" bindtap="orderNavigator" data-orderid="{{item._id}}">
                     <view class="left">
-                        <image src="{{item.merchantData.coverPic}}"></image>
+                        <image src="{{item.merchantData.coverPic}}" mode="aspectFill"></image>
                     </view>
                     <view class="middle">
-                            <view class="participantName">
-                                <text class="iconfont icon-map-thumbtack"></text>
-                                {{item.merchantData.eventLocation}}
-                            </view>
-                            <view class="serviceName">{{item.serviceData.serviceName}}</view>
-                            <view class="line"></view>
-                            <view class="serviceDescription">
-                                {{item.serviceData.serviceDescription}}
-                            </view>
+                        <view class="serviceName">{{item.serviceData.serviceName}}</view>
+                        <view class="line"></view>
+                        <view class="participating">
+                            <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
+                        </view>
+                        <view class="participating">
+                            <text class="iconfont icon-shijian"></text> {{item.reservationDate}}
+                        </view>
                     </view>
                     <view class="right">
                         <view class="right pending" wx:if="{{item.status == 'pending'}}">
@@ -79,7 +52,7 @@
                             <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
                             <view class="status"><text>待审核</text></view>
                         </view>
-                        <view class="right paid"  wx:if="{{item.status == 'paid'}}">
+                        <view class="right paid" wx:if="{{item.status == 'paid'}}">
                             <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
                             <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
                             <view class="status"><text>已付款</text></view>
@@ -89,20 +62,148 @@
             </van-skeleton>
         </view>
         <view class="setting">
-            <view class="header"><view class="title">设置</view></view>
+            <view class="header">
+                <view class="title">设置</view>
+            </view>
             <van-cell-group custom-class="cellGroup">
-                <van-cell custom-class="cell" title="错误反馈" clickable bind:click = "error">
-                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                <van-cell custom-class="cell" title="错误反馈" clickable bind:click="error">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
                 </van-cell>
-                <van-cell custom-class="cell" title="功能建议" clickable bind:click = "suggestion">
-                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                <van-cell custom-class="cell" title="功能建议" clickable bind:click="suggestion">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
                 </van-cell>
-                <van-cell custom-class="cell" title="开发者信息" clickable bind:click = "developer">
-                    <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                <van-cell custom-class="cell" title="开发者信息" clickable bind:click="developer">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
                 </van-cell>
                 <button open-type="contact">
                     <van-cell custom-class="cell" open-type = "contact" title="联系客服" clickable bind:click = "customerSupport">
-                        <van-icon slot="right-icon" name="https://6a76-jv-9gy6hgn177b0c873-1308590774.tcb.qcloud.la/Vector%2023%20(1).png?sign=c366a34ed957c60a6c30de032bf27e3f&t=1648437682" class="custom-icon" />
+                        <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
+                    </van-cell>
+                </button>
+            </van-cell-group>
+        </view>
+    </view>
+</view>
+
+<view class="postLogin" wx:if="{{loginStatus && userInfo.store && inStore}}">
+    <view class="header" style="background-image: url({{merchantData.coverPic}});">
+        <view class="wrapper">
+            <view class="switchButton" bindtap="exitStore">
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/switchPersonal.png"></image>
+            </view>
+            <image src="{{merchantData.coverPic}}" mode="aspectFill"></image>
+            <view class="text">{{merchantData.title}}</view>
+            <view class="buttons">
+                <button bindtap="viewHistory">订单列表</button>
+                <button bindtap="viewTransactions">付款记录</button>
+                <button bindtap="friendList">私信列表</button>
+            </view>
+        </view>
+    </view>
+    <view class="body">
+        <view class="orders" wx:if="{{orders.length > 0}}">
+            <view class="header">
+                <view class="title">现存订单</view>
+                <view class="checkAll" bindtap="viewOrders" wx-if="{{orders || orders.length != 0}}">查看全部</view>
+            </view>
+            <van-skeleton title row="3" loading="{{loading}}">
+                <view class="orderRow" wx:for="{{orders}}" wx:if="{{item.status != 'complete' && item.status != 'rejected'}}" bindtap="orderNavigator" data-orderid="{{item._id}}">
+                    <view class="left">
+                        <image src="{{item.participantData.profilePic}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="middle">
+                        <view class="participantName">{{item.participantData.username}}</view>
+                        <view class="serviceName">{{item.serviceData.serviceName}}</view>
+                        <view class="line"></view>
+                        <view class="serviceDescription">
+                            <text class="iconfont icon-shijian"></text> {{item.reservationDate}}
+                        </view>
+                    </view>
+                    <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>待审核</text></view>
+                    </view>
+                    <view class="right paid" wx:if="{{item.status == 'paid'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已收款</text></view>
+                    </view>
+                </view>
+            </van-skeleton>
+        </view>
+        <view class="info">
+            <view class="header">
+                <view class="title">店铺信息</view>
+            </view>
+            <view class="wrapper">
+                <view class="storeInfo">
+                    <view class="info_row">
+                        <view class="title">人数</view>
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/peopleCount.png"></image>
+                        <view class="desc">
+                            <text>{{participantNumber}}人已参加</text>
+                        </view>
+                        <view class="vertical_line"></view>
+                    </view>
+                    <view class="info_row" bindtap="openLocation">
+                        <view class="title">地址</view>
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/location.png"></image>
+                        <view class="location desc">
+                            <text>{{merchantData.locationName}}</text>
+                        </view>
+                        <view class="vertical_line"></view>
+                    </view>
+                    <view class="info_row">
+                        <view class="title">档期</view>
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/time.png"></image>
+                        <view class="desc">
+                            <text>{{merchantData.availableTimes}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view class="addService" bindtap="editInfo">修改信息</view>
+            </view>
+        </view>
+        <view class="services">
+            <view class="header">
+                <view class="title">您的服务</view>
+            </view>
+            <van-empty image="search" description="您暂无任何服务" wx:if="{{!serviceData || serviceData.length == 0}}" />
+            <view class="serviceRow" wx:for="{{serviceData}}" bindtap="serviceDetailNavigator" data-serviceid="{{item._id}}">
+                <view class="left">
+                    <image src="{{item.picture}}"></image>
+                </view>
+                <view class="middle">
+                    <view class="serviceTitle">{{item.serviceName}}</view>
+                    <view class="line"></view>
+                    <view class="serviceDescription">
+                        {{item.serviceSubtitle}}
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="price" bindtap="editService" data-service="{{item._id}}">修改</view>
+                </view>
+            </view>
+            <view class="addService" bindtap="addService">+添加服务</view>
+        </view>
+        <view class="setting">
+            <view class="header">
+                <view class="title">设置</view>
+            </view>
+            <van-cell-group custom-class="cellGroup">
+                <van-cell custom-class="cell" title="错误反馈" clickable bind:click="error">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
+                </van-cell>
+                <van-cell custom-class="cell" title="功能建议" clickable bind:click="suggestion">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
+                </van-cell>
+                <van-cell custom-class="cell" title="开发者信息" clickable bind:click="developer">
+                    <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
+                </van-cell>
+                <button open-type="contact">
+                    <van-cell custom-class="cell" open-type = "contact" title="联系客服" clickable bind:click = "customerSupport">
+                        <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
                     </van-cell>
                 </button>
             </van-cell-group>

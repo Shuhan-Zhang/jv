@@ -16,7 +16,7 @@
             </view>
             <view class="right">
                 <view class="wrapper">
-                    <view class="h2">组织者</view>
+                    <view class="h2">负责人</view>
                     <view class="h1">{{merchantData.leaderData.username}}</view>
                 </view>
             </view>

@@ -11,60 +11,60 @@ view.all view.serviceRow {
   align-items: center;
 }
 view.all view.serviceRow view.left {
-  flex: 50%;
+  padding-left: 10rpx;
+  flex: 45%;
 }
 view.all view.serviceRow view.left image {
-  width: 200rpx;
-  height: 200rpx;
+  width: 230rpx;
+  height: 230rpx;
   border-radius: 8px;
 }
 view.all view.serviceRow view.right {
   flex: 70%;
   text-align: right;
+  align-items: center;
 }
-view.all view.serviceRow view.right .wrapper {
-  position: relative;
-  top: 10%;
-}
-view.all view.serviceRow view.right .wrapper .serviceName {
+view.all view.serviceRow view.right .serviceName {
   font-family: PingFangSC-Semibold;
-  font-size: 20px;
-  color: #000000;
+  font-size: 42rpx;
+  color: #363938;
 }
-view.all view.serviceRow view.right .wrapper .line {
-  margin-top: 13px;
-  margin-bottom: 13px;
+view.all view.serviceRow view.right .line {
+  margin-top: 33rpx;
+  margin-bottom: 33rpx;
   width: 100%;
   height: 1rpx;
-  background-color: #C7C7C7;
+  background-color: #E4E5E5;
 }
-view.all view.serviceRow view.right .wrapper view.detail {
+view.all view.serviceRow view.right view.detail {
   display: flex;
   width: 100%;
+  text-align: right;
 }
-view.all view.serviceRow view.right .wrapper view.detail .serviceLocation {
-  flex: 50%;
+view.all view.serviceRow view.right view.detail .serviceLocation {
+  flex: 30%;
   font-family: PingFangSC-Regular;
-  font-size: 10px;
-  color: #969799;
+  font-size: 21rpx;
+  color: #9F9F9F;
 }
-view.all view.serviceRow view.right .wrapper view.detail .serviceLocation text {
+view.all view.serviceRow view.right view.detail .serviceLocation text {
   color: #369472;
 }
-view.all view.serviceRow view.right .wrapper view.detail .serviceTime {
+view.all view.serviceRow view.right view.detail .serviceTime {
   flex: 50%;
   font-family: PingFangSC-Regular;
-  font-size: 10px;
+  font-size: 21rpx;
   color: #969799;
 }
-view.all view.serviceRow view.right .wrapper view.detail .serviceTime text {
+view.all view.serviceRow view.right view.detail .serviceTime .iconfont {
+  text-align: left;
   color: #369472;
 }
 view.all view.paymentRow {
-  margin-top: 20px;
+  margin-top: 55rpx;
   background: #FFFFFF;
   box-shadow: 0px 5px 12px #ebedf0;
-  padding: 20px 15px 20px 20px;
+  padding: 25px 15px 25px 20px;
   border-radius: 8px;
   display: flex;
 }
@@ -72,9 +72,9 @@ view.all view.paymentRow view.left {
   flex: 70%;
 }
 view.all view.paymentRow view.left text {
-  font-family: PingFangSC-Medium;
-  font-size: 14px;
-  color: #000000;
+  font-family: PingFangSC-Semibold;
+  font-size: 31rpx;
+  color: #363938;
   border-bottom: #369472 1px solid;
   padding: 5px;
 }
@@ -83,15 +83,24 @@ view.all view.paymentRow view.right {
 }
 view.all view.paymentRow view.right .dropdownGroup {
   height: 25px;
-  border-radius: 8px;
   box-shadow: none;
-}
-view.all view.paymentRow view.right .dropdownItem {
-  text-align: center;
 }
 view.all view.paymentRow view.right .dropdownText {
   font-family: PingFangSC-Regular;
   font-size: 13px;
+  color: #969799;
+}
+view.all view.paymentRow view.right .dateTimeConfirm {
+  padding: 15px 0px 10px 0px;
+  width: 40%;
+  margin: 0px auto;
+}
+view.all view.paymentRow view.right .dateTimeConfirmButton {
+  border-radius: 10px;
+  background: #369472;
+  font-family: PingFangSC-Semibold;
+  font-size: 14px;
+  color: #FFFFFF;
 }
 view.bottom {
   width: 100%;
@@ -100,27 +109,38 @@ view.bottom {
   display: flex;
   background-color: white;
   box-shadow: 0px -1px 12px #ebedf0;
-  padding: 15px 15px 15px 20px;
+  padding: 15px 20px 15px 20px;
 }
 view.bottom view.priceTag {
-  flex: 60%;
-  font-family: PingFangSC-Semibold;
+  flex: 40%;
+  font-family: PingFangSC-Medium;
   font-size: 25px;
-  color: #D01D1F;
+  color: #363938;
 }
 view.bottom view.priceTag text {
-  font-family: PingFangSC-Semibold;
+  font-family: PingFangSC-Medium;
   font-size: 15px;
 }
 view.bottom view.confirmButton {
   flex: 40%;
+  text-align: center;
+  padding-right: 10rpx;
 }
 view.bottom view.confirmButton .payButton {
   box-shadow: 0px 5px 12px #ebedf0;
-  width: 80%;
+  width: 70%;
   background: #369472;
-  border-radius: 8px;
+  border-radius: 15rpx;
   font-family: PingFangSC-Semibold;
   font-size: 14px;
-  color: #FFFFFF;
+  color: #fafcfc;
+}
+view.bottom .timePickerToolBar {
+  color: #369472;
+}
+.calendar {
+  z-index: -10;
+}
+.calendar button {
+  font-family: PingFangSC-Regular;
 }

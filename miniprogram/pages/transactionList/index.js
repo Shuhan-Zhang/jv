@@ -6,12 +6,19 @@ Page({
       openID: options.openid,
       cordID: options.cordid,
       storeID: options.storeid,
+      options: options
     });
     this.getUserPayment(options.cordid);
     this.getPaymentReceived(options.cordid);
+    wx.stopPullDownRefresh();
   },
 
   onReady: function () {},
+  onPullDownRefresh: function () {
+    this.onLoad(this.data.options); //重新加载onLoad()
+    wx.hideLoading();
+  },
+  
 
   async getUserPayment(cordid) {
     const res = await wx.cloud

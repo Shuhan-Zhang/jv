@@ -1,0 +1,246 @@
+view.header {
+  height: 470rpx;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+view.header .wrapper {
+  z-index: 0;
+  position: relative;
+  top: -30%;
+  backdrop-filter: blur(5rpx);
+  height: 70%;
+  background-image: linear-gradient(180deg, rgba(22, 22, 22, 0.3) 0%, #363938 70%);
+  box-shadow: 0px -7px 15px 6px rgba(22, 22, 22, 0.3);
+}
+view.header .info {
+  z-index: 1000;
+  position: relative;
+  top: 15%;
+}
+view.header image {
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 50%;
+}
+view.header .leaderName {
+  padding-top: 6px;
+  font-family: PingFangSC;
+  font-size: 15px;
+  color: #E4E5E5;
+}
+view.header .merchantName {
+  margin-top: 15rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 23px;
+  color: #FAFCFC;
+}
+.body {
+  position: relative;
+  background-color: #F7F8FA;
+  border-radius: 23px;
+  padding-bottom: 70rpx;
+  z-index: 1500;
+  margin-top: -23px;
+}
+.body view.mainBody {
+  width: 94%;
+  margin: 0px auto;
+  padding-bottom: 40px;
+}
+.body view.info {
+  display: flex;
+  width: 100%;
+  padding-top: 30rpx;
+  line-height: 0.8em;
+}
+.body view.info view.info_row {
+  flex: 33%;
+  max-width: 33%;
+  margin-right: 4px;
+  text-align: center;
+}
+.body view.info view.info_row .title {
+  font-family: PingFangSC;
+  font-size: 20rpx;
+  color: #9F9F9F;
+}
+.body view.info view.info_row image {
+  margin-top: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+}
+.body view.info view.info_row view.desc {
+  margin-top: 21rpx;
+  font-family: PingFangSC;
+  font-weight: 450;
+  font-size: 21rpx;
+  color: #656565;
+}
+.body view.info view.info_row view.vertical_line {
+  border-right: 1px solid #D9D9D9;
+  height: 20px;
+  margin-top: -40px;
+}
+.body view.info view.info_row view.time {
+  margin-top: -52.5px;
+}
+.body view.info view.info_row view.location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+.body view.pics {
+  margin-top: 40rpx;
+}
+.body view.pics swiper {
+  background-color: white;
+  border-radius: 15rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  text-align: center;
+  height: 500rpx;
+}
+.body view.pics swiper swiper-item image {
+  height: 500rpx;
+  width: 100%;
+  border-radius: 15rpx;
+}
+.body view.billboard {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  border-radius: 15rpx;
+  padding: 35rpx 40rpx 35rpx 40rpx;
+}
+.body view.billboard view.title {
+  padding-bottom: 7px;
+  margin-bottom: 5px;
+  font-family: PingFangSC-Semibold;
+  font-size: 40rpx;
+  border-bottom: 1px solid #369472;
+  width: 30%;
+}
+.body view.billboard text {
+  font-family: PingFangSC;
+  font-size: 14px;
+  color: #656565;
+  line-height: 2.5em;
+}
+.body view.serviceRow {
+  margin-bottom: 40rpx;
+  border-radius: 15rpx;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  display: flex;
+  align-items: center;
+  padding: 15px 0px 15px 0px;
+}
+.body view.serviceRow view.left {
+  flex: 27%;
+  text-align: center;
+}
+.body view.serviceRow view.left image {
+  width: 155rpx;
+  height: 155rpx;
+  border-radius: 30rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+}
+.body view.serviceRow view.middle {
+  color: #363938;
+  text-align: left;
+  flex: 48%;
+}
+.body view.serviceRow view.middle view.serviceTitle {
+  font-family: PingFangSC-Medium;
+  font-size: 35rpx;
+}
+.body view.serviceRow view.middle view.line {
+  margin-top: 24rpx;
+  margin-bottom: 24rpx;
+  width: 90%;
+  height: 1rpx;
+  background-color: #E4E5E5;
+}
+.body view.serviceRow view.middle view.serviceDescription {
+  color: #9F9F9F;
+  font-family: PingFangSC;
+  font-size: 10px;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.body view.serviceRow view.right {
+  flex: 18%;
+  text-align: center;
+}
+.body view.serviceRow view.right view.price {
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 75%;
+  background: #369472;
+  opacity: 0.8;
+  border-radius: 33rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 24rpx;
+  line-height: 1.6em;
+  color: #FAFCFC;
+  padding: 5px 3px 5px 0px;
+}
+.body view.serviceRow view.rightWithOrder {
+  flex: 25%;
+  text-align: center;
+}
+.body view.serviceRow view.rightWithOrder .add {
+  background-color: #369472;
+}
+.body view.serviceRow view.rightWithOrder view.price {
+  position: relative;
+  top: -13rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 60%;
+  background: #369472;
+  opacity: 0.8;
+  font-family: PingFangSC-Semibold;
+  border-radius: 33rpx;
+  font-size: 24rpx;
+  line-height: 1.6em;
+  color: #FAFCFC;
+  padding: 5px 3px 5px 0px;
+  margin: 0px auto;
+}
+.body view.serviceRow view.rightWithOrder view.stepper {
+  position: relative;
+  left: -5rpx;
+  top: 23rpx;
+}
+.body .iconText {
+  font-family: PingFangSC-Regular;
+  font-size: 9px;
+  color: #656565;
+}
+.body .submit {
+  border-radius: 15rpx;
+  font-family: PingFangSC-Semibold;
+  font-size: 14px;
+  color: #fafcfc;
+}
+.body button.bottomButton {
+  text-align: center;
+  background: #369472;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #FAFCFC;
+  height: 5.5%;
+  width: 94%;
+  left: 3%;
+  position: fixed;
+  bottom: 25rpx;
+  padding-top: 8rpx;
+  border-radius: 15rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+}

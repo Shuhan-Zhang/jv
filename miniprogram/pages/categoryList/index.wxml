@@ -1,0 +1,73 @@
+<view class="body">
+    <van-empty image="search" description="暂无相关服务，去主页看看吧" wx:if="{{!allMerchants || allMerchants.length == 0}}" />
+    <van-skeleton title row="3" loading="{{loading}}"></van-skeleton>
+    <view class="service" wx:if="{{category.length == 2}}">
+        <van-divider contentPosition="left">私厨</van-divider>
+        <view class="row" wx:for="{{allMerchants}}" bindtap="chefNavigator" data-merchant="{{item._id}}" wx:if="{{item.approved && item.category == 'chef'}}">
+            <view class="background">
+                <image src="{{item.coverPic}}" mode="aspectFill"></image>
+            </view>
+            <view class="information">
+                <view class="left">
+                    <image src="{{item.merchantData.profilePic}}"></image>
+                    <view>
+                        <view class="leaderName">{{item.merchantData.username}}</view>
+                        <view class="storeName">{{item.title}}</view>
+                        <view class="description">{{item.subTitle}}</view>
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="circle">
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/priceTag.png"></image>
+                        <view class="priceTag">${{item.lowestPrice}}+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <van-divider contentPosition="left">其他</van-divider>
+        <view class="row" wx:for="{{allMerchants}}" bindtap="merchantNavigator" data-merchant="{{item._id}}" wx:if="{{item.approved && item.category != 'chef'}}">
+            <view class="background">
+                <image src="{{item.coverPic}}" mode="aspectFill"></image>
+            </view>
+            <view class="information">
+                <view class="left">
+                    <image src="{{item.merchantData.profilePic}}"></image>
+                    <view>
+                        <view class="leaderName">{{item.merchantData.username}}</view>
+                        <view class="storeName">{{item.title}}</view>
+                        <view class="description">{{item.subTitle}}</view>
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="circle">
+                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/priceTag.png"></image>
+                        <view class="priceTag">${{item.lowestPrice}}+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="others" wx:if="{{category.length == 1}}">
+    <view class="row" wx:for="{{allMerchants}}" bindtap="merchantNavigator" data-merchant="{{item._id}}" wx:if="{{item.approved}}">
+        <view class="background">
+            <image src="{{item.coverPic}}" mode="aspectFill"></image>
+        </view>
+        <view class="information">
+            <view class="left">
+                <image src="{{item.merchantData.profilePic}}"></image>
+                <view>
+                    <view class="leaderName">{{item.merchantData.username}}</view>
+                    <view class="storeName">{{item.title}}</view>
+                    <view class="description">{{item.subTitle}}</view>
+                </view>
+            </view>
+            <view class="right">
+                <view class="circle">
+                    <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/priceTag.png"></image>
+                    <view class="priceTag">${{item.lowestPrice}}+</view>
+                </view>
+            </view>
+        </view>
+    </view>
+  </view>
+</view>

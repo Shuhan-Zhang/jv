@@ -1,86 +1,208 @@
 {
-  "setting": {},
+  "projectname": "Cord",
+  "setting": {
+    "compileHotReLoad": true
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
     "miniprogram": {
       "list": [
         {
-          "name": "用户主页",
-          "pathName": "pages/user/index",
-          "query": "",
-          "scene": null
+          "name": "db guide",
+          "pathName": "pages/index/index",
+          "query": ""
         },
         {
-          "name": "错误反馈",
-          "pathName": "pages/error/index",
+          "name": "",
+          "pathName": "pages/example/chatroom_example/im",
           "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "商家详情",
+          "name": "im测试",
+          "pathName": "pages/index2/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/register/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "商家详情页",
           "pathName": "pages/merchantDetail/index",
           "query": "id=807102f6623e571c01e8c65a5c34702d",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "订单列表",
-          "pathName": "pages/orderList/index",
-          "query": "openid=odaOX4iSzdteKW6FtxMRgf-wD-qY&storeid=807102f6623e571c01e8c65a5c34702d&cordid=efbc6d71623e4d3e01f21f7b65bc0590",
+          "name": "用户主页",
+          "pathName": "pages/user/index",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "服务详情",
-          "pathName": "pages/serviceDetail/index",
-          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b",
+          "name": "好友列表",
+          "pathName": "pages/friendList/index",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "付款确认页",
+          "name": "付款详情页",
           "pathName": "pages/paymentConfirmation/index",
-          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b&merchantid=efbc6d71623e4d3e01f21f7b65bc0590",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "转账确认页",
-          "pathName": "pages/transferConfirmation/index",
-          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b&amount=50",
+          "query": "serviceid=d2fe6f20623e542c022b2b3e0205234b&merchantid=6d85a2b962a2496309b76a667b280566",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "订单详情页",
           "pathName": "pages/orderDetail/index",
-          "query": "orderid=68426679626715e80022cbd3469d4b2b",
+          "query": "orderid=6d85a2b962a5d8680a2c34bf7701506a",
           "launchMode": "default",
           "scene": null
         },
         {
           "name": "转账详情页",
           "pathName": "pages/transactionDetail/index",
-          "query": "transactionid=6d85a2b9626c4fe400f3877124a65763",
+          "query": "transactionid=6d85a2b962a5d8660a2c34a46c53f7e8",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "历史列表",
-          "pathName": "pages/orderList/index",
-          "query": "cordid=efbc6d71623e4d3e01f21f7b65bc0590&storeid=807102f6623e571c01e8c65a5c34702d&order=true&participation=true&pending=true",
+          "name": "merchantForm",
+          "pathName": "pages/merchantForm/index",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "转账列表",
-          "pathName": "pages/transactionList/index",
-          "query": "openid=efbc6d71623e4d3e01f21f7b65bc0590&storeid=807102f6623e571c01e8c65a5c34702d&cordid=efbc6d71623e4d3e01f21f7b65bc0590",
+          "name": "1",
+          "pathName": "pages/paymentConfirmation/index",
+          "query": "serviceid=73ede71e63be19af00743c4c191fd09d&merchantid=c749a6be63be172e007787ab75f07dc1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "修改店铺",
+          "pathName": "pages/updateMerchant/index",
+          "query": "storeid=5acccc6863bdd31600731f4f01ccc10f",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "2",
+          "pathName": "pages/serviceForm/index",
+          "query": "storeid=5acccc6863bdd31600731f4f01ccc10f",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "updateService",
+          "pathName": "pages/updateService/index",
+          "query": "serviceid=undefined",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "updateService",
+          "pathName": "pages/updateService/index",
+          "query": "serviceid=dc49771c63cb1ef50095c0c20bd3449a",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "merchantInfo",
+          "pathName": "pages/merchantDetail/index",
+          "query": "id=5acccc6863bdd31600731f4f01ccc10f",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "serviceDetail",
+          "pathName": "pages/serviceDetail/index",
+          "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "paymentConfirmation",
+          "pathName": "pages/paymentConfirmation/index",
+          "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780&merchantid=5d41bcd363bdca810075ce1204a13a3d",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "transferConfirmation",
+          "pathName": "pages/transferConfirmation/index",
+          "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780&amount=60&date=2023%2F2%2F5%2012%3A00&num=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "orderDetail",
+          "pathName": "pages/orderDetail/index",
+          "query": "orderid=3d37249c63ddd2e701a4c5151758c892",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "transactionDetail",
+          "pathName": "pages/transactionDetail/index",
+          "query": "transactionid=0ac4213c63ddd2e601a25d0b307bdfa6",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "私厨页",
+          "pathName": "pages/chefDetail/index",
+          "query": "id=93e4b6a063f1c61800faa656366e8610",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "确认私厨订单",
+          "pathName": "pages/foodOrder/index",
+          "query": "merchantid=93e4b6a063f1c61800faa656366e8610&order=%5B%7B%22_createTime%22%3A1676790851717%2C%22_id%22%3A%22fc8e646563f1cc4300f61350277dbc0e%22%2C%22_updateTime%22%3A1676794892972%2C%22itemDescription%22%3A%22%E9%B8%A1%E8%9B%8B%2B%E7%B1%B3%E9%A5%AD%22%2C%22itemName%22%3A%22%E8%9B%8B%E7%82%92%E9%A5%AD%22%2C%22merchant%22%3A%2293e4b6a063f1c61800faa656366e8610%22%2C%22picture%22%3A%22cloud%3A%2F%2Fcord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645%2Fcloudbase-cms%2Fupload%2F2023-02-19%2Fs9w0mz90tdbkqgpglzkzva3vcc4rx8jh_.jpeg%22%2C%22price%22%3A10%2C%22num%22%3A2%7D%2C%7B%22_createTime%22%3A1676791179003%2C%22_id%22%3A%222cc84e2663f1cd8b00fd3b50263dc6f0%22%2C%22_updateTime%22%3A1676791332164%2C%22itemDescription%22%3A%22%E8%A5%BF%E7%BA%A2%E6%9F%BF%2B%E9%B8%A1%E8%9B%8B%22%2C%22itemName%22%3A%22%E8%A5%BF%E7%BA%A2%E6%9F%BF%E7%82%92%E9%B8%A1%E8%9B%8B%22%2C%22merchant%22%3A%2293e4b6a063f1c61800faa656366e8610%22%2C%22picture%22%3A%22cloud%3A%2F%2Fcord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645%2Fcloudbase-cms%2Fupload%2F2023-02-19%2F8i7c4dddr5hfc3e9nbyebyiubmddwr8r_.jpeg%22%2C%22price%22%3A15%2C%22num%22%3A1%7D%5D",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/foodOrderDetail/index",
+          "query": "orderid=1db297d463f6ad360198e47715144f50",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/foodOrderDetail/index",
+          "query": "orderid=0122a58763f6ae1001999090389e3234",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/foodOrderDetail/index",
+          "query": "orderid=1db297d463f6ae55019910ef75b9d361",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "确认订单",
+          "pathName": "pages/paymentConfirmation/index",
+          "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780&merchantid=fdfe8f1b63e601c40093705a42bc1a0f",
           "launchMode": "default",
           "scene": null
         }
       ]
     }
   },
-  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  "libVersion": "2.23.4"
 }

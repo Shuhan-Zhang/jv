@@ -1,0 +1,17 @@
+.body {
+  padding: 20rpx 0rpx 50rpx 0rpx;
+}
+.body .cellGroup {
+  margin-bottom: 15rpx;
+}
+.body button {
+  bottom: 10rpx;
+  margin-top: 50rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 80%;
+  background: #369472;
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 30rpx;
+  color: #FFFFFF;
+}

@@ -1,0 +1,29 @@
+<view class="body">
+    <van-cell-group inset title="基本信息" custom-class="cellGroup">
+        <van-field value="{{ value }}" placeholder="请输入店铺名" border="{{ true }}" label="店铺名" bind:change="onChange" data-field="name" required />
+        <van-cell title="分类" border="{{ true }}" bind:click="onOpenSelector" is-link arrow-direction="down" required value="{{chineseCategory}}"></van-cell>
+
+        <van-field value="{{ value }}" placeholder="请写出店铺的具体描述" type="textarea" border="{{ true }}" label="具体描述" bind:change="onChange" autosize data-field="detailInfo" required />
+    </van-cell-group>
+    <van-cell-group inset title="店铺地址" custom-class="cellGroup">
+        <van-field value="{{ value }}" placeholder="请输入店铺的地址名称" border="{{ true }}" label="地址名称" bind:change="onChange" data-field="locationName" required />
+        <van-field value="{{ value }}" placeholder="请输入店铺的详细地址（街道等）" border="{{ true }}" label="详细地址" bind:change="onChange" data-field="locationDetail" />
+        <van-field value="{{ value }}" placeholder="请写出地址经度" type="number" border="{{ true }}" label="经度" bind:change="onChange" autosize data-field="longitude" />
+        <van-field value="{{ value }}" placeholder="请写出地址纬度" type="number" border="{{ true }}" label="纬度" bind:change="onChange" autosize data-field="latitude" />
+    </van-cell-group>
+    <van-cell-group inset title="时间信息" custom-class="cellGroup">
+        <van-field value="{{ value }}" placeholder="ex:周一到周五9:00-20:00" type="textarea" border="{{ true }}" label="详细可选时间" bind:change="onChange" data-field="availableTimes" required />
+    </van-cell-group>
+    <van-cell-group inset title="价格信息" custom-class="cellGroup">
+        <van-field value="{{ value }}" placeholder="美元收款方式(zelle名字+手机号/etc)" type="textarea" border="{{ true }}" label="美元收款方式" bind:change="onChange" autosize data-field="paymentMethod" required />
+        <van-field value="{{ value }}" placeholder="请写出服务的美元最低价格" type="number" border="{{ true }}" label="服务最低价" bind:change="onChange" autosize data-field="lowestPrice" required />
+    </van-cell-group>
+    <van-cell-group inset title="封面图(一张)" custom-class="cellGroup">
+        <van-uploader max-count="{{1}}" upload-text="店铺封面图" file-list="{{ coverFilelist }}" bind:after-read="afterReadCover" bind:delete="afterDeleteCover" deletable="{{ true }}" />
+    </van-cell-group>
+    <van-cell-group inset title="店铺展示图(一张+)" custom-class="cellGroup">
+        <van-uploader file-list="{{ detailFilelist }}" upload-text="店铺展示图" bind:after-read="afterReadDetail" bind:delete="afterDeleteDetail" deletable="{{ true }}" />
+    </van-cell-group>
+    <van-action-sheet show="{{ selectorShow }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" bind:cancel="onClose" cancel-text="取消" />
+    <button bindtap="uploadCoverToCloud">提交申请</button>
+</view>

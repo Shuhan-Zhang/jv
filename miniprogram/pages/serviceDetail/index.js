@@ -1,5 +1,7 @@
 Page({
-  data: {},
+  data: {
+    loginStatus: wx.getStorageSync('loginStatus')
+  },
 
   onLoad: function (options) {
     wx.showLoading({
@@ -7,10 +9,16 @@ Page({
     });
     this.setData({
       serviceID: options.serviceid,
+      options: options
     });
     this.getServiceData(options.serviceid);
+    wx.stopPullDownRefresh();
   },
   onReady: function (options) {
+    wx.hideLoading();
+  },
+  onPullDownRefresh: function () {
+    this.onLoad(this.data.options); //重新加载onLoad()
     wx.hideLoading();
   },
 
@@ -71,12 +79,19 @@ Page({
     });
   },
   payment(e) {
-    wx.navigateTo({
-      url:
-        "/pages/paymentConfirmation/index?serviceid=" +
-        e.currentTarget.dataset.serviceid +
-        "&merchantid=" +
-        e.currentTarget.dataset.merchantid,
-    });
+    if(this.data.loginStatus == true){
+      wx.navigateTo({
+        url:
+          "/pages/paymentConfirmation/index?serviceid=" +
+          e.currentTarget.dataset.serviceid +
+          "&merchantid=" +
+          e.currentTarget.dataset.merchantid,
+      });
+    }else{
+      wx.showToast({
+        title: '请先登陆/注册',
+        icon: 'error'
+      })
+    }
   },
 });

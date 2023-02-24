@@ -1,0 +1,7 @@
+<van-empty image="search" description="暂无私信/联系人" wx:if="{{!friendList || friendList.length == 0}}" />
+<van-cell wx:for="{{friendList}}" custom-class = "infoCell" is-link bind:click = "chat" data-chatid = "{{item.id}}" data-name = "{{item.userInfo.username}}" data-openid = "{{item.userInfo.openid}}">
+  <view slot="title">
+    <view class="van-cell-text" style="align-items: center;">
+      <image src="{{item.userInfo.profilePic}}" style="border-radius: 50%; width: 100rpx; height: 100rpx;"></image>{{item.userInfo.username}}</view>
+  </view>
+</van-cell>

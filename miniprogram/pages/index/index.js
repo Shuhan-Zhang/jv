@@ -4,18 +4,28 @@ Page({
   data: {
     searchList: [],
     allMerchants: [],
+    sliders:[],
     loading: true,
+    cordID: wx.getStorageSync('CordID'),
+    focus: false,
+    showResult: false
   },
   onLoad: function (options) {
     wx.showLoading({
       title: "加载中",
     });
     this.getAllMerchants();
+    this.getSlider();
+    wx.stopPullDownRefresh();
   },
   onReady: function (options) {
     this.setData({
       loading: false,
     });
+    wx.hideLoading();
+  },
+  onPullDownRefresh: function () {
+    this.onLoad(); //重新加载onLoad()
     wx.hideLoading();
   },
 
@@ -30,6 +40,14 @@ Page({
       });
     });
   },
+  
+  async getSlider(e){
+    const res = await wx.cloud.database().collection("slider").get();
+    this.setData({
+      sliders: res.data,
+    });
+  },
+
   getUserData(userID) {
     return new Promise((resolve, reject) => {
       wx.cloud
@@ -48,13 +66,6 @@ Page({
     });
   },
 
-  onClear(e) {
-    this.setData({
-      searchList: [],
-      value: null,
-      search: 0,
-    });
-  },
   search: function (e) {
     var value = e.detail;
     let db = wx.cloud.database();
@@ -101,14 +112,30 @@ Page({
         });
       });
   },
-  selectResult(e) {
-    wx.navigateTo({
-      url: "/pages/merchantDetail/index?id=" + e.currentTarget.dataset.id,
-    });
-  },
   merchantNavigator(e) {
+    if(e.currentTarget.dataset.category == "chef"){
+      wx.navigateTo({
+        url: "/pages/chefDetail/index?id=" + e.currentTarget.dataset.merchant,
+      });
+    }else{
+      wx.navigateTo({
+        url: "/pages/merchantDetail/index?id=" + e.currentTarget.dataset.merchant,
+      });
+    }
+  },
+  swiperNavigator(e){
+    if(!this.data.cordID){
+      wx.showToast({
+        title: '请先注册/登陆',
+      })
+    }
     wx.navigateTo({
-      url: "/pages/merchantDetail/index?id=" + e.currentTarget.dataset.merchant,
+      url: e.currentTarget.dataset.url,
     });
   },
+  categoryNavigator(e){
+    wx.navigateTo({
+      url: "/pages/categoryList/index?category=" + e.currentTarget.dataset.category,
+    });
+  }
 });

@@ -4,7 +4,7 @@
 </van-dropdown-menu>
 <van-skeleton title row="3" loading="{{loading}}"/>
 <view class="all">
-    <van-empty image="search" description="暂无任何符合记录" wx:if = "{{selectedOrders.length == 0 && selectedParticipations.length == 0 && loading == false}}"/>
+    <van-empty image="search" description="暂无任何符合记录" wx:if = "{{(!selectedOrders && !selectedParticipations && loading == false) || (selectedOrders.length == 0 && selectedParticipations.length == 0 && loading == false)}}"/>
     <view class="orders" wx:if="{{selectedOrders.length > 0}}">
         <view class="header">订单</view>
             <view class="orderRow" wx:for = "{{selectedOrders}}" bindtap="orderNavigator" data-orderid = "{{item._id}}">
@@ -17,7 +17,7 @@
                     <view class="line"></view>
                     <view class="serviceDescription">
                         <text class="iconfont icon-shijian"></text>
-                        {{item.createTime}}
+                        {{item.reservationTime}}
                     </view>
                 </view>
                 <view class="right pending" wx:if="{{item.status == 'pending'}}">
@@ -51,12 +51,13 @@
             <view class="middle">
                     <view class="participantName">
                         <text class="iconfont icon-map-thumbtack"></text>
-                        {{item.merchantData.eventLocation}}
+                        {{item.merchantData.locationName}}
                     </view>
                     <view class="serviceName">{{item.serviceData.serviceName}}</view>
                     <view class="line"></view>
                     <view class="serviceDescription">
-                        {{item.serviceData.serviceDescription}}
+                      <text class="iconfont icon-shijian"></text>
+                        {{item.reservationTime}}
                     </view>
             </view>
             <view class="right">

@@ -4,13 +4,14 @@
       <image src="" mode="aspectFill"></image>
     </view>
     <view class="name">
-      <text>张书晗+曾植</text>
+      <text>张书晗Steven + Winnie Cho</text>
     </view>
     <view class="description">
-      <text>Created by Shuhan(Steven) Zhang and Zeng(Zeeman) Zhi on 03/28/2022.</text>
+      <text>Created by Shuhan(Steven) Zhang
+      Designed by Steven and Winnie Cho on 03/28/2022.</text>
     </view>
     <view class="copyRightInfo">
-      <text>Copyright © 2021 Shuhan Zhang. All rights reserved.</text>
+      <text>Copyright © 2023 Shuhan Zhang. All rights reserved.</text>
     </view>
   </view>
 </view>

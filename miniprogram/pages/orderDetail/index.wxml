@@ -27,6 +27,14 @@
     </view>
 </view>
 <view class="main">
+  <van-cell-group inset title="预约信息" custom-class = "cellGroup">
+    <van-cell title="预约时间:" value="{{orderData.reservationTime}}" custom-class = "infoCell" wx:if="{{!dateStatusLoading}}"/>
+    <van-cell title="预约时间:" custom-class = "infoCell" wx:if="{{dateStatusLoading}}">
+            <van-loading slot="right-icon" type="spinner" size="16px"></van-loading>
+        </van-cell>
+    <van-cell title="更改预约时间" custom-class = "infoCell" bind:click="onOpenSelector" wx:if="{{ifMerchant}}" is-link arrow-direction="down" ></van-cell>
+    
+  </van-cell-group>
     <van-cell-group inset title="店铺信息" custom-class = "cellGroup">
         <van-cell title="店铺名称:" value="{{merchantData.title}}" custom-class = "infoCell"/>
         <van-cell title="服务详情" is-link bind:click="serviceNavigator" data-serviceid = "{{orderData.service}}" custom-class = "infoCell"/>
@@ -42,15 +50,15 @@
         <van-cell title="订单状态:" value="已拒绝" wx:if="{{orderData.status == 'rejected' && !statusLoading}}" custom-class = "infoCell"/>
         <van-cell title="订单金额:" value="${{transactionData.amount}}" wx:if="{{transactionData.category == 'screenshotUSD'}}" custom-class = "infoCell"/>
         <van-cell title="订单金额:" value="¥{{transactionData.amount}}" wx:if="{{transactionData.category == 'wechatCNY'}}" custom-class = "infoCell"/>
-        <van-cell title="订单时间:" value="{{orderData.createTime}}" custom-class = "infoCell"/>
-        <van-cell title="改变订单状态" custom-class = "infoCell" bind:click="changeStatus" wx:if="{{ifMerchant}}" is-link arrow-direction="down" >
+        <van-cell title="订单创建时间:" value="{{orderData.createTime}}" custom-class = "infoCell"/>
+        <van-cell title="更改订单状态" custom-class = "infoCell" bind:click="changeStatus" wx:if="{{ifMerchant}}" is-link arrow-direction="down" >
         </van-cell>
     </van-cell-group>
    <van-cell-group inset border="{{false}}" title="付款信息" custom-class = "cellGroup">
         <van-cell title="转账ID" label="{{transactionData._id}}" custom-class = "infoCell" is-link bind:click="transactionNavigator" data-transactionid="{{transactionData._id}}"/>
         <van-cell title="付款方式" value="美元转账" custom-class = "infoCell" wx:if="{{transactionData.category == 'screenshotUSD'}}"/>
         <van-cell title="付款方式" value="微信付款" custom-class = "infoCell" wx:if="{{transactionData.category == 'wechatCNY'}}"/>
-        <van-cell title="付款截图:" custom-class = "imageCell">
+        <van-cell title="付款截图:" custom-class = "imageCell" wx:if="{{transactionData.category == 'screenshotUSD'}}">
             <image src="{{transactionData.screenshot}}" mode="widthFix" bindtap="enlarge" data-url = "{{transactionData.screenshot}}"></image>
         </van-cell>
     </van-cell-group> 
@@ -62,6 +70,23 @@
     bind:cancel = "onClose"
     cancel-text="取消"
     />
+    <van-action-sheet show = "{{selectorShow}}" title="请选择预定日期和时间" bind:close="onSelectorClose">
+        <van-cell title="选择日期" bind:click="onOpenCalendar" value="{{selectedDate}}"/>
+        <van-calendar class="calendar" color = "#369472" show-mark = "{{false}}" show="{{ calendarShow }}" bind:close="onCloseCalendar" bind:confirm="onConfirmDate" />
+        <van-cell title="选择时间" bind:click="onOpenTimePicker" value = "{{shownTime}}"/>
+        <view class="dateTimeConfirm">
+            <button wx:if="{{shownTime.length != 0 && selectedDate.length != 0}}" bindtap="onConfirmDateTime" class="dateTimeConfirmButton">
+                确认
+            </button>
+            <button wx:if="{{shownTime.length == 0 || selectedDate.length == 0}}" class="dateTimeConfirmButton" style="background: #969799;">
+                确认
+            </button>
+        </view>
+</van-action-sheet>
+<van-action-sheet show="{{ timeShow }}" title="请选择具体时间" bind:close="onTimeClose">
+  <van-datetime-picker type="time" value="{{ selectedTime }}" min-hour="{{ minHour }}"
+  max-hour="{{ maxHour }}" bind:input="onConfirmTime" bind:confirm = "onTimeClose" filter="{{ filter }}"/>
+</van-action-sheet>
 </view>
 <!-- <view class="bottom merchant" wx:if="{{ifMerchant && orderData.status == 'pending'}}">
     <button class="pendingButton reject" bindtap = "rejectOrder">拒绝订单</button>

@@ -1,12 +1,9 @@
-page {
-  background-color: #F7F8FA;
-}
 view.all {
   width: 93%;
   margin: 0px auto;
 }
 view.all view.content {
-  background-color: white;
+  background-color: #fafcfc;
   margin-top: 10px;
   border-radius: 20px;
   padding: 20px 20px 20px 20px;
@@ -14,19 +11,21 @@ view.all view.content {
 }
 view.all view.content textarea {
   width: 100%;
-  color: #369472;
+  color: #363938;
   font-size: 14px;
   height: 70vh;
 }
 button {
   text-align: center;
   background: #369472;
-  font-family: PingFangSC-Semibold;
+  font-family: PingFangSC-Medium;
   font-size: 14px;
-  color: #FFFFFF;
-  width: 90%;
-  left: 5%;
+  color: #FAFCFC;
+  height: 5.5%;
+  width: 94%;
+  left: 3%;
   position: fixed;
-  bottom: 20px;
-  border-radius: 8px;
+  bottom: 25rpx;
+  padding-top: 8rpx;
+  border-radius: 15rpx;
 }

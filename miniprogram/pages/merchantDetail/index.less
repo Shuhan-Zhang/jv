@@ -1,9 +1,5 @@
-page {
-    background-color: #F7F8FA;
-}
-
 view.header {
-    height: 450rpx;
+    height: 470rpx;
     text-align: center;
     background-repeat: no-repeat;
     background-position: center;
@@ -13,10 +9,10 @@ view.header {
         z-index: 0;
         position: relative;
         top: -30%;
-        backdrop-filter: blur(2px);
-        height: 60%;
-        background: rgba(9, 9, 9, 0.70);
-        box-shadow: 0px -5px 10px 5px rgba(0, 0, 0, 0.50);
+        backdrop-filter: blur(5rpx);
+        height: 70%;
+        background-image: linear-gradient(180deg, rgba(22, 22, 22, 0.3) 0%, #363938 70%);
+        box-shadow: 0px -7px 15px 6px rgba(22, 22, 22, 0.3);
     }
 
     .info {
@@ -33,16 +29,18 @@ view.header {
 
     .leaderName {
         padding-top: 6px;
-        font-family: PingFangSC-Regular;
+        font-family: PingFangSC;
+        // font-family: PingFangSC-Thin;
         font-size: 15px;
-        color: #FFFFFF;
+        color: #E4E5E5;
+        // color: #FAFCFC;
     }
 
     .merchantName {
-        margin-top: 6px;
+        margin-top: 15rpx;
         font-family: PingFangSC-Semibold;
         font-size: 23px;
-        color: #FFFFFF;
+        color: #FAFCFC;
     }
 }
 
@@ -50,11 +48,12 @@ view.header {
     position: relative;
     background-color: #F7F8FA;
     border-radius: 23px;
+    padding-bottom: 30rpx;
     z-index: 1500;
     margin-top: -23px;
 
     view.mainBody {
-        width: 95%;
+        width: 94%;
         margin: 0px auto;
         padding-bottom: 40px;
     }
@@ -62,7 +61,7 @@ view.header {
     view.info {
         display: flex;
         width: 100%;
-        padding-top: 20px;
+        padding-top: 30rpx;
         line-height: 0.8em;
 
         view.info_row {
@@ -71,16 +70,24 @@ view.header {
             margin-right: 4px;
             text-align: center;
 
+            .title {
+                font-family: PingFangSC;
+                font-size: 20rpx;
+                color: #9F9F9F;
+            }
+
             image {
-                width: 50rpx;
-                height: 50rpx;
+                margin-top: 20rpx;
+                width: 60rpx;
+                height: 60rpx;
             }
 
             view.desc {
-                margin-top: 7px;
-                font-family: PingFangSC-Semibold;
-                font-size: 10px;
-                color: #000000;
+                margin-top: 21rpx;
+                font-family: PingFangSC;
+                font-weight: 450;
+                font-size: 21rpx;
+                color: #656565;
             }
 
             view.vertical_line {
@@ -102,19 +109,20 @@ view.header {
     }
 
     view.pics {
-        margin-top: 23px;
+        margin-top: 40rpx;
 
         swiper {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 15rpx;
             box-shadow: 0px 5px 12px #ebedf0;
             text-align: center;
-            height: 200px;
+            height: 500rpx;
 
             swiper-item {
                 image {
-                    height: 200px;
-                    border-radius: 8px;
+                    height: 500rpx;
+                    width: 100%;
+                    border-radius: 15rpx;
                 }
             }
         }
@@ -125,29 +133,29 @@ view.header {
         margin-bottom: 20px;
         background-color: white;
         box-shadow: 0px 5px 12px #ebedf0;
-        border-radius: 8px;
-        padding: 15px 15px 15px 15px;
+        border-radius: 15rpx;
+        padding: 35rpx 40rpx 35rpx 40rpx;
 
         view.title {
             padding-bottom: 7px;
             margin-bottom: 5px;
             font-family: PingFangSC-Semibold;
-            font-size: 19px;
+            font-size: 40rpx;
             border-bottom: 1px solid #369472;
-            width: 25%;
+            width: 30%;
         }
 
         text {
-            font-family: PingFangSC-Regular;
+            font-family: PingFangSC;
             font-size: 14px;
-            color: #000000;
-            line-height: 2em;
+            color: #656565;
+            line-height: 2.5em;
         }
     }
 
     view.serviceRow {
-        margin-bottom: 20px;
-        border-radius: 8px;
+        margin-bottom: 40rpx;
+        border-radius: 15rpx;
         background-color: white;
         box-shadow: 0px 5px 12px #ebedf0;
         display: flex;
@@ -162,39 +170,34 @@ view.header {
             image {
                 width: 155rpx;
                 height: 155rpx;
-                border-radius: 15px;
+                border-radius: 30rpx;
+                box-shadow: 0px 5px 12px #ebedf0;
             }
         }
 
         view.middle {
-            color: #000000;
+            color: #363938;
             text-align: left;
             flex: 55%;
             max-width: 55%;
 
 
             view.serviceTitle {
-                padding-top: 5px;
                 font-family: PingFangSC-Medium;
-                font-size: 17px;
+                font-size: 35rpx;
             }
 
             view.line {
-                margin-top: 10px;
-                margin-bottom: 10px;
+                margin-top: 20rpx;
+                margin-bottom: 20rpx;
                 width: 90%;
                 height: 1rpx;
-                background-color: #C7C7C7;
+                background-color: #E4E5E5;
             }
 
             view.serviceDescription {
-                text {
-                    color: #369472;
-                    font-size: 13px;
-                }
-
-                color: #969799;
-                font-family: PingFangSC-Regular;
+                color: #9F9F9F;
+                font-family: PingFangSC;
                 font-size: 10px;
                 display: -webkit-box;
                 overflow: hidden;
@@ -207,18 +210,21 @@ view.header {
         }
 
         view.right {
-            flex: 15%;
-            max-width: 15%;
+            flex: 16%;
+            max-width: 16%;
 
             view.price {
+                box-shadow: 0px 5px 12px #ebedf0;
                 text-align: center;
-                width: 100%;
+                width: 90%;
                 background: #369472;
-                border-radius: 8px;
+                opacity: 0.8;
+                border-radius: 33rpx;
                 font-family: PingFangSC-Semibold;
-                font-size: 13px;
-                color: #FFFFFF;
-                padding: 5px 0px 5px 0px;
+                font-size: 24rpx;
+                line-height: 1.6em;
+                color: #FAFCFC;
+                padding: 5px 3px 5px 0px;
             }
         }
     }
@@ -228,12 +234,14 @@ view.header {
         background: #369472;
         font-family: PingFangSC-Medium;
         font-size: 14px;
-        color: #FFFFFF;
-        height: 5%;
-        width: 90%;
-        left: 5%;
+        color: #FAFCFC;
+        height: 5.5%;
+        width: 94%;
+        left: 3%;
         position: fixed;
-        bottom: 10px;
-        border-radius: 8px;
+        bottom: 25rpx;
+        padding-top: 8rpx;
+        border-radius: 15rpx;
+        box-shadow: 0px 5px 12px #ebedf0;
     }
 }
