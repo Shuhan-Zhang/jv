@@ -20,18 +20,6 @@
             </view>
         </view>
     </view>
-    <!-- <view class="paymentRow paymentType">
-        <view class="left">
-            <view class="wrapper">
-                <text>付款方式</text>
-            </view>
-        </view>
-        <view class="right">
-            <van-dropdown-menu active-color="#369472" custom-class="dropdownGroup">
-                <van-dropdown-item title-class ="dropdownText" popup-style = "border-radius: 0px 0px 8px 8px"  value="{{ value }}" options="{{ option }}" bind:change = "changeDropdown"/>
-            </van-dropdown-menu>
-        </view>
-    </view> -->
     <view class="paymentRow number">
         <view class="left">
             <text>数量</text>
@@ -58,20 +46,30 @@
             </van-dropdown-menu>
         </view>
     </view>
+    <view class="transferInfo">
+        <view class="title"><text>付款信息:</text></view>
+        <view class="info"><text>{{merchantData.paymentInfo}}</text></view>
+    </view>
+    <view class="previewImage" wx:if="{{file.length > 0}}">
+        <view class="title">
+            <text>付款截图预览:</text>
+        </view>
+        <view class="preview">
+            <image src="{{file}}" mode="widthFix" bindtap="enlarge" data-url = "{{file}}"></image>
+        </view>
+        <button class="reupload" bindtap="upload" wx:if="{{file.length > 0}}">重新上传</button>
+    </view>
 </view>
 <view class="bottom">
-    <!-- <view class = "priceTag" wx:if="{{value == 0}}">
-        <text>总计:</text>
-        ¥{{price}}
-    </view> -->
     <view class = "priceTag">
         <text>总计:</text>
-        ${{price}}
+        ${{total}}
     </view>
     <view class="confirmButton">
-        <van-button round type="info" custom-class = "payButton" bind:click = "payment">确认支付</van-button>
+        <van-button round type="info" custom-class = "payButton" bind:click = "upload" wx:if="{{file.length == 0}}">上传转账截图</van-button>
+        <van-button round type="info" custom-class = "payButton" bind:click = "submitOrder" wx:if="{{file.length != 0}}">确认订单</van-button>
     </view>
-</view>
+  </view>
 <van-action-sheet show="{{ timeShow }}" title="请选择具体时间" bind:close="onTimeClose" style="z-index: -1;">
   <van-datetime-picker type="time" value="{{ selectedTime }}" min-hour="{{ minHour }}"
   max-hour="{{ maxHour }}" bind:input="onConfirmTime" bind:confirm = "onTimeClose" filter="{{ filter }}"/>

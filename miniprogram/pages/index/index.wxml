@@ -2,6 +2,7 @@
     <view class="swiper">
         <swiper autoplay circular indicator-dots indicator-active-color="#369472">
             <swiper-item wx:for="{{sliders}}" wx:key="_id">
+                <view class="filter"></view>
                 <image mode="aspectFill" src="{{item.pic}}" bindtap="swiperNavigator" data-url="{{item.link}}"></image>
             </swiper-item>
         </swiper>
@@ -25,9 +26,10 @@
         </van-cell-group>
     </view>
     <view class="categorySelector">
+      <view class="wrapper">
         <view class="study column">
             <view class="icon" bindtap="categoryNavigator" data-category="study">
-                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/Group.png"></image>
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/study.PNG" mode="aspectFit"></image>
             </view>
             <view class="text">
                 <view class="title">学习</view>
@@ -36,7 +38,7 @@
         </view>
         <view class="service column">
             <view class="icon" bindtap="categoryNavigator" data-category="service">
-                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/shop.png"></image>
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/service.PNG" mode="aspectFit"></image>
             </view>
             <view class="text">
                 <view class="title">服务</view>
@@ -45,12 +47,13 @@
         </view>
         <view class="entertainment column">
             <view class="icon" bindtap="categoryNavigator" data-category="entertainment">
-                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/entertainment.png"></image>
+                <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/IMG_0517.PNG" mode="aspectFit"></image>
             </view>
             <view class="text">
                 <view class="title">娱乐</view>
                 <view class="subTitle">一起剧本电竞</view>
             </view>
+        </view>
         </view>
     </view>
     <view class="body">

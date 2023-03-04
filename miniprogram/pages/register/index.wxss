@@ -1,1 +1,33 @@
-/* pages/register/index.wxss */
+page {
+  background-color: #369472;
+}
+.all {
+  width: 90%;
+  margin: 0px auto;
+  margin-top: 130rpx;
+}
+.all .avatar-wrapper {
+  border: none;
+}
+.all .avatar-wrapper image {
+  width: 370rpx;
+  height: 370rpx;
+  border-radius: 50%;
+}
+.all input {
+  margin-top: 20rpx;
+  border-radius: 16rpx;
+  background: #FAFCFC;
+  padding: 20rpx;
+  font-family: PingFangSC;
+}
+.all .submit {
+  border: none;
+  background: #FAFCFC;
+  font-family: PingFangSC-Medium;
+  font-size: 17px;
+  color: #363938;
+  margin-top: 35rpx;
+  border-radius: 15rpx;
+  padding: 6rpx;
+}

@@ -61,7 +61,8 @@ Page({
         this.setData({
             merchantData: merchantData,
             serviceData: serviceData,
-            rating: (rating / totalRated).toFixed(1)
+            rating: (rating / totalRated).toFixed(1),
+            totalRated: totalRated
         });
     },
 
@@ -125,7 +126,7 @@ Page({
         let locationDetail = this.data.merchantData.locationDetail
         if (!this.data.merchantData.longitude || !this.data.merchantData.latitude) {
             wx.showToast({
-                title: '商家无线下地址',
+                title: '商家未提供具体地址',
                 icon: 'none'
             })
             return
@@ -171,6 +172,11 @@ Page({
     createOrder(e){
       this.setData({
         ifOrder: true
+      })
+    },
+    navigateBack(e){
+      wx.navigateBack({
+        delta: 1
       })
     },
     submitOrder(e){

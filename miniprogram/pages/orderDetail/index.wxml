@@ -56,8 +56,7 @@
     </van-cell-group>
    <van-cell-group inset border="{{false}}" title="付款信息" custom-class = "cellGroup">
         <van-cell title="转账ID" label="{{transactionData._id}}" custom-class = "infoCell" is-link bind:click="transactionNavigator" data-transactionid="{{transactionData._id}}"/>
-        <van-cell title="付款方式" value="美元转账" custom-class = "infoCell" wx:if="{{transactionData.category == 'screenshotUSD'}}"/>
-        <van-cell title="付款方式" value="微信付款" custom-class = "infoCell" wx:if="{{transactionData.category == 'wechatCNY'}}"/>
+        <van-cell title="付款方式" value="美元转账" custom-class = "infoCell"/>
         <van-cell title="付款截图:" custom-class = "imageCell" wx:if="{{transactionData.category == 'screenshotUSD'}}">
             <image src="{{transactionData.screenshot}}" mode="widthFix" bindtap="enlarge" data-url = "{{transactionData.screenshot}}"></image>
         </van-cell>

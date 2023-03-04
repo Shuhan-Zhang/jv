@@ -1,19 +1,14 @@
-const defaultAvatarUrl = "https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/defaultAvatar.png?sign=a496406128b83aa08679526c49cbac70&t=1673371369";
+const defaultAvatarUrl = "cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/preLoginWhite.png";
 Page({
     data: {
         avatarUrl: defaultAvatarUrl,
         userName: "",
-        phoneNumber: "",
         openid: wx.getStorageSync("openid"),
     },
     onLoad: function(options) {},
     nameChanged(e) {
         console.log(e);
         this.setData({ userName: e.detail.value });
-    },
-    numberChanged(e) {
-        console.log(e);
-        this.setData({ phoneNumber: e.detail });
     },
     onChooseAvatar(e) {
         const { avatarUrl } = e.detail;
@@ -25,12 +20,6 @@ Page({
         if (this.data.userName == "") {
             wx.showToast({
                 title: "昵称不能为空",
-                icon: "none",
-            });
-            return;
-        } else if (this.data.phoneNumber == "") {
-            wx.showToast({
-                title: "手机号不能为空",
                 icon: "none",
             });
             return;
@@ -73,7 +62,6 @@ Page({
                 data: {
                     profilePic: httpPath.fileList[0].tempFileURL,
                     username: this.data.userName,
-                    phoneNumber: this.data.phoneNumber,
                     openid: this.data.openid,
                 },
             });

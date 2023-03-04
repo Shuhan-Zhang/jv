@@ -69,9 +69,43 @@
   margin-top: -23px;
   padding-bottom: 100rpx;
 }
+.main .rating {
+  padding: 15rpx;
+  background-color: white;
+}
+.main .rateValue {
+  font-family: PingFangSC-Semibold;
+  font-size: 45rpx;
+  color: #369472;
+  text-align: left;
+}
 .main .infoCell {
   padding-top: 30rpx;
   padding-bottom: 30rpx;
+}
+.main .card {
+  background-color: #fff;
+  padding: 40rpx 35rpx;
+}
+.main .card .cardTitle {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  font-weight: 540;
+  font-size: 28rpx;
+}
+.main .card .cardDescription {
+  margin-top: 15rpx;
+  margin-left: 8rpx;
+  font-size: 21rpx;
+  color: #9F9F9F;
+}
+.main .card .cardPrice {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  color: #363938;
+}
+.main .card .cardNum {
+  color: #656565;
 }
 .main .imageCell {
   display: block;

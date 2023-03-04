@@ -1,86 +1,155 @@
-<van-dropdown-menu custom-class = "dropdown" active-color="#369472">
-  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bind:change="categoryChanged" title-class="dropdownItem"/>
-  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" bind:change="statusChanged"  title-class="dropdownItem"/>
+<van-dropdown-menu custom-class="dropdown" active-color="#369472">
+    <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bind:change="categoryChanged" title-class="dropdownItem" />
+    <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" bind:change="statusChanged" title-class="dropdownItem" />
 </van-dropdown-menu>
-<van-skeleton title row="3" loading="{{loading}}"/>
+<van-skeleton title row="3" loading="{{loading}}" />
 <view class="all">
-    <van-empty image="search" description="暂无任何符合记录" wx:if = "{{(!selectedOrders && !selectedParticipations && loading == false) || (selectedOrders.length == 0 && selectedParticipations.length == 0 && loading == false)}}"/>
-    <view class="orders" wx:if="{{selectedOrders.length > 0}}">
-        <view class="header">订单</view>
-            <view class="orderRow" wx:for = "{{selectedOrders}}" bindtap="orderNavigator" data-orderid = "{{item._id}}">
-                <view class="left">
-                    <image src="{{item.participantData.profilePic}}"></image>
-                </view>
-                <view class="middle">
-                    <view class="participantName">{{item.participantData.username}}</view>
-                    <view class="serviceName">{{item.serviceData.serviceName}}</view>
-                    <view class="line"></view>
-                    <view class="serviceDescription">
-                        <text class="iconfont icon-shijian"></text>
-                        {{item.reservationTime}}
-                    </view>
-                </view>
-                <view class="right pending" wx:if="{{item.status == 'pending'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>待审核</text></view>
-                </view>
-                <view class="right paid"  wx:if="{{item.status == 'paid'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已收款</text></view>
-                </view>
-                <view class="right complete"  wx:if="{{item.status == 'complete'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已完成</text></view>
-                </view>
-                <view class="right rejected"  wx:if="{{item.status == 'rejected'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已拒绝</text></view>
-                </view>
-            </view>
-    </view>
-    <view class="participations" wx:if="{{selectedParticipations.length > 0}}">
-        <view class="header">参与</view>
-        <view class="orderRow participationRow" wx:for = "{{selectedParticipations}}" bindtap = "orderNavigator" data-orderid = "{{item._id}}">
+    <van-empty image="search" description="暂无任何符合记录" wx:if="{{(!selectedOrders && !selectedFoodParticipations && !selectedReservationParticipations && loading == false) || (selectedOrders.length == 0 && selectedFoodParticipations.length == 0 && selectedReservationParticipations.length == 0  && loading == false)}}"
+    />
+    <view class="orders" wx:if="{{selectedOrders.length > 0 && merchantCategory == 'reservation'}}">
+        <van-divider contentPosition="left">订单</van-divider>
+        <view class="orderRow" wx:for="{{selectedOrders}}" bindtap="orderNavigator" data-orderid="{{item._id}}">
             <view class="left">
-                <image src="{{item.merchantData.coverPic}}"></image>
+                <image src="{{item.participantData.profilePic}}"></image>
             </view>
             <view class="middle">
+                <view class="participantName">{{item.participantData.username}}</view>
+                <view class="serviceName">{{item.serviceData.serviceName}}</view>
+                <view class="line"></view>
+                <view class="serviceDescription">
+                    <text class="iconfont icon-shijian"></text> {{item.reservationTime}}
+                </view>
+            </view>
+            <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                <view class="status"><text>待审核</text></view>
+            </view>
+            <view class="right paid" wx:if="{{item.status == 'paid'}}">
+                <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                <view class="status"><text>已收款</text></view>
+            </view>
+            <view class="right complete" wx:if="{{item.status == 'complete'}}">
+                <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                <view class="status"><text>已完成</text></view>
+            </view>
+            <view class="right rejected" wx:if="{{item.status == 'rejected'}}">
+                <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                <view class="status"><text>已拒绝</text></view>
+            </view>
+        </view>
+    </view>
+    <view class="orders" wx:if="{{selectedOrders.length > 0 && merchantCategory == 'chef'}}">
+        <view class="header">订单</view>
+        <view class="foodRow" wx:for="{{selectedOrders}}" bindtap="foodOrderNavigator" data-orderid="{{item._id}}">
+            <view class="topInfo">
+                <view class="left">
+                    <view class="storeInfo">
+                        <view class="thumb">
+                            <image src="{{item.merchantData.coverPic}}" mode="aspectFill"></image>
+                        </view>
+                        <view class="storeDetail">
+                            <view class="merchantName">{{item.merchantData.title}}</view>
+                            <view class="detail">
+                                <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="right">
+                    <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>待审核</text></view>
+                    </view>
+                    <view class="right paid" wx:if="{{item.status == 'paid'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已付款</text></view>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <van-card custom-class="card" thumb-class="thumb" title-class="cardTitle" price-class="cardPrice" desc-class="cardDescription" num-class="cardNum" thumb-mode="aspectFill" wx:for="{{item.foodOrder}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}"
+                price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}" />
+        </view>
+    </view>
+    <view class="participations" wx:if="{{selectedFoodParticipations.length > 0 || selectedReservationParticipations.length > 0}}">
+        <van-divider contentPosition="left">参与</van-divider>
+        <view class="reservations" wx:if="{{selectedReservationParticipations.length > 0}}">
+            <view class="orderRow participationRow" wx:for="{{selectedReservationParticipations}}" bindtap="orderNavigator" data-orderid="{{item._id}}">
+                <view class="left">
+                    <image src="{{item.merchantData.coverPic}}"></image>
+                </view>
+                <view class="middle">
                     <view class="participantName">
-                        <text class="iconfont icon-map-thumbtack"></text>
-                        {{item.merchantData.locationName}}
+                        <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
                     </view>
                     <view class="serviceName">{{item.serviceData.serviceName}}</view>
                     <view class="line"></view>
                     <view class="serviceDescription">
-                      <text class="iconfont icon-shijian"></text>
-                        {{item.reservationTime}}
+                        <text class="iconfont icon-shijian"></text> {{item.reservationTime}}
                     </view>
+                </view>
+                <view class="right">
+                    <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>待审核</text></view>
+                    </view>
+                    <view class="right paid" wx:if="{{item.status == 'paid'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已收款</text></view>
+                    </view>
+                    <view class="right complete" wx:if="{{item.status == 'complete'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已完成</text></view>
+                    </view>
+                    <view class="right rejected" wx:if="{{item.status == 'rejected'}}">
+                        <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                        <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                        <view class="status"><text>已拒绝</text></view>
+                    </view>
+                </view>
             </view>
-            <view class="right">
-                <view class="right pending" wx:if="{{item.status == 'pending'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>待审核</text></view>
+        </view>
+        <view class="foods" wx:if="{{selectedFoodParticipations.length > 0}}">
+            <view class="foodRow" wx:for="{{selectedFoodParticipations}}" bindtap="foodOrderNavigator" data-orderid="{{item._id}}">
+                <view class="topInfo">
+                    <view class="left">
+                        <view class="storeInfo">
+                            <view class="thumb">
+                                <image src="{{item.merchantData.coverPic}}" mode="aspectFill"></image>
+                            </view>
+                            <view class="storeDetail">
+                                <view class="merchantName">{{item.merchantData.title}}</view>
+                                <view class="detail">
+                                    <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="right">
+                        <view class="right pending" wx:if="{{item.status == 'pending'}}">
+                            <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                            <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                            <view class="status"><text>待审核</text></view>
+                        </view>
+                        <view class="right paid" wx:if="{{item.status == 'paid'}}">
+                            <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
+                            <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
+                            <view class="status"><text>已付款</text></view>
+                        </view>
+                    </view>
                 </view>
-                <view class="right paid"  wx:if="{{item.status == 'paid'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已收款</text></view>
-                </view>
-                <view class="right complete"  wx:if="{{item.status == 'complete'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已完成</text></view>
-                </view>
-                <view class="right rejected"  wx:if="{{item.status == 'rejected'}}">
-                    <view class="price" wx:if="{{item.transactionData.category == 'screenshotUSD'}}">${{item.transactionData.amount}}</view>
-                    <view class="price" wx:if="{{item.transactionData.category == 'wechatCNY'}}">¥{{item.transactionData.amount}}</view>
-                    <view class="status"><text>已拒绝</text></view>
-                </view>
+                <view class="line"></view>
+                <van-card custom-class="card" thumb-class="thumb" title-class="cardTitle" price-class="cardPrice" desc-class="cardDescription" num-class="cardNum" thumb-mode="aspectFill" wx:for="{{item.foodOrder}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}"
+                    price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}" />
             </view>
         </view>
     </view>

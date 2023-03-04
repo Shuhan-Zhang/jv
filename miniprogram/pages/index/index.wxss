@@ -1,83 +1,100 @@
 page {
   background-color: #F7F8FA;
 }
-view.index {
-  padding-top: 30rpx;
+.wx-swiper-dots.wx-swiper-dots-horizontal {
+  position: relative;
+  left: 82rpx;
+  top: 500rpx;
 }
 view.index .swiper {
   margin: 0px, auto;
 }
 view.index .swiper swiper {
-  background-color: white;
-  box-shadow: 0px 5px 12px #ebedf0;
-  width: 93%;
   margin: 0px auto;
   text-align: center;
-  height: 400rpx;
-  border-radius: 15rpx;
-}
-view.index .swiper swiper swiper-item {
-  height: 350rpx;
-  border-radius: 15rpx;
+  height: 580rpx;
 }
 view.index .swiper swiper swiper-item image {
   height: 100%;
   width: 100%;
-  border-radius: 15rpx;
 }
-view.index .searchBackground {
-  background-color: white;
-  width: 102%;
+view.index .swiper swiper .filter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 580px;
+  background: linear-gradient(to bottom, rgba(247, 248, 250, 0) 94.5%, #f7f8fa 100%);
+}
+view.index .search {
+  margin-top: -80rpx;
+}
+view.index .search .searchBackground {
+  width: 102.2%;
   margin: 0px -20rpx;
   margin-top: 15rpx;
+  align-items: center;
 }
-view.index .searchBackground image {
-  padding-left: 20rpx;
+view.index .search .searchBackground image {
+  padding-left: 25rpx;
 }
-view.index .searchBar {
-  background-color: rgba(228, 229, 229, 0.9);
-  box-shadow: 0px 5px 12px #ebedf0;
-  height: 75rpx;
-  border-radius: 15rpx;
+view.index .search .searchBar {
+  height: 78rpx;
+  background-color: white;
+  box-shadow: 0px 3px 5px #ebedf0;
+  border-radius: 16rpx;
   font-family: PingFang SC;
   font-style: normal;
   font-weight: 300;
-  font-size: 23rpx;
+  font-size: 24rpx;
+  padding-top: 17rpx;
+  align-items: center;
+  z-index: 100;
 }
-view.index .searchCell {
-  font-size: 13px;
+view.index .search .searchCell {
+  font-size: 26rpx;
 }
-view.index .searchText {
-  padding-left: 30rpx;
+view.index .search .searchText {
+  align-items: center;
+  padding-left: 35rpx;
   font-family: PingFang SC;
   font-style: normal;
   font-weight: 300;
-  font-size: 23rpx;
+  font-size: 24rpx;
 }
-view.index .searchCellGroup {
+view.index .search .searchCellGroup {
   margin-top: -5px;
 }
 view.index view.categorySelector {
-  display: flex;
-  margin: 0px auto;
-  margin-top: 20rpx;
-  justify-content: space-between;
   align-items: center;
+  border-radius: 16rpx;
+  margin: 0px auto;
+  background-color: white;
+  box-shadow: 0px 5px 12px #ebedf0;
+  width: 93%;
+  margin-top: 20rpx;
 }
-view.index view.categorySelector .column {
-  flex: 20%;
+view.index view.categorySelector .wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 90.5%;
+  margin: 0px auto;
+  padding: 25rpx 0rpx;
+}
+view.index view.categorySelector .wrapper .column {
+  justify-content: space-between;
   text-align: center;
 }
-view.index view.categorySelector .column .icon image {
-  width: 110rpx;
-  height: 110rpx;
+view.index view.categorySelector .wrapper .column .icon image {
+  width: 147rpx;
+  height: 147rpx;
 }
-view.index view.categorySelector .column .text .title {
+view.index view.categorySelector .wrapper .column .text .title {
   font-family: PingFangSC-Semibold;
   font-size: 30rpx;
   color: #363938;
 }
-view.index view.categorySelector .column .text .subTitle {
+view.index view.categorySelector .wrapper .column .text .subTitle {
   margin-top: 5rpx;
   font-family: PingFangSC-Regular;
   font-size: 19rpx;
@@ -100,26 +117,34 @@ view.index view.body view.row view.background {
 }
 view.index view.body view.row view.background image {
   border-radius: 15rpx;
-  height: 440rpx;
+  height: 446rpx;
   width: 100%;
 }
 view.index view.body view.row view.information {
   box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 0.6);
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, #FAFCFC 82%);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, #FAFCFC 82%);
   backdrop-filter: blur(5px);
   height: 150rpx;
-  margin: 0px auto;
   border-radius: 15rpx;
   display: flex;
+  width: 98%;
   align-items: center;
-  padding: 10px 7px 12px 0px;
+  padding: 10px 7px 13px 0px;
 }
 view.index view.body view.row view.information view.left {
   flex: 100%;
   padding-left: 10rpx;
   padding-right: 10rpx;
   text-align: left;
+  align-items: center;
   display: flex;
+}
+view.index view.body view.row view.information view.left image {
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
 }
 view.index view.body view.row view.information view.left view.leaderName {
   font-family: PingFangSC;
@@ -129,7 +154,7 @@ view.index view.body view.row view.information view.left view.leaderName {
 view.index view.body view.row view.information view.left view.storeName {
   margin-top: 6rpx;
   font-family: PingFangSC-Semibold;
-  font-size: 40rpx;
+  font-size: 38rpx;
   color: #363938;
 }
 view.index view.body view.row view.information view.left view.description {
@@ -144,14 +169,6 @@ view.index view.body view.row view.information view.left view.description {
   white-space: normal !important;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-}
-view.index view.body view.row view.information view.left image {
-  margin-top: 8rpx;
-  margin-left: 10rpx;
-  margin-right: 20rpx;
-  width: 120rpx;
-  height: 120rpx;
-  border-radius: 50%;
 }
 view.index view.body view.row view.information view.right {
   flex: 20%;

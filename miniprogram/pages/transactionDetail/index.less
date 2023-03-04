@@ -74,6 +74,7 @@
     border-radius: 23px;
     z-index: 1500;
     margin-top: -23px;
+    padding-bottom: 100rpx;
 
 
     .infoCell {
@@ -96,51 +97,17 @@
         box-shadow: 0px 5px 12px #ebedf0;
     }
 
-    van-popup {
-        text-align: center;
-
-        image {
-            margin-top: 20px;
-            height: 80%;
-            width: auto;
-        }
-
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-
-            button {
-                font-family: PingFangSC-Medium;
-                color: #FFFFFF;
-                font-size: 14px;
-                width: 40%;
-            }
-
-            .cancel {
-                background: #D01D1F;
-            }
-
-            .confirm {
-                background: #369472;
-            }
-        }
-    }
-}
-
-.bottom {
-    margin-top: 20px;
-    padding-bottom: 50rpx;
-
-    button {
-        box-shadow: 0px 5px 12px #ebedf0;
-        background: #369472;
-        font-family: PingFangSC-Medium;
-        font-size: 14px;
-        color: #FAFCFC;
-        width: 93%;
+    button.reupload {
+        width: 40%;
         margin: 0px auto;
-        border-radius: 15rpx;
-        padding: 10rpx 0rpx 10rpx 0rpx;
+        margin-top: 15rpx;
+        margin-bottom: 15rpx;
+        background: rgba(54, 148, 114, 0.8);
+        border-radius: 20rpx;
+        font-family: PingFangSC;
+        font-size: 25rpx;
+        color: #fafcfc;
+        padding: 5rpx 0rpx 5rpx 0rpx;
+        box-shadow: 0px 5px 12px #ebedf0;
     }
 }

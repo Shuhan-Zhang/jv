@@ -4,6 +4,7 @@ view.header {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  padding-top: 120rpx;
 }
 view.header .wrapper {
   z-index: 0;
@@ -13,6 +14,14 @@ view.header .wrapper {
   height: 70%;
   background-image: linear-gradient(180deg, rgba(22, 22, 22, 0.3) 0%, #363938 70%);
   box-shadow: 0px -7px 15px 6px rgba(22, 22, 22, 0.3);
+}
+view.header .backButton {
+  position: absolute;
+  left: 30rpx;
+  top: 97rpx;
+  background-color: rgba(54, 57, 56, 0.6);
+  padding: 13rpx 20rpx;
+  border-radius: 16rpx;
 }
 view.header .info {
   z-index: 1000;
@@ -66,10 +75,8 @@ view.header .merchantName {
   font-size: 20rpx;
   color: #9F9F9F;
 }
-.body view.info view.info_row image {
+.body view.info view.info_row .icon {
   margin-top: 20rpx;
-  width: 60rpx;
-  height: 60rpx;
 }
 .body view.info view.info_row view.desc {
   margin-top: 21rpx;
@@ -82,14 +89,6 @@ view.header .merchantName {
   border-right: 1px solid #D9D9D9;
   height: 20px;
   margin-top: -40px;
-}
-.body view.info view.info_row view.time {
-  margin-top: -52.5px;
-}
-.body view.info view.info_row view.location {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
 }
 .body view.pics {
   margin-top: 40rpx;

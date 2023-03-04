@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "您的主页",
   "usingComponents": {},
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "navigationStyle": "custom"
 }

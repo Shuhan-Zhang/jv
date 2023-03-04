@@ -53,7 +53,7 @@ view.postLogin {
     background-size: cover;
 
     view.wrapper {
-      padding: 30rpx 0rpx 15rpx 0rpx;
+      padding: 165rpx 0rpx 15rpx 0rpx;
       z-index: -1000;
       backdrop-filter: blur(10px);
       height: 50%;
@@ -98,7 +98,7 @@ view.postLogin {
         border-radius: 8px;
         font-family: PingFangSC;
         font-size: 23rpx;
-        font-weight: 440;
+        font-weight: 450;
         color: #000000;
         margin-top: 33rpx;
         margin-bottom: 40px;
@@ -171,7 +171,7 @@ view.postLogin {
           font-size: 33rpx;
         }
 
-        .participating {
+        .detail {
           margin-top: 15rpx;
           color: #9F9F9F;
           font-family: PingFangSC-Regular;
@@ -209,7 +209,7 @@ view.postLogin {
           text {
             font-family: PingFangSC;
             font-size: 24rpx;
-            color: #fafcfc;
+            color: #E4E5E5;
             padding: 5px 7px 5px 7px;
             border-radius: 8px;
           }
@@ -238,6 +238,155 @@ view.postLogin {
             background-color: #369472;
           }
         }
+      }
+    }
+
+    view.foodRow {
+      background-color: white;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 5px 12px #ebedf0;
+      padding: 33rpx 25rpx 23rpx 25rpx;
+
+      view.topInfo {
+        display: flex;
+        align-items: center;
+
+        .left {
+          color: #363938;
+          text-align: left;
+          flex: 90%;
+
+          .storeInfo {
+            display: flex;
+            align-items: center;
+
+            .thumb {
+              flex: 30%;
+
+              image {
+                width: 140rpx;
+                height: 140rpx;
+                border-radius: 50%;
+              }
+            }
+
+            .storeDetail {
+              flex: 70%;
+
+              .merchantName {
+                font-family: PingFangSC-Semibold;
+                font-size: 33rpx;
+              }
+
+              .detail {
+                margin-top: 30rpx;
+                margin-left: -6rpx;
+                color: #9F9F9F;
+                font-family: PingFangSC-Regular;
+                font-size: 22rpx;
+
+                .iconfont {
+                  color: #369472;
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+
+        .right {
+          flex: 20%;
+          margin-top: -10rpx;
+          text-align: center;
+
+          view.price {
+            border-radius: 8px;
+            font-family: PingFangSC-Semibold;
+            font-size: 47rpx;
+          }
+
+          view.status {
+            margin-top: 12rpx;
+
+            text {
+              font-family: PingFangSC;
+              font-size: 24rpx;
+              color: white;
+              padding: 5px 7px 5px 7px;
+              border-radius: 8px;
+            }
+          }
+
+          view.pending {
+            view.price {
+              color: #f9cf29;
+            }
+
+            view.status {
+              text {
+                background-color: #f9cf29;
+              }
+            }
+          }
+
+          view.paid {
+            view.price {
+              color: #369472;
+            }
+
+            view.status {
+              text {
+                background-color: #369472;
+              }
+            }
+          }
+        }
+      }
+
+      view.line {
+        margin: 0px auto;
+        margin-top: 25rpx;
+        margin-bottom: 21rpx;
+        width: 95%;
+        height: 1rpx;
+        background-color: #E4E5E5;
+      }
+
+      .card {
+        background-color: #fff;
+        padding: 30rpx 0rpx;
+        padding-left: 10rpx;
+        padding-right: 30rpx;
+
+        .cardTitle {
+          margin-left: 8rpx;
+          font-family: PingFangSC;
+          font-weight: 540;
+          font-size: 28rpx;
+        }
+
+        .cardDescription {
+          margin-top: 15rpx;
+          margin-left: 8rpx;
+          font-size: 21rpx;
+          color: #9F9F9F;
+        }
+
+        .cardPrice {
+          margin-left: 8rpx;
+          font-family: PingFangSC;
+          color: #363938;
+        }
+
+        .cardNum {
+          color: #656565;
+        }
+
+        .thumb {
+          border-radius: 20rpx;
+        }
+
       }
     }
 

@@ -16,19 +16,16 @@ Page({
       userInfo: wx.getStorageSync('userInfo'),
       options: options
     })
-    wx.hideLoading()
-    wx.stopPullDownRefresh();
-  },
-  onReady: function (options) {
-    this.setData({
-      loading: false,
-    });
+    setTimeout(() => {
+      wx.hideLoading()
+      this.setData({
+        loading: false
+      })
+    }, 1000)
   },
   onPullDownRefresh: function () {
     this.onLoad(this.data.options);
-    wx.hideLoading();
   },
-
   async getMerchantData(merchantID) {
     const res = await wx.cloud
       .database()
@@ -41,13 +38,24 @@ Page({
     const leaderData = await this.getUserData(merchantData.leader);
     const serviceData = await this.getServiceData(merchantData._id);
     const participants = await this.getParticipants(merchantData._id);
+    let rating = 0;
+    let totalRated = 0;
+
+    participants.forEach(v=>{
+      if(v.rating){
+        rating += v.rating;
+        totalRated += 1;
+      }
+    })
+
 
     merchantData.leaderData = leaderData;
 
     this.setData({
       merchantData: merchantData,
       serviceData: serviceData,
-      participantNumber: participants.length,
+      rating: (rating / totalRated).toFixed(1),
+      totalRated: totalRated
     });
   },
 
@@ -111,7 +119,7 @@ Page({
     let locationDetail = this.data.merchantData.locationDetail
     if(!this.data.merchantData.longitude || !this.data.merchantData.latitude){
       wx.showToast({
-        title: '商家无线下地址',
+        title: '商家未提供具体地址',
         icon: 'none'
       })
       return
@@ -138,8 +146,14 @@ Page({
     wx.navigateTo({
       url:
         "/pages/serviceDetail/index?serviceid=" +
-        e.currentTarget.dataset.serviceid,
+        e.currentTarget.dataset.serviceid +
+        "&data=" + JSON.stringify(e.currentTarget.dataset.data)
     });
+  },
+  navigateBack(e){
+    wx.navigateBack({
+      delta: 1
+    })
   },
   async contactMerchant(e){
     if(this.data.userInfo && this.data.loginStatus == true){

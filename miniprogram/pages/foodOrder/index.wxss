@@ -43,7 +43,7 @@ view.all view.serviceRow view.right view.detail {
   text-align: right;
 }
 view.all view.serviceRow view.right view.detail .serviceLocation {
-  flex: 50%;
+  flex: 40%;
   font-family: PingFangSC-Regular;
   font-size: 21rpx;
   color: #9F9F9F;
@@ -77,21 +77,46 @@ view.all view.order .title text {
   padding: 5px;
 }
 view.all view.order .card {
-  background-color: white;
-  margin-left: -40rpx;
-  margin-top: 30rpx;
+  background-color: #fff;
+  margin-left: -25rpx;
+  margin-top: 35rpx;
 }
-view.all view.order .cardTitle {
+view.all view.order .card .cardTitle {
+  margin-left: 8rpx;
   font-family: PingFangSC;
-  font-size: 30rpx;
+  font-weight: 540;
+  font-size: 28rpx;
 }
-view.all view.order .cardDescription {
-  margin-top: 10rpx;
+view.all view.order .card .cardDescription {
+  margin-top: 15rpx;
+  margin-left: 8rpx;
   font-size: 21rpx;
   color: #9F9F9F;
 }
-view.all view.order .cardPrice {
+view.all view.order .card .cardPrice {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
   color: #363938;
+}
+view.all view.order .card .cardNum {
+  color: #656565;
+}
+view.all .userLocation {
+  background-color: white;
+  margin-top: 40rpx;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 20px 15px 20px 20px;
+  border-radius: 8px;
+}
+view.all .userLocation .title {
+  margin-bottom: 10px;
+}
+view.all .userLocation .title text {
+  font-family: PingFangSC-Semibold;
+  font-size: 31rpx;
+  color: #363938;
+  border-bottom: #369472 1px solid;
+  padding: 5px;
 }
 view.all .transferInfo {
   background-color: white;

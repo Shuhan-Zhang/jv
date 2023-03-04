@@ -28,15 +28,28 @@
 </view>
 <view class="main">
   <!-- <van-cell-group inset title="体验评分" custom-class = "cellGroup" wx:if="{{!ifMerchant && order.status == 'complete'}}"> -->
-  <van-cell-group inset title="体验评分" custom-class = "cellGroup" wx:if="{{!ifMerchant}}">
-    <van-rate value="{{ rating }}" bind:change="onChangeRating"/>
+  <van-cell-group inset title="体验评分" custom-class = "cellGroup rating" wx:if="{{!ifMerchant}}">
+  <van-cell border="{{false}}">
+    <view slot="title">
+    <van-rate value="{{ rating }}" 
+    color="#f9cf29"
+    size = "25px" 
+    allow-half
+    void-color="#eee"
+    bind:change="onChangeRating"/>
+    </view>
+    <view slot="right-icon">
+      <view class="rateValue" wx:if="{{rating != 0}}">{{rating}}/5</view>
+    </view>
+    </van-cell>
   </van-cell-group>
   <van-cell-group inset title="商品列表" custom-class = "cellGroup">
     <van-card custom-class = "card" thumb-class="thumb"
       title-class="cardTitle" price-class="cardPrice"
       desc-class="cardDescription"
+      num-class="cardNum"
       thumb-mode="aspectFill"
-      wx:for="{{orderData.foodOrder}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}" price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}" />
+      wx:for="{{orderData.foodOrder}}" wx:if="{{item.num && item.num != 0}}" num="{{item.num}}" price="{{item.price}}" desc="{{item.itemDescription}}" title="{{item.itemName}}" thumb="{{item.picture}}"/>
   </van-cell-group>
     <van-cell-group inset border="{{false}}" title="订单详情" custom-class = "cellGroup">
         <van-cell title="配送地址:" label="{{orderData.deliveryLocation}}" custom-class = "infoCell"/>

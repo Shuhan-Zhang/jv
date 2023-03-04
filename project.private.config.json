@@ -200,6 +200,27 @@
           "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780&merchantid=fdfe8f1b63e601c40093705a42bc1a0f",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "订单详情",
+          "pathName": "pages/orderDetail/index",
+          "query": "orderid=987a453763f90d0c01dd23c628c77a94",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "订单列表",
+          "pathName": "pages/orderList/index",
+          "query": "cordid=5d41bcd363bdca810075ce1204a13a3d&storeid=93e4b6a063f1c61800faa656366e8610&order=true&participation=true&complete=true&rejected=true&merchantCategory=chef",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "注册",
+          "pathName": "pages/register/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

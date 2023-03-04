@@ -105,15 +105,42 @@ Page({
     });
   },
   async reUpload(e) {
-    const uploadRes = await wx.chooseImage({
+    const uploadRes = await wx.chooseMedia({
+      media: ["image"],
       count: 1,
       sizeType: ["original", "compressed"],
       sourceType: ["album", "camera"],
+    })
+    var tempPath = uploadRes.tempFiles[0].tempFilePath;
+    wx.showLoading({
+      title: "更新中",
     });
-    var tempPath = uploadRes.tempFilePaths[0];
-    this.setData({
-      tempPath: tempPath,
-      show: true,
+    var screenshotID = Date.now() + "Transaction.jpg";
+    try {
+      const res = await wx.cloud.uploadFile({
+        cloudPath: screenshotID,
+        filePath: tempPath,
+      });
+      await wx.cloud.callFunction({
+        name: "updateScreenshot",
+        data: {
+          transactionid: this.data.transactionData._id,
+          url: res.fileID,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+      wx.showToast({
+        title: "更新失败",
+        icon: "error",
+      });
+    }
+    this.onLoad({ transactionid: this.data.transactionID });
+    this.onClose();
+    wx.hideLoading();
+    wx.showToast({
+      title: "更新成功",
+      icon: "success",
     });
   },
 
@@ -124,7 +151,7 @@ Page({
   },
   async updateScreenshot() {
     wx.showLoading({
-      title: "更新转账中",
+      title: "更新中",
     });
     var screenshotID = Date.now() + "Transaction.jpg";
     try {

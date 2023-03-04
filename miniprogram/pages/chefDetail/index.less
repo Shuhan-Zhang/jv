@@ -4,6 +4,7 @@ view.header {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    padding-top: 120rpx;
 
     .wrapper {
         z-index: 0;
@@ -13,6 +14,15 @@ view.header {
         height: 70%;
         background-image: linear-gradient(180deg, rgba(22, 22, 22, 0.3) 0%, #363938 70%);
         box-shadow: 0px -7px 15px 6px rgba(22, 22, 22, 0.3);
+    }
+
+    .backButton {
+        position: absolute;
+        left: 30rpx;
+        top: 97rpx;
+        background-color: rgba(54, 57, 56, 0.6);
+        padding: 13rpx 20rpx;
+        border-radius: 16rpx;
     }
 
     .info {
@@ -48,14 +58,13 @@ view.header {
     position: relative;
     background-color: #F7F8FA;
     border-radius: 23px;
-    padding-bottom: 70rpx;
+    padding-bottom: 180rpx;
     z-index: 1500;
     margin-top: -23px;
 
     view.mainBody {
         width: 94%;
         margin: 0px auto;
-        padding-bottom: 40px;
     }
 
     view.info {
@@ -76,10 +85,8 @@ view.header {
                 color: #9F9F9F;
             }
 
-            image {
+            .icon {
                 margin-top: 20rpx;
-                width: 60rpx;
-                height: 60rpx;
             }
 
             view.desc {
@@ -96,15 +103,6 @@ view.header {
                 margin-top: -40px;
             }
 
-            view.time {
-                margin-top: -52.5px;
-            }
-
-            view.location {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: clip;
-            }
         }
     }
 
@@ -285,6 +283,14 @@ view.header {
         padding-top: 8rpx;
         border-radius: 15rpx;
         box-shadow: 0px 5px 12px #ebedf0;
+    }
+
+    .goodsAction {
+        width: 96%;
+        margin: 0px auto;
+        padding-left: 15rpx;
+        padding-right: 15rpx;
+        padding-top: 15rpx;
     }
 
 }

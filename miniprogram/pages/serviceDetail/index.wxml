@@ -7,7 +7,7 @@
             <view class="h2">{{serviceData.serviceSubtitle}}</view>
         </view>
         <view class="price">
-            <text>$</text>{{serviceData.USDPrice}}/<text>¥</text>{{serviceData.CNYPrice}}</view>
+            <text>$</text>{{serviceData.USDPrice}}</view>
     </view>
     <view class="wrapper">
         <view class="merchant">

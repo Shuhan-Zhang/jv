@@ -47,6 +47,7 @@ Page({
         wx.hideLoading({});
     },
 
+
     async getUserOrders(storeID) {
         let db = wx.cloud.database();
         const _ = db.command;
@@ -61,7 +62,7 @@ Page({
             .orderBy("date", "asc") 
             .limit(3)
             .get();
-        console.log(res)
+        // console.log(res)
 
         var allOrderData = [];
         res.data.forEach(async(v) => {
@@ -101,7 +102,7 @@ Page({
             .orderBy("date", "asc")
             .limit(3)
             .get();
-
+        
         var alParticipations = [];
         res.data.forEach(async(v) => {
             const serviceData = await this.getServiceData(v.service);
@@ -123,6 +124,39 @@ Page({
             });
         });
     },
+    async getUserFoodParticipations(cordid) {
+      let db = wx.cloud.database();
+      const _ = db.command;
+      const res = await wx.cloud
+          .database()
+          .collection("orders")
+          .where({
+              category: "food",
+              participant: cordid,
+              status: _.not(_.eq("complete"))
+          })
+          .orderBy("date", "asc")
+          .limit(3)
+          .get();
+      
+      console.log(res);
+      var allFoodOrders = [];
+      res.data.forEach(async(v) => {
+          const participantData = await this.getUserData(v.participant);
+          const merchantData = await this.getMerchantData(v.merchant);
+          const transactionData = await this.getTransactionData(v.transaction);
+          v.participantData = participantData;
+          v.merchantData = merchantData;
+          v.transactionData = transactionData;
+          allFoodOrders.push(v);
+          allFoodOrders.sort(function(a, b) {
+              return a.createTime.getTime() - b.createTime.getTime()
+          });
+          this.setData({
+              foodParticipations: allFoodOrders,
+          });
+      });
+  },
 
     getUserData(userID) {
         return new Promise((resolve, reject) => {
@@ -223,6 +257,7 @@ Page({
                     this.getUserMerchantData(userInfo.store);
                 }
                 this.getUserParticipations(userInfo._id);
+                this.getUserFoodParticipations(userInfo._id);
             })
             .catch((err) => {
                 console.log("error loading user", err);
@@ -340,7 +375,8 @@ Page({
                 "&order=true" +
                 "&participation=true" +
                 "&complete=true" +
-                "&rejected=true",
+                "&rejected=true"+ 
+                "&merchantCategory=" + this.data.merchantData.category
         });
     },
 
@@ -363,7 +399,8 @@ Page({
                 this.data.userInfo.store +
                 "&order=true" +
                 "&pending=true" +
-                "&paid=true",
+                "&paid=true"+ 
+                "&merchantCategory=" + this.data.merchantData.category
         });
     },
     viewParticipation() {
@@ -374,7 +411,7 @@ Page({
                 this.data.userInfo.store +
                 "&participation=true" +
                 "&pending=true" +
-                "&paid=true",
+                "&paid=true"
         });
     },
 
@@ -382,6 +419,11 @@ Page({
         wx.navigateTo({
             url: "/pages/orderDetail/index?orderid=" + e.currentTarget.dataset.orderid,
         });
+    },
+    foodOrderNavigator(e) {
+      wx.navigateTo({
+          url: "/pages/foodOrderDetail/index?orderid=" + e.currentTarget.dataset.orderid,
+      });
     },
     addService(){
       wx.navigateTo({

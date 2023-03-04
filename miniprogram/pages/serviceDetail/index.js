@@ -7,6 +7,7 @@ Page({
     wx.showLoading({
       title: "加载服务细节中",
     });
+    console.log(options);
     this.setData({
       serviceID: options.serviceid,
       options: options

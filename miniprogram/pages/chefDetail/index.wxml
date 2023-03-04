@@ -1,4 +1,7 @@
 <view class="header" style="background-image: url({{merchantData.coverPic}});">
+  <view class="backButton" bindtap="navigateBack">
+        <van-icon name="arrow-left" size="20px" color="white"/>
+    </view>
     <view class="info">
         <image src="{{merchantData.leaderData.profilePic}}"></image>
         <view class="leaderName">{{merchantData.leaderData.username}}</view>
@@ -8,25 +11,26 @@
 </view>
 <view class="body">
     <view class="info">
-        <view class="info_row">
+      <view class="info_row">
             <view class="title">评分</view>
-            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/住院人数.png"></image>
+            <van-icon name="friends-o" size="30px" color="#369472" custom-class="icon"/>
             <view class="desc">
-                <text>{{rating}}</text>
+                <text wx:if="{{totalRated != 0}}">{{rating}}/5</text>
+                <text wx:if="{{totalRated == 0}}">暂无</text>
             </view>
             <view class="vertical_line"></view>
         </view>
         <view class="info_row" bindtap="openLocation">
             <view class="title">地址</view>
-            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/location.png"></image>
-            <view class="location desc">
+            <van-icon name="location-o" size="30px" color="#369472" custom-class="icon"/>
+            <view class="desc">
                 <text>{{merchantData.locationName}}</text>
             </view>
             <view class="vertical_line"></view>
         </view>
         <view class="info_row">
             <view class="title">档期</view>
-            <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/time.png"></image>
+            <van-icon name="clock-o" size="30px" color="#369472" custom-class="icon"/>
             <view class="desc">
                 <text>{{merchantData.availableTimes}}</text>
             </view>
@@ -67,9 +71,9 @@
         </view>
     </view>
     <button class="bottomButton" bindtap="createOrder" wx:if="{{!ifOrder}}">开始点餐</button>
-    <van-goods-action wx:if="{{ifOrder}}">
+    <van-goods-action wx:if="{{ifOrder}}" custom-class="goodsAction">
         <van-goods-action-icon icon="chat-o" text="私信商家" bind:click="contactMerchant" text-class="iconText"/>
-        <van-goods-action-icon icon="cart-o" text="购物车" bind:click="showCart" info="{{totalOrder}}" text-class="iconText"/>
+        <van-goods-action-icon icon="cart-o" text="购物车" bind:click="showCart" info="{{totalOrder}}" text-class="iconText" icon-class="goodsIcon"/>
         <van-goods-action-button color = "#369472" class="submit" text="提交订单" bind:click="submitOrder"/>
     </van-goods-action>
     <van-action-sheet show="{{ show }}" bind:close="closeCart">

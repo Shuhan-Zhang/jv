@@ -45,7 +45,7 @@ view.postLogin view.header {
   background-size: cover;
 }
 view.postLogin view.header view.wrapper {
-  padding: 30rpx 0rpx 15rpx 0rpx;
+  padding: 165rpx 0rpx 15rpx 0rpx;
   z-index: -1000;
   backdrop-filter: blur(10px);
   height: 50%;
@@ -85,7 +85,7 @@ view.postLogin view.header view.wrapper button {
   border-radius: 8px;
   font-family: PingFangSC;
   font-size: 23rpx;
-  font-weight: 440;
+  font-weight: 450;
   color: #000000;
   margin-top: 33rpx;
   margin-bottom: 40px;
@@ -148,13 +148,13 @@ view.postLogin view.body view.orderRow view.middle view.serviceName {
   font-family: PingFangSC-Semibold;
   font-size: 33rpx;
 }
-view.postLogin view.body view.orderRow view.middle .participating {
+view.postLogin view.body view.orderRow view.middle .detail {
   margin-top: 15rpx;
   color: #9F9F9F;
   font-family: PingFangSC-Regular;
   font-size: 22rpx;
 }
-view.postLogin view.body view.orderRow view.middle .participating text.iconfont {
+view.postLogin view.body view.orderRow view.middle .detail text.iconfont {
   color: #369472;
   font-size: 13px;
 }
@@ -181,7 +181,7 @@ view.postLogin view.body view.orderRow view.right view.status {
 view.postLogin view.body view.orderRow view.right view.status text {
   font-family: PingFangSC;
   font-size: 24rpx;
-  color: #fafcfc;
+  color: #E4E5E5;
   padding: 5px 7px 5px 7px;
   border-radius: 8px;
 }
@@ -196,6 +196,121 @@ view.postLogin view.body view.orderRow view.paid view.price {
 }
 view.postLogin view.body view.orderRow view.paid view.status text {
   background-color: #369472;
+}
+view.postLogin view.body view.foodRow {
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 12px #ebedf0;
+  padding: 33rpx 25rpx 23rpx 25rpx;
+}
+view.postLogin view.body view.foodRow view.topInfo {
+  display: flex;
+  align-items: center;
+}
+view.postLogin view.body view.foodRow view.topInfo .left {
+  color: #363938;
+  text-align: left;
+  flex: 90%;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo {
+  display: flex;
+  align-items: center;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .thumb {
+  flex: 30%;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .thumb image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .storeDetail {
+  flex: 70%;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .storeDetail .merchantName {
+  font-family: PingFangSC-Semibold;
+  font-size: 33rpx;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .storeDetail .detail {
+  margin-top: 30rpx;
+  margin-left: -6rpx;
+  color: #9F9F9F;
+  font-family: PingFangSC-Regular;
+  font-size: 22rpx;
+}
+view.postLogin view.body view.foodRow view.topInfo .left .storeInfo .storeDetail .detail .iconfont {
+  color: #369472;
+  font-size: 13px;
+}
+view.postLogin view.body view.foodRow view.topInfo .right {
+  flex: 20%;
+  margin-top: -10rpx;
+  text-align: center;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.price {
+  border-radius: 8px;
+  font-family: PingFangSC-Semibold;
+  font-size: 47rpx;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.status {
+  margin-top: 12rpx;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.status text {
+  font-family: PingFangSC;
+  font-size: 24rpx;
+  color: white;
+  padding: 5px 7px 5px 7px;
+  border-radius: 8px;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.pending view.price {
+  color: #f9cf29;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.pending view.status text {
+  background-color: #f9cf29;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.paid view.price {
+  color: #369472;
+}
+view.postLogin view.body view.foodRow view.topInfo .right view.paid view.status text {
+  background-color: #369472;
+}
+view.postLogin view.body view.foodRow view.line {
+  margin: 0px auto;
+  margin-top: 25rpx;
+  margin-bottom: 21rpx;
+  width: 95%;
+  height: 1rpx;
+  background-color: #E4E5E5;
+}
+view.postLogin view.body view.foodRow .card {
+  background-color: #fff;
+  padding: 30rpx 0rpx;
+  padding-left: 10rpx;
+  padding-right: 30rpx;
+}
+view.postLogin view.body view.foodRow .card .cardTitle {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  font-weight: 540;
+  font-size: 28rpx;
+}
+view.postLogin view.body view.foodRow .card .cardDescription {
+  margin-top: 15rpx;
+  margin-left: 8rpx;
+  font-size: 21rpx;
+  color: #9F9F9F;
+}
+view.postLogin view.body view.foodRow .card .cardPrice {
+  margin-left: 8rpx;
+  font-family: PingFangSC;
+  color: #363938;
+}
+view.postLogin view.body view.foodRow .card .cardNum {
+  color: #656565;
+}
+view.postLogin view.body view.foodRow .card .thumb {
+  border-radius: 20rpx;
 }
 view.postLogin view.body view.orders {
   width: 93%;

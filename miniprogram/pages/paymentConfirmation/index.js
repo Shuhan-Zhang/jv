@@ -1,6 +1,7 @@
 Page({
   data: {
-    openid: wx.getStorageSync('openid'),
+    openid: wx.getStorageSync("openid"),
+    cordid: wx.getStorageSync("CordID"),
     userInfo: wx.getStorageSync('userInfo'),
     option: [
       { text: "微信支付", value: 0 },
@@ -18,6 +19,7 @@ Page({
     maxDate: new Date(2024, 10, 1).getTime(),
     selectedTime: "12:00",
     shownTime: "",
+    
     ifTime: false,
     selectedDateTime: "选择时间",
     filter(type, options) {
@@ -27,6 +29,7 @@ Page({
 
       return options;
     },
+    file: "",
   },
 
   onLoad: function (options) {
@@ -57,7 +60,7 @@ Page({
 
     this.setData({
       serviceData: res.data,
-      price: res.data.CNYPrice,
+      total: res.data.USDPrice,
     });
   },
 
@@ -96,43 +99,6 @@ Page({
         });
     });
   },
-
-  changeDropdown(e) {
-    //微信支付
-    if (e.detail == 0) {
-      this.setData({
-        price: this.data.serviceData.CNYPrice * this.data.num,
-      });
-    }
-    //美元转账
-    else {
-      this.setData({
-        price: this.data.serviceData.USDPrice * this.data.num,
-      });
-    }
-    this.setData({
-      value: e.detail,
-    });
-  },
-
-  onNumberChange(e) {
-    this.setData({
-      num: e.detail,
-    });
-
-    //微信支付人民币
-    if (this.data.value == 0) {
-      this.setData({
-        price: this.data.serviceData.CNYPrice * e.detail,
-      });
-    }
-    //美元转账
-    else {
-      this.setData({
-        price: this.data.serviceData.USDPrice * e.detail,
-      });
-    }
-  },
   async getPreviousAppointmentTime(merchantID) {
     let db = wx.cloud.database();
     const _ = db.command;
@@ -155,6 +121,13 @@ Page({
     this.setData({
       previousAppointmentList: previousAppointmentList,
     });
+  },
+
+  onNumberChange(e){
+    this.setData({
+      num: e.detail,
+      total: e.detail * this.data.serviceData.USDPrice
+    })
   },
 
   //Calendar Code
@@ -253,8 +226,40 @@ Page({
       });
     }
   },
+  upload(e) {
+    wx.chooseMedia({
+            media: ["image"],
+            count: 1,
+            sizeType: ["original", "compressed"],
+            sourceType: ["album", "camera"],
+        })
+        .then((res) => {
+            console.log(res);
+            this.setData({
+                file: res.tempFiles[0].tempFilePath,
+            });
+        })
+        .catch((err) => {
+            wx.showToast({
+                title: "上传失败",
+                icon: "error",
+            });
+        });
+  },
+  enlarge(e) {
+      wx.previewImage({
+          current: e.currentTarget.dataset.url,
+          urls: [e.currentTarget.dataset.url],
+      });
+  },
+  uploadFilePromise(fileName, chooseResult) {
+      return wx.cloud.uploadFile({
+          cloudPath: fileName,
+          filePath: chooseResult.url
+      });
+  },
 
-  async payment(e) {
+  async submitOrder(e) {
     if (this.data.selectedDateTime == "选择时间") {
       wx.showToast({
         title: "请先选择预约时间",
@@ -262,110 +267,65 @@ Page({
       });
       return;
     }
-    //微信支付人民币
-    if (this.data.value == 0) {
-      try{
-        wx.showLoading({title: '创建订单中'});
-        let payTitle = this.data.serviceData.serviceName;
-        let price = this.data.serviceData.CNYPrice;
-        
-        //init微信支付
-        let wechatPayRes = await wx.cloud
-        .callFunction({
-            name: "payment",
-            data: {
-              title: payTitle,
-              price: price,
-              outTradeNo: this.makeid(30),
-            }
-        })
-        if(wechatPayRes.result.resultCode != "SUCCESS"){
-          console.log(wechatPayRes)
-          throw "wechat pay failed"
-        }
+    wx.showLoading({
+      title: "创建订单中"
+  });
 
-        //申请付款
-        const payment = wechatPayRes.result.payment;
-        let paymentRes = await wx.requestPayment({
-          ...payment,
-        })
-        if(paymentRes.errMsg != "requestPayment:ok"){
-          throw "request payment failed"
-        }
+  var screenshotID = Date.now() + "Transaction.jpg";
 
-        const transactionRes = await wx.cloud.callFunction({
+  try {
+      const res = await wx.cloud.uploadFile({
+          cloudPath: screenshotID,
+          filePath: this.data.file,
+      });
+
+      const transactionRes = await wx.cloud.callFunction({
           name: "createTransaction",
           data: {
-            sender: this.data.userInfo._id,
-            receiver: this.data.merchantID,
-            amount: this.data.price,
-            service: this.data.serviceData._id,
-            category: "wechatCNY"
+              category: "reservation",
+              sender: this.data.cordid,
+              receiver: this.data.merchantData.leader,
+              amount: this.data.total,
+              service: this.data.serviceData._id,
+              screenshot: res.fileID,
           },
-        });
-        if (!transactionRes.result._id) {
-          throw "no transaction id";
-        }
-  
-        const orderRes = await wx.cloud.callFunction({
+      });
+      if (!transactionRes.result._id) {
+        throw "transaction creation failed";
+      }
+
+      const orderRes = await wx.cloud.callFunction({
           name: "createOrder",
           data: {
-            merchant: this.data.merchantData._id,
-            participant: this.data.userInfo._id,
-            service: this.data.serviceData._id,
-            transaction: transactionRes.result._id,
-            date: new Date(new Date().getFullYear() + "/" + this.data.selectedDateTime),
-            num: this.data.num,
-            status: "paid",
+              category: "reservation",
+              merchant: this.data.merchantData._id,
+              participant: this.data.cordid,
+              transaction: transactionRes.result._id,
+              service: this.data.serviceData._id,
+              date: new Date(new Date().getFullYear() + "/" + this.data.selectedDateTime),
+              num: this.data.num,
+              status: "pending",
           },
-        });
-  
-        wx.hideLoading({});
-        if (orderRes.result._id) {
-          wx.showToast({
-            title: "订单创建成功",
-            icon: "success",
-          }).then((res) => {
-            wx.reLaunch({
-              url: "/pages/orderDetail/index?orderid=" + orderRes.result._id,
-            });
-          });
-        } else {
-          throw "failed";
-        }
-        
-      }catch(error){
-        console.log(error)
-        wx.showToast({
-          title: '支付失败',
-        })
-      }
-    }
-    //美元转账
-    else {
-      wx.navigateTo({
-        url:
-          "/pages/transferConfirmation/index?serviceid=" +
-          this.data.serviceData._id +
-          "&amount=" +
-          this.data.price +
-          "&date=" +
-          new Date().getFullYear() +
-          "/" +
-          this.data.selectedDateTime +
-          "&num=" +
-          this.data.num,
       });
-    }
-  },
-  makeid(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for ( var i = 0; i < length; i++ ) {
-      result += characters.charAt(Math.floor(Math.random() * 
-      charactersLength));
-    } 
-    return result;
+      wx.hideLoading({});
+      if (orderRes.result._id) {
+          wx.showToast({
+              title: "订单创建成功",
+              icon: "success",
+          }).then((res) => {
+              wx.reLaunch({
+                  url: "/pages/orderDetail/index?orderid=" + orderRes.result._id,
+              });
+          });
+      } else {
+          throw "failed";
+      }
+  } catch (err) {
+      console.log(err);
+      wx.showToast({
+          title: "订单创建失败",
+          icon: "error",
+      });
+  }
   },
 });
