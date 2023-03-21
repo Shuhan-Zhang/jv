@@ -118,6 +118,9 @@ Page({
         })
         return;
       }
+      let subscribeRes = await wx.requestSubscribeMessage({
+        tmplIds: ["t99WD8_SUi4kmPcRHhAC_ZMcwZDTCGMzm4MvdC66W6E"]});
+      console.log(subscribeRes);
         wx.showLoading({
             title: "创建订单中"
         });

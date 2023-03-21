@@ -24,7 +24,7 @@
         </view>
     </view>
     <view class="body" wx:if="{{loginStatus && !inStore}}">
-        <view class="participations" wx:if="{{foodParticipations.length != 0}}">
+        <view class="participations" wx:if="{{foodParticipations.length > 0}}">
             <view class="header">
                 <view class="title">现存外卖</view>
                 <view class="checkAll" bindtap="viewParticipation" wx-if="{{participations || participations.length != 0}}">查看全部</view>
@@ -32,17 +32,17 @@
             <view class="foodRow" wx:for="{{foodParticipations}}" bindtap="foodOrderNavigator" data-orderid="{{item._id}}">
                 <view class="topInfo">
                     <view class="left">
-                      <view class="storeInfo">
-                        <view class="thumb">
-                          <image src="{{item.merchantData.coverPic}}" mode="aspectFill"></image>
-                        </view>
-                        <view class="storeDetail">
-                            <view class="merchantName">{{item.merchantData.title}}</view>
-                            <view class="detail">
-                                <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
+                        <view class="storeInfo">
+                            <view class="thumb">
+                                <image src="{{item.merchantData.coverPic}}" mode="aspectFill"></image>
+                            </view>
+                            <view class="storeDetail">
+                                <view class="merchantName">{{item.merchantData.title}}</view>
+                                <view class="detail">
+                                    <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
+                                </view>
                             </view>
                         </view>
-                      </view>
                     </view>
                     <view class="right">
                         <view class="right pending" wx:if="{{item.status == 'pending'}}">
@@ -80,6 +80,7 @@
                             <text class="iconfont icon-map-thumbtack"></text> {{item.merchantData.locationName}}
                         </view>
                         <view class="detail">
+
                             <text class="iconfont icon-shijian"></text> {{item.reservationDate}}
                         </view>
                     </view>
@@ -177,7 +178,7 @@
                 <view class="storeInfo">
                     <view class="info_row">
                         <view class="title">人数</view>
-                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/peopleCount.png"></image>
+                        <van-icon name="friends-o" size="31px" color="#369472" custom-class="icon" />
                         <view class="desc">
                             <text>{{participantNumber}}人已参加</text>
                         </view>
@@ -185,7 +186,7 @@
                     </view>
                     <view class="info_row" bindtap="openLocation">
                         <view class="title">地址</view>
-                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/location.png"></image>
+                        <van-icon name="location-o" size="31px" color="#369472" custom-class="icon" />
                         <view class="location desc">
                             <text>{{merchantData.locationName}}</text>
                         </view>
@@ -193,7 +194,7 @@
                     </view>
                     <view class="info_row">
                         <view class="title">档期</view>
-                        <image src="cloud://cord-4gtkoygbac76dbeb.636f-cord-4gtkoygbac76dbeb-1312381645/time.png"></image>
+                        <van-icon name="clock-o" size="32px" color="#369472" custom-class="icon" />
                         <view class="desc">
                             <text>{{merchantData.availableTimes}}</text>
                         </view>
@@ -202,7 +203,7 @@
                 <view class="addService" bindtap="editInfo">修改信息</view>
             </view>
         </view>
-        <view class="services">
+        <view class="services" wx:if="{{serviceData && serviceData.length > 0}}">
             <view class="header">
                 <view class="title">您的服务</view>
             </view>
@@ -222,6 +223,33 @@
                     <view class="price" bindtap="editService" data-service="{{item._id}}">修改</view>
                 </view>
             </view>
+            <view class="addService" bindtap="addService">+添加服务</view>
+        </view>
+        <view class="services" wx:if="{{menuData && menuData.length > 0}}">
+            <view class="header">
+                <view class="title">您的菜单</view>
+            </view>
+            <van-empty image="search" description="您暂无任何菜品" wx:if="{{!menuData || menuData.length == 0}}" />
+            <view class="serviceRow" wx:for="{{menuData}}" data-serviceid="{{item._id}}">
+            <view class="left">
+                <image src="{{item.picture}}" mode="aspectFill"></image>
+            </view>
+            <view class="middle">
+                <view class="serviceTitle">{{item.itemName}}</view>
+                <view class="line"></view>
+                <view class="serviceDescription">
+                    {{item.itemDescription}}
+                </view>
+                
+            </view>
+            <view class="right" wx:if="{{!ifOrder}}">
+                <view class="price">${{item.price}}</view>
+            </view>
+            <view class="rightWithOrder" wx:if="{{ifOrder}}">
+                <view class="price">${{item.price}}</view>
+                <van-stepper custom-class="stepper" value="{{ 0 }}" min="0" bind:change="onStepperChange" data-id="{{item._id}}" input-width="25px" button-size="25px" />
+            </view>
+        </view>
             <view class="addService" bindtap="addService">+添加服务</view>
         </view>
         <view class="setting">

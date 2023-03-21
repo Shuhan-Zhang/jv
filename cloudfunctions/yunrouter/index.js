@@ -50,6 +50,7 @@ exports.main = async (event, context) => {
     const wxContext = cloud.getWXContext()
     ctx.body = wxContext.OPENID;
   })
+
   //获取用户信息
   app.router('huoquUserinfo', async (ctx) => {
     try {
@@ -66,14 +67,16 @@ exports.main = async (event, context) => {
     try {
       let res = await cloud.openapi.subscribeMessage.send({
         touser: event.haoyouopenid,
-        page: 'pages/example/chatroom_example/im',
-        lang: 'zh_CN',
-        data: event.data,
         templateId: 'b0cVrk0vEvthUKTmqt7xV-31wgxUcC-beFDI5N4kkXc',
+        page: event.url,
+        lang: 'zh_CN',
+        miniprogram_state: "developer",
+        data: event.data,
       })
-
+      console.log(res);
       return ("good", res)
     } catch (e) {
+      console.log(e);
       return ("stupid", e)
     }
   });
@@ -213,49 +216,49 @@ exports.main = async (event, context) => {
         openid: event.askpeopleid
       }).update({
         data: {
-          friends: db.command.push([{
+          friends: db.command.addToSet({
             id: event.chatid,
             userInfo: event.addpeopleinfo,
             openid: event.addpeopleid
-          }])
+          })
         }
       })
       await db.collection('user').where({
         openid: event.addpeopleid
       }).update({
         data: {
-          friends: db.command.push([{
+          friends: db.command.addToSet({
             id: event.chatid,
             userInfo: event.askpeopleinfo,
             openid: event.askpeopleid
-          }])
+          })
         }
       })
 
-      // //发送订阅消息
-      // const wxContext = cloud.getWXContext()
-      // const openid = wxContext.OPENID;
-      // const messages = await db.collection('subscribeMessage')
-      //   .where({
-      //     id: event.peopleconfim.chatid,
-      //     status: 0
-      //   })
-      //   .get();
+      发送订阅消息
+      const wxContext = cloud.getWXContext()
+      const openid = wxContext.OPENID;
+      const messages = await db.collection('subscribeMessage')
+        .where({
+          id: event.peopleconfim.chatid,
+          status: 0
+        })
+        .get();
 
-      // const sendPromises = messages.data.map(async message => {
-      //   await cloud.openapi.subscribeMessage.send({
-      //     touser: message.touser,
-      //     page: message.page,
-      //     data: message.data,
-      //     templateId: message.templateId,
-      //   });
-      //   db.collection('subscribeMessage').doc(message._id).update({
-      //     data: {
-      //       status: 1
-      //     },
-      //   });
-      // });
-      // Promise.all(sendPromises);
+      const sendPromises = messages.data.map(async message => {
+        await cloud.openapi.subscribeMessage.send({
+          touser: message.touser,
+          page: message.page,
+          data: message.data,
+          templateId: message.templateId,
+        });
+        db.collection('subscribeMessage').doc(message._id).update({
+          data: {
+            status: 1
+          },
+        });
+      });
+      Promise.all(sendPromises);
     } catch (e) {
       console.error(e)
     }

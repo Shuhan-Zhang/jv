@@ -1,7 +1,10 @@
 <van-empty image="search" description="暂无私信/联系人" wx:if="{{!friendList || friendList.length == 0}}" />
-<van-cell wx:for="{{friendList}}" custom-class = "infoCell" is-link bind:click = "chat" data-chatid = "{{item.id}}" data-name = "{{item.userInfo.username}}" data-openid = "{{item.userInfo.openid}}">
-  <view slot="title">
-    <view class="van-cell-text" style="align-items: center;">
-      <image src="{{item.userInfo.profilePic}}" style="border-radius: 50%; width: 100rpx; height: 100rpx;"></image>{{item.userInfo.username}}</view>
+<van-cell wx:for="{{friendList}}" custom-class = "friendCell" 
+title-class="userInfo"
+bind:click = "chat" data-chatid = "{{item.id}}" data-name = "{{item.userInfo.username}}" data-openid = "{{item.userInfo.openid}}">
+  <view slot="title" style="display: flex; align-items: center;">
+      <image src="{{item.userInfo.profilePic}}"></image>
+      <view class="username">{{item.userInfo.username}}</view>
   </view>
+  <van-icon slot="right-icon" name="https://636f-cord-4gtkoygbac76dbeb-1312381645.tcb.qcloud.la/greenVector.png?sign=1d4b1d5771381670e6bcc008d852a0b2&t=1673372850" class="custom-icon" />
 </van-cell>

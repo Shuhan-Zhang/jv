@@ -14,7 +14,7 @@ view.all {
 
         view.left {
             padding-left: 10rpx;
-            flex: 45%;
+            flex: 40%;
 
             image {
                 width: 230rpx;
@@ -24,7 +24,7 @@ view.all {
         }
 
         view.right {
-            flex: 70%;
+            flex: 60%;
             text-align: right;
             align-items: center;
 
@@ -47,28 +47,30 @@ view.all {
                 width: 100%;
                 text-align: right;
 
+
+                .icon {
+                    padding-right: 5rpx;
+                }
+
                 .serviceLocation {
-                    flex: 40%;
+                    flex: 30%;
                     font-family: PingFangSC-Regular;
                     font-size: 21rpx;
                     color: #9F9F9F;
-
-                    text {
-                        color: #369472;
-                    }
-
                 }
 
                 .serviceTime {
-                    flex: 50%;
+                    flex: 60%;
                     font-family: PingFangSC-Regular;
                     font-size: 21rpx;
                     color: #969799;
-
-                    .iconfont {
-                        text-align: left;
-                        color: #369472;
-                    }
+                    display: -webkit-box;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-wrap: break-word;
+                    white-space: normal !important;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
                 }
             }
         }

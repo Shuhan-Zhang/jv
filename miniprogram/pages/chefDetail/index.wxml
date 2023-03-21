@@ -70,7 +70,8 @@
             </view>
         </view>
     </view>
-    <button class="bottomButton" bindtap="createOrder" wx:if="{{!ifOrder}}">开始点餐</button>
+    <button class="bottomButton left" bindtap="contactMerchant" wx:if="{{!ifOrder}}">联系商家</button>
+    <button class="bottomButton right" bindtap="createOrder" wx:if="{{!ifOrder}}">开始点餐</button>
     <van-goods-action wx:if="{{ifOrder}}" custom-class="goodsAction">
         <van-goods-action-icon icon="chat-o" text="私信商家" bind:click="contactMerchant" text-class="iconText"/>
         <van-goods-action-icon icon="cart-o" text="购物车" bind:click="showCart" info="{{totalOrder}}" text-class="iconText" icon-class="goodsIcon"/>

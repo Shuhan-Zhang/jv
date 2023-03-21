@@ -192,12 +192,13 @@ Component({
         }
 
         let notificationRes = await wx.cloud.callFunction({
-          name: 'notification',
+          name: 'sendMessageNotification',
           data: {
             haoyou_openid: this.data.haoyou_openid,
+            url: '/pages/example/chatroom_example/room/room?id=' + this.data.chatRoomGroupId + '&name=' + this.data.chatRoomGroupName + '&haoyou_openid='+ this.data.haoyou_openid,
             data: item, //和订阅消息保持一致的推送的消息
           }})
-        console.log(notificationRes);
+        console.log("noti", notificationRes);
     }
 
   },
@@ -253,7 +254,7 @@ Component({
         }),
       })
 
-      this.send_tixing()
+      this.send_tixing();
 
     }, '发送文字失败')
   },

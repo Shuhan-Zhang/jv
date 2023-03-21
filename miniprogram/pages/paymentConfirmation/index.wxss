@@ -13,7 +13,7 @@ view.all view.serviceRow {
 }
 view.all view.serviceRow view.left {
   padding-left: 10rpx;
-  flex: 45%;
+  flex: 40%;
 }
 view.all view.serviceRow view.left image {
   width: 230rpx;
@@ -21,7 +21,7 @@ view.all view.serviceRow view.left image {
   border-radius: 8px;
 }
 view.all view.serviceRow view.right {
-  flex: 70%;
+  flex: 60%;
   text-align: right;
   align-items: center;
 }
@@ -42,24 +42,27 @@ view.all view.serviceRow view.right view.detail {
   width: 100%;
   text-align: right;
 }
+view.all view.serviceRow view.right view.detail .icon {
+  padding-right: 5rpx;
+}
 view.all view.serviceRow view.right view.detail .serviceLocation {
-  flex: 40%;
+  flex: 30%;
   font-family: PingFangSC-Regular;
   font-size: 21rpx;
   color: #9F9F9F;
 }
-view.all view.serviceRow view.right view.detail .serviceLocation text {
-  color: #369472;
-}
 view.all view.serviceRow view.right view.detail .serviceTime {
-  flex: 50%;
+  flex: 60%;
   font-family: PingFangSC-Regular;
   font-size: 21rpx;
   color: #969799;
-}
-view.all view.serviceRow view.right view.detail .serviceTime .iconfont {
-  text-align: left;
-  color: #369472;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: normal !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 view.all view.paymentRow {
   margin-top: 55rpx;

@@ -181,7 +181,7 @@ view.postLogin view.body view.orderRow view.right view.status {
 view.postLogin view.body view.orderRow view.right view.status text {
   font-family: PingFangSC;
   font-size: 24rpx;
-  color: #E4E5E5;
+  color: #FAFCFC;
   padding: 5px 7px 5px 7px;
   border-radius: 8px;
 }
@@ -350,10 +350,8 @@ view.postLogin view.body view.info .wrapper .storeInfo view.info_row .title {
   font-size: 20rpx;
   color: #9F9F9F;
 }
-view.postLogin view.body view.info .wrapper .storeInfo view.info_row image {
+view.postLogin view.body view.info .wrapper .storeInfo view.info_row .icon {
   margin-top: 20rpx;
-  width: 60rpx;
-  height: 60rpx;
 }
 view.postLogin view.body view.info .wrapper .storeInfo view.info_row view.desc {
   margin-top: 21rpx;

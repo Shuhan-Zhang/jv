@@ -221,6 +221,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/paymentConfirmation/index",
+          "query": "serviceid=affa9c1463bdd8de0075c4422c4f3780&merchantid=fdfe8f1b63e601c40093705a42bc1a0f",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

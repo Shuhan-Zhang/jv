@@ -27,7 +27,8 @@ Page({
       // 如果是单人聊天的话，就有值，如果聊天室的话 就是none
       haoyou_openid: options.haoyou_openid ? options.haoyou_openid : "none",
       avatarUrl: userInfo.profilePic,
-      userInfo: userInfo
+      userInfo: userInfo,
+      options: options
     });
     wx.setNavigationBarTitle({
       title: options.name,

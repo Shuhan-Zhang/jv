@@ -3,11 +3,6 @@ Page({
     openid: wx.getStorageSync("openid"),
     cordid: wx.getStorageSync("CordID"),
     userInfo: wx.getStorageSync('userInfo'),
-    option: [
-      { text: "微信支付", value: 0 },
-      { text: "美元转账", value: 1 },
-    ],
-    value: 0,
     num: 1,
     selectedDate: "",
     selectedDateObject: "",
@@ -267,9 +262,12 @@ Page({
       });
       return;
     }
+    let subscribeRes = await wx.requestSubscribeMessage({
+      tmplIds: ["t99WD8_SUi4kmPcRHhAC_ZMcwZDTCGMzm4MvdC66W6E"]});
+    console.log(subscribeRes);
     wx.showLoading({
-      title: "创建订单中"
-  });
+        title: "创建订单中"
+    });
 
   var screenshotID = Date.now() + "Transaction.jpg";
 

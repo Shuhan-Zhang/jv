@@ -4,20 +4,18 @@
             <image src="{{serviceData.picture}}"></image>
         </view>
         <view class="right">
-            <view class="wrapper">
-                <view class="serviceName">{{serviceData.serviceName}}</view>
-                <view class="line"></view>
-                <view class="detail">
-                    <view class="serviceLocation">
-                        <text class="iconfont icon-map-thumbtack"></text>
-                        {{merchantData.locationName}}
-                    </view>
-                    <view class="serviceTime">
-                        <text class="iconfont icon-shijian"></text>
-                        <text class="location"> {{merchantData.availableTimes}}</text>
-                    </view>
-                </view>
-            </view>
+              <view class="serviceName">{{serviceData.serviceName}}</view>
+              <view class="line"></view>
+              <view class="detail">
+                  <view class="serviceLocation">
+                    <van-icon name="location-o" size="15px" color="#369472" custom-class="icon"/>
+                      <text>{{merchantData.locationName}}</text>
+                  </view>
+                  <view class="serviceTime">
+                      <van-icon name="clock-o"  size="15px" color="#369472" custom-class="icon"/>
+                      {{merchantData.availableTimes}}
+                  </view>
+              </view>
         </view>
     </view>
     <view class="paymentRow number">

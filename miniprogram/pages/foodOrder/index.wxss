@@ -13,7 +13,7 @@ view.all view.serviceRow {
 }
 view.all view.serviceRow view.left {
   padding-left: 10rpx;
-  flex: 45%;
+  flex: 40%;
 }
 view.all view.serviceRow view.left image {
   width: 230rpx;
@@ -21,7 +21,7 @@ view.all view.serviceRow view.left image {
   border-radius: 8px;
 }
 view.all view.serviceRow view.right {
-  flex: 70%;
+  flex: 60%;
   text-align: right;
   align-items: center;
 }

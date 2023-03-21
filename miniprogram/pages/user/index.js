@@ -271,14 +271,37 @@ Page({
         .get();
   
       var merchantData = res.data;
-  
-      const serviceData = await this.getMerchantServiceData(merchantData._id);
+
+      if(res.data.category == "chef"){
+        const menuData = await this.getMenuData(merchantData._id);
+      }else{
+        const serviceData = await this.getMerchantServiceData(merchantData._id);
+      }
       const participants = await this.getParticipants(merchantData._id);
   
       this.setData({
         merchantData: merchantData,
         serviceData: serviceData,
+        menuData: menuData,
         participantNumber: participants.length,
+      });
+    },
+    getMenuData(merchantID){
+      return new Promise((resolve, reject) => {
+        wx.cloud
+          .database()
+          .collection("product")
+          .where({
+            merchant: merchantID,
+          })
+          .orderBy("price", "asc")
+          .get()
+          .then((res) => {
+            resolve(res.data);
+          })
+          .catch((err) => {
+            reject(err);
+          });
       });
     },
     getMerchantServiceData(merchantID) {
